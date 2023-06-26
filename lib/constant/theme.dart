@@ -35,7 +35,7 @@ ThemeData appTheme() {
         ),
         headlineSmall: GoogleFonts.jost(
           fontSize: 20.0,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
         ),
         displaySmall: GoogleFonts.jost(
           fontSize: 16.0,
