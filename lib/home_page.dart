@@ -1,4 +1,5 @@
 import 'package:elibrary/constant/theme.dart';
+import 'package:elibrary/pages/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -32,22 +33,22 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 40,
                 ),
-                DashboardTile(
+                HomePageTile(
                   iconPath: 'icons/home.png',
                   isSelected: true,
                   menuName: 'Dashboard',
                 ),
-                DashboardTile(
+                HomePageTile(
                   iconPath: 'icons/read.png',
                   isSelected: false,
                   menuName: 'Students',
                 ),
-                DashboardTile(
+                HomePageTile(
                   iconPath: 'icons/booksStack.png',
                   isSelected: false,
                   menuName: 'Books',
                 ),
-                DashboardTile(
+                HomePageTile(
                   iconPath: 'icons/transaction.png',
                   isSelected: false,
                   menuName: 'Transaction',
@@ -85,17 +86,17 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        Expanded(child: Container())
+        Expanded(child: DashBoard())
       ],
     ));
   }
 }
 
-class DashboardTile extends StatelessWidget {
+class HomePageTile extends StatelessWidget {
   final bool isSelected;
   final String menuName;
   final String iconPath;
-  const DashboardTile(
+  const HomePageTile(
       {super.key,
       required this.isSelected,
       required this.menuName,
