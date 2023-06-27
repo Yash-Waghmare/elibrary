@@ -17,14 +17,15 @@ class CustomButton extends StatelessWidget {
       {Key? key,
       required this.buttonText,
       required this.buttonColor,
+      required this.textColor,
       required this.function,
       required this.height,
       required this.width})
       : super(key: key);
 
   String buttonText;
-  Color buttonColor;
-  Function function;
+  Color buttonColor, textColor;
+  void Function() function;
   double height, width;
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class CustomButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(height / 2.5),
       ),
       child: ElevatedButton(
-          onPressed: function(),
+          onPressed: function,
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.resolveWith((states) {
                 return buttonColor;
@@ -48,7 +49,7 @@ class CustomButton extends StatelessWidget {
           child: Text(
             buttonText,
             style: GoogleFonts.inter(
-                fontSize: 14, color: Colors.white, fontWeight: FontWeight.w400),
+                fontSize: 14, color: textColor, fontWeight: FontWeight.w400),
           )),
     );
   }
