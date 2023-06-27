@@ -10,36 +10,20 @@ ThemeData appTheme() {
     fontFamily: 'Inter',
     textTheme: TextTheme(
         headlineLarge: GoogleFonts.jost(
-          fontSize: 60.0,
-          fontWeight: FontWeight.w600,
-        ),
+            fontSize: 60.0, fontWeight: FontWeight.w600, color: Colors.white),
         displayLarge: GoogleFonts.jost(
-          fontSize: 40.0,
-          fontWeight: FontWeight.w600,
-        ),
+            fontSize: 40.0, fontWeight: FontWeight.w600, color: Colors.white),
         bodyLarge: GoogleFonts.jost(
-          fontSize: 36.0,
-          fontWeight: FontWeight.w600,
-        ),
+            fontSize: 36.0, fontWeight: FontWeight.w600, color: Colors.white),
         headlineMedium: GoogleFonts.jost(
-          fontSize: 32.0,
-          fontWeight: FontWeight.w600,
-        ),
+            fontSize: 32.0, fontWeight: FontWeight.w600, color: Colors.white),
         displayMedium: GoogleFonts.jost(
-          fontSize: 28.0,
-          fontWeight: FontWeight.w600,
-        ),
+            fontSize: 18.0, fontWeight: FontWeight.w600, color: Colors.white),
         bodyMedium: GoogleFonts.jost(
-          fontSize: 24.0,
-          fontWeight: FontWeight.w600,
-        ),
+            fontSize: 24.0, fontWeight: FontWeight.w600, color: Colors.white),
         headlineSmall: GoogleFonts.jost(
-          fontSize: 20.0,
-          fontWeight: FontWeight.w600,
-        ),
+            fontSize: 20.0, fontWeight: FontWeight.w600, color: Colors.white),
         displaySmall: GoogleFonts.jost(
-          fontSize: 16.0,
-          fontWeight: FontWeight.w600,
-        )),
+            fontSize: 16.0, fontWeight: FontWeight.w600, color: Colors.white)),
   );
 }
