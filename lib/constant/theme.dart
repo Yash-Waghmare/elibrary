@@ -22,7 +22,9 @@ ThemeData appTheme() {
         bodyMedium: GoogleFonts.jost(
             fontSize: 24.0, fontWeight: FontWeight.w600, color: Colors.white),
         headlineSmall: GoogleFonts.jost(
-            fontSize: 20.0, fontWeight: FontWeight.w600, color: Colors.white),
+          fontSize: 20.0,
+          fontWeight: FontWeight.w500,
+        ),
         displaySmall: GoogleFonts.jost(
             fontSize: 16.0, fontWeight: FontWeight.w600, color: Colors.white)),
   );
