@@ -1,6 +1,6 @@
 import 'package:elibrary/constant/theme.dart';
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 // Widget Caller
 // CustomButton(
@@ -34,7 +34,7 @@ class CustomButton extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(height/2.5),
+        borderRadius: BorderRadius.circular(height / 2.5),
       ),
       child: ElevatedButton(
           onPressed: function(),
@@ -44,8 +44,12 @@ class CustomButton extends StatelessWidget {
               }),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(height/2.5)))),
-          child: Text(buttonText, style: appTheme().textTheme.headlineSmall)),
+                      borderRadius: BorderRadius.circular(height / 2.5)))),
+          child: Text(
+            buttonText,
+            style: GoogleFonts.inter(
+                fontSize: 14, color: Colors.white, fontWeight: FontWeight.w400),
+          )),
     );
   }
 }

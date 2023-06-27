@@ -3,7 +3,6 @@ import 'package:elibrary/constant/theme.dart';
 import 'package:elibrary/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
-
 // Widget Caller
 // TransactionTile(
 // transactionId: "2",
@@ -15,18 +14,18 @@ import 'package:flutter/material.dart';
 class TransactionTile extends StatelessWidget {
   TransactionTile(
       {required this.transactionId,
-        required this.studentName,
-        required this.bookName,
-        required this.status,
+      required this.studentName,
+      required this.bookName,
+      required this.status,
       required this.date});
 
-  final transactionId, studentName, bookName, status,date;
+  final transactionId, studentName, bookName, status, date;
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      width: MediaQuery.sizeOf(context).width * 0.625,
-      height: MediaQuery.sizeOf(context).width * 0.045,
+      width: MediaQuery.of(context).size.width * 0.625,
+      height: MediaQuery.of(context).size.width * 0.045,
       decoration: BoxDecoration(
           color: AppColors.colors.tileBackground,
           borderRadius: BorderRadius.circular(20)),
@@ -83,13 +82,15 @@ class TransactionTile extends StatelessWidget {
             ),
           ),
           CustomButton(
-            height: MediaQuery.sizeOf(context).width*0.025,
-            width: MediaQuery.sizeOf(context).width*0.085,
-            buttonText: status?"Returned":"Return",
-            buttonColor: status?AppColors.colors.green:AppColors.colors.red,
-            function: status?(){}:(){
-              // Add function to return the book
-            },
+            height: MediaQuery.of(context).size.width * 0.025,
+            width: MediaQuery.of(context).size.width * 0.085,
+            buttonText: status ? "Returned" : "Return",
+            buttonColor: status ? AppColors.colors.green : AppColors.colors.red,
+            function: status
+                ? () {}
+                : () {
+                    // Add function to return the book
+                  },
           )
         ],
       ),

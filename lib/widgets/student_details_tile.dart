@@ -24,12 +24,11 @@ class StudentDetailsTile extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         //Write a navigator route to pup up the student details
-
       },
       child: Container(
         alignment: Alignment.center,
-        width: MediaQuery.sizeOf(context).width * 0.625,
-        height: MediaQuery.sizeOf(context).width * 0.045,
+        width: MediaQuery.of(context).size.width * 0.625,
+        height: MediaQuery.of(context).size.width * 0.045,
         decoration: BoxDecoration(
             color: AppColors.colors.tileBackground,
             borderRadius: BorderRadius.circular(20)),
