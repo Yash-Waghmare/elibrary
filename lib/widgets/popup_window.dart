@@ -19,7 +19,6 @@ import '../constant/theme.dart';
 // );
 // }));
 
-
 class PopUpFrame extends StatelessWidget {
   /// {@macro add_todo_popup_card}
   PopUpFrame(
@@ -65,23 +64,29 @@ class PopUpFrame extends StatelessWidget {
                   Column(children: children),
                   isButtonNeeded
                       ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             CustomButton(
-                                buttonText: 'Cancel',
-                                buttonColor: AppColors.colors.buttonBackground,
-                                function: () {
-                                  Navigator.pop(context);
-                                },
-                                height: 50,
-                                width: 150, textColor: AppColors.colors.white,),
+                              buttonText: 'Cancel',
+                              buttonColor: AppColors.colors.buttonBackground,
+                              function: () {
+                                Navigator.pop(context);
+                              },
+                              height: 50,
+                              width: 150,
+                              textColor: AppColors.colors.white,
+                              fsize: 18,
+                            ),
                             CustomButton(
-                                buttonText: buttonText,
-                                buttonColor: AppColors.colors.buttonBackground,
-                                function: function,
-                                height: 50,
-                                width: 150, textColor: AppColors.colors.white,)
+                              buttonText: buttonText,
+                              buttonColor: AppColors.colors.buttonBackground,
+                              function: function,
+                              height: 50,
+                              width: 150,
+                              textColor: AppColors.colors.white,
+                              fsize: 18,
+                            )
                           ],
                         )
                       : SizedBox()
