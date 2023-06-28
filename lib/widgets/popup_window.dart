@@ -76,7 +76,7 @@ class PopUpFrame extends StatelessWidget {
                               height: 50,
                               width: 150,
                               textColor: AppColors.colors.white,
-                              fsize: 18,
+                              fsize: 18, fWeight: FontWeight.w400,
                             ),
                             CustomButton(
                               buttonText: buttonText,
@@ -85,7 +85,7 @@ class PopUpFrame extends StatelessWidget {
                               height: 50,
                               width: 150,
                               textColor: AppColors.colors.white,
-                              fsize: 18,
+                              fsize: 18, fWeight: FontWeight.w400,
                             )
                           ],
                         )
