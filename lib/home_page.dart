@@ -1,5 +1,8 @@
 import 'package:elibrary/constant/theme.dart';
 import 'package:elibrary/pages/dashboard.dart';
+import 'package:elibrary/widgets/hero_dialogue_route.dart';
+import 'package:elibrary/widgets/popup_window.dart';
+// import 'package:elibrary/pages/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -79,7 +82,9 @@ class _HomePageState extends State<HomePage> {
                       border: Border.all(color: Color(0xFF7F7C7C))),
                   child: IconButton(
                     icon: Image(image: AssetImage('icons/logout.png')),
-                    onPressed: () {},
+                    onPressed: () {
+
+                    },
                   ),
                 ),
               ],

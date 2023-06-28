@@ -246,7 +246,7 @@ class DashBoardTile extends StatelessWidget {
                     buttonColor: AppColors.colors.buttonBackground,
                     function: () {},
                     height: 25,
-                    width: 100),
+                    width: 100, textColor: AppColors.colors.white,),
                 Text(
                   number,
                   style: GoogleFonts.inter(
