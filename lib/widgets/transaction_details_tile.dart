@@ -91,6 +91,7 @@ class TransactionTile extends StatelessWidget {
                 : () {
                     // Add function to return the book
                   },
+            fsize: 18,
           )
         ],
       ),

@@ -242,11 +242,13 @@ class DashBoardTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 CustomButton(
-                    buttonText: 'See More',
-                    buttonColor: AppColors.colors.buttonBackground,
-                    function: () {},
-                    height: 25,
-                    width: 100),
+                  buttonText: 'See More',
+                  buttonColor: AppColors.colors.buttonBackground,
+                  function: () {},
+                  height: 25,
+                  width: 100,
+                  fsize: 14,
+                ),
                 Text(
                   number,
                   style: GoogleFonts.inter(

@@ -17,6 +17,7 @@ class CustomButton extends StatelessWidget {
       {Key? key,
       required this.buttonText,
       required this.buttonColor,
+      required this.fsize,
       required this.function,
       required this.height,
       required this.width})
@@ -26,6 +27,7 @@ class CustomButton extends StatelessWidget {
   Color buttonColor;
   Function function;
   double height, width;
+  double fsize;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,7 +50,9 @@ class CustomButton extends StatelessWidget {
           child: Text(
             buttonText,
             style: GoogleFonts.inter(
-                fontSize: 14, color: Colors.white, fontWeight: FontWeight.w400),
+                fontSize: fsize,
+                color: Colors.white,
+                fontWeight: FontWeight.w400),
           )),
     );
   }
