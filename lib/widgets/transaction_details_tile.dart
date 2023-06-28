@@ -92,7 +92,7 @@ class TransactionTile extends StatelessWidget {
                     // Add function to return the book
                   },
             textColor: AppColors.colors.white,
-            fsize: 18,
+            fsize: 18, fWeight: FontWeight.w400,
           )
         ],
       ),

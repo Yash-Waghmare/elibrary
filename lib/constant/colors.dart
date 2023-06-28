@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const colors = AppColors();
   final black = const Color(0xFF000000);
-  final green = const Color(0xFF59CE1F);
+  final green = const Color(0xFFACF7A6);
   final white = const Color(0xFFFFFFFF);
   final red = const Color(0xFFF39197);
   final yellow = const Color(0xFFF7EAA6);

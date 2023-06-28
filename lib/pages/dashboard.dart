@@ -248,7 +248,7 @@ class DashBoardTile extends StatelessWidget {
                   height: 25,
                   width: 100,
                   fsize: 14,
-                  textColor: Colors.white,
+                  textColor: Colors.white, fWeight: FontWeight.w400,
                 ),
                 Text(
                   number,

@@ -26,6 +26,7 @@ class StudentDetailsTile extends StatelessWidget {
         //Write a navigator route to pup up the student details
       },
       child: Container(
+        margin: EdgeInsets.symmetric(vertical: 10),
         alignment: Alignment.center,
         width: MediaQuery.of(context).size.width * 0.625,
         height: MediaQuery.of(context).size.width * 0.045,
