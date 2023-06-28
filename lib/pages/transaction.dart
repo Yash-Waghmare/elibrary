@@ -1,22 +1,21 @@
+import 'package:elibrary/widgets/transaction_details_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../constant/colors.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
-import '../widgets/student_details_tile.dart';
 
-class Student extends StatefulWidget {
-  const Student({Key? key}) : super(key: key);
+class Transaction extends StatefulWidget {
+  const Transaction({Key? key}) : super(key: key);
 
   @override
-  State<Student> createState() => _StudentState();
+  State<Transaction> createState() => _TransactionState();
 }
 
-class _StudentState extends State<Student> {
+class _TransactionState extends State<Transaction> {
+  TextEditingController transactionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    TextEditingController idController = TextEditingController();
     return Container(
       color: AppColors.colors.background,
       child: Padding(
@@ -27,7 +26,7 @@ class _StudentState extends State<Student> {
             Row(
               children: [
                 CustomButton(
-                  buttonText: 'Add Student',
+                  buttonText: 'Add Record',
                   buttonColor: AppColors.colors.green,
                   textColor: AppColors.colors.black,
                   function: () {},
@@ -37,7 +36,7 @@ class _StudentState extends State<Student> {
                   fWeight: FontWeight.w600,
                 ),
                 CustomButton(
-                  buttonText: 'Update Student',
+                  buttonText: 'Completed',
                   buttonColor: AppColors.colors.yellow,
                   textColor: AppColors.colors.black,
                   function: () {},
@@ -47,7 +46,7 @@ class _StudentState extends State<Student> {
                   fWeight: FontWeight.w600,
                 ),
                 CustomButton(
-                  buttonText: 'Remove Student',
+                  buttonText: 'Pending',
                   buttonColor: AppColors.colors.red,
                   textColor: AppColors.colors.black,
                   function: () {},
@@ -57,7 +56,7 @@ class _StudentState extends State<Student> {
                   fWeight: FontWeight.w600,
                 ),
                 CustomTextfield(
-                    idController: idController,
+                    idController: transactionController,
                     hintText: 'Enter Transaction ID')
               ],
             ),
@@ -70,7 +69,29 @@ class _StudentState extends State<Student> {
                 Expanded(
                   flex: 2,
                   child: Text(
-                    'Student ID',
+                    'Trasaction ID',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.inter(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Text(
+                    'Student Name',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.inter(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Text(
+                    'Book Name',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.inter(
                         fontSize: 20,
@@ -81,29 +102,7 @@ class _StudentState extends State<Student> {
                 Expanded(
                   flex: 2,
                   child: Text(
-                    'Name',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.inter(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    'Contact Number',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.inter(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-                Expanded(
-                  flex: 4,
-                  child: Text(
-                    'Email',
+                    'Status',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.inter(
                         fontSize: 20,
@@ -116,34 +115,27 @@ class _StudentState extends State<Student> {
             SizedBox(
               height: 20,
             ),
-            StudentDetailsTile(
-              studentId: "1",
-              studentName: "Yash Waghmare",
-              contactNumber: "1234567890",
-              emailId: "yash.waghmare20@pccoepune.org",
-            ),
-            StudentDetailsTile(
-              studentId: "2",
-              studentName: "Yash Waghmare",
-              contactNumber: "1234567890",
-              emailId: "yash.waghmare20@pccoepune.org",
-            ),
-            StudentDetailsTile(
-              studentId: "3",
-              studentName: "Yash Waghmare",
-              contactNumber: "1234567890",
-              emailId: "yash.waghmare20@pccoepune.org",
-            ),
-            StudentDetailsTile(
-              studentId: "4",
-              studentName: "Yash Waghmare",
-              contactNumber: "1234567890",
-              emailId: "yash.waghmare20@pccoepune.org",
-            ),
+            TransactionTile(
+                transactionId: 'E1234',
+                studentName: 'Lomesh Rajendra Wagh',
+                bookName: 'Shriman Yogi',
+                status: false,
+                date: '26/07/2023'),
+            TransactionTile(
+                transactionId: 'E1235',
+                studentName: 'Sarvesh Bapusaheb Chavan',
+                bookName: 'Rich Dad Poor Dad',
+                status: true,
+                date: '26/07/2023'),
+            TransactionTile(
+                transactionId: 'E1236',
+                studentName: 'Yash Gulabrao Waghmare',
+                bookName: 'A Potion For The Wise.',
+                status: false,
+                date: '26/07/2023')
           ],
         ),
       ),
     );
-    ;
   }
 }

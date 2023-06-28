@@ -1,5 +1,6 @@
 import 'package:elibrary/pages/dashboard.dart';
 import 'package:elibrary/pages/student.dart';
+import 'package:elibrary/pages/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'constant/colors.dart';
@@ -13,7 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int index = 0;
-  List<Widget> screens =[DashBoard(),Student(),SizedBox(),SizedBox()];
+  List<Widget> screens = [DashBoard(), Student(), SizedBox(), Transaction()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +37,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 HomePageTile(
                   iconPath: 'icons/home.png',
-                  isSelected: index==0?true:false,
+                  isSelected: index == 0 ? true : false,
                   menuName: 'Dashboard',
                   function: () {
                     setState(() {
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 HomePageTile(
                   iconPath: 'icons/read.png',
-                  isSelected: index==1?true:false,
+                  isSelected: index == 1 ? true : false,
                   menuName: 'Students',
                   function: () {
                     setState(() {
@@ -56,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 HomePageTile(
                   iconPath: 'icons/booksStack.png',
-                  isSelected: index==2?true:false,
+                  isSelected: index == 2 ? true : false,
                   menuName: 'Books',
                   function: () {
                     setState(() {
@@ -66,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 HomePageTile(
                   iconPath: 'icons/transaction.png',
-                  isSelected: index==3?true:false,
+                  isSelected: index == 3 ? true : false,
                   menuName: 'Transaction',
                   function: () {
                     setState(() {

@@ -23,9 +23,10 @@ class TransactionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(vertical: 5),
       alignment: Alignment.center,
       width: MediaQuery.of(context).size.width * 0.625,
-      height: MediaQuery.of(context).size.width * 0.045,
+      height: MediaQuery.of(context).size.width * 0.038,
       decoration: BoxDecoration(
           color: AppColors.colors.tileBackground,
           borderRadius: BorderRadius.circular(20)),
@@ -34,7 +35,7 @@ class TransactionTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-            flex: 1,
+            flex: 2,
             child: Text(
               transactionId,
               textAlign: TextAlign.center,
@@ -54,7 +55,7 @@ class TransactionTile extends StatelessWidget {
                   .textTheme
                   .headlineSmall
                   ?.copyWith(color: AppColors.colors.white),
-              overflow: TextOverflow.ellipsis,
+              // overflow: TextOverflow.ellipsis,
             ),
           ),
           Expanded(
@@ -66,33 +67,26 @@ class TransactionTile extends StatelessWidget {
                   .textTheme
                   .headlineSmall
                   ?.copyWith(color: AppColors.colors.white),
-              overflow: TextOverflow.ellipsis,
+              // overflow: TextOverflow.ellipsis,
             ),
           ),
           Expanded(
-            flex: 3,
-            child: Text(
-              date,
-              textAlign: TextAlign.center,
-              style: appTheme()
-                  .textTheme
-                  .headlineSmall
-                  ?.copyWith(color: AppColors.colors.white),
-              overflow: TextOverflow.ellipsis,
+            flex: 2,
+            child: CustomButton(
+              height: MediaQuery.of(context).size.width * 0.025,
+              width: MediaQuery.of(context).size.width * 0.065,
+              buttonText: status ? "Returned" : "Return",
+              buttonColor:
+                  status ? AppColors.colors.green : AppColors.colors.red,
+              function: status
+                  ? () {}
+                  : () {
+                      // Add function to return the book
+                    },
+              textColor: AppColors.colors.black,
+              fsize: 18,
+              fWeight: FontWeight.w600,
             ),
-          ),
-          CustomButton(
-            height: MediaQuery.of(context).size.width * 0.025,
-            width: MediaQuery.of(context).size.width * 0.085,
-            buttonText: status ? "Returned" : "Return",
-            buttonColor: status ? AppColors.colors.green : AppColors.colors.red,
-            function: status
-                ? () {}
-                : () {
-                    // Add function to return the book
-                  },
-            textColor: AppColors.colors.white,
-            fsize: 18, fWeight: FontWeight.w400,
           )
         ],
       ),
