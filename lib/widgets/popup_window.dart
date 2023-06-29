@@ -61,7 +61,11 @@ class PopUpFrame extends StatelessWidget {
                         ?.copyWith(color: AppColors.colors.white),
                     textAlign: TextAlign.center,
                   ),
-                  Column(children: children),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 30, right: 30, bottom: 20),
+                    child: Column(children: children),
+                  ),
                   isButtonNeeded
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -76,7 +80,8 @@ class PopUpFrame extends StatelessWidget {
                               height: 50,
                               width: 150,
                               textColor: AppColors.colors.white,
-                              fsize: 18, fWeight: FontWeight.w400,
+                              fsize: 18,
+                              fWeight: FontWeight.w400,
                             ),
                             CustomButton(
                               buttonText: buttonText,
@@ -85,7 +90,8 @@ class PopUpFrame extends StatelessWidget {
                               height: 50,
                               width: 150,
                               textColor: AppColors.colors.white,
-                              fsize: 18, fWeight: FontWeight.w400,
+                              fsize: 18,
+                              fWeight: FontWeight.w400,
                             )
                           ],
                         )

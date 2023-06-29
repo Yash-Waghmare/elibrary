@@ -16,14 +16,13 @@ class TransactionTile extends StatelessWidget {
       {required this.transactionId,
       required this.studentName,
       required this.bookName,
-      required this.status,
-      required this.date});
+      required this.status});
 
-  final transactionId, studentName, bookName, status, date;
+  final transactionId, studentName, bookName, status;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      margin: EdgeInsets.symmetric(vertical: 10),
       alignment: Alignment.center,
       width: MediaQuery.of(context).size.width * 0.625,
       height: MediaQuery.of(context).size.width * 0.038,

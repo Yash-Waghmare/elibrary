@@ -4,6 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import '../constant/colors.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
+import '../widgets/hero_dialogue_route.dart';
+import '../widgets/popup_textfield.dart';
+import '../widgets/popup_window.dart';
 
 class Transaction extends StatefulWidget {
   const Transaction({Key? key}) : super(key: key);
@@ -14,6 +17,8 @@ class Transaction extends StatefulWidget {
 
 class _TransactionState extends State<Transaction> {
   TextEditingController transactionController = TextEditingController();
+  TextEditingController studentIdController = TextEditingController();
+  TextEditingController bookIdController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,7 +34,26 @@ class _TransactionState extends State<Transaction> {
                   buttonText: 'Add Record',
                   buttonColor: AppColors.colors.green,
                   textColor: AppColors.colors.black,
-                  function: () {},
+                  function: () {
+                    Navigator.of(context)
+                        .push(HeroDialogRoute(builder: (context) {
+                      return PopUpFrame(
+                        height: MediaQuery.of(context).size.width * 0.34,
+                        width: MediaQuery.of(context).size.width * 0.25,
+                        title: 'Add Record',
+                        buttonText: 'Add',
+                        function: () {},
+                        children: [
+                          PopUpTextfield(
+                              addRecordController: studentIdController,
+                              hintText: 'Student ID'),
+                          PopUpTextfield(
+                              addRecordController: bookIdController,
+                              hintText: 'Book ID'),
+                        ],
+                      );
+                    }));
+                  },
                   height: 50,
                   width: 190,
                   fsize: 18,
@@ -119,20 +143,17 @@ class _TransactionState extends State<Transaction> {
                 transactionId: 'E1234',
                 studentName: 'Lomesh Rajendra Wagh',
                 bookName: 'Shriman Yogi',
-                status: false,
-                date: '26/07/2023'),
+                status: false),
             TransactionTile(
                 transactionId: 'E1235',
                 studentName: 'Sarvesh Bapusaheb Chavan',
                 bookName: 'Rich Dad Poor Dad',
-                status: true,
-                date: '26/07/2023'),
+                status: true),
             TransactionTile(
                 transactionId: 'E1236',
                 studentName: 'Yash Gulabrao Waghmare',
                 bookName: 'A Potion For The Wise.',
-                status: false,
-                date: '26/07/2023')
+                status: false)
           ],
         ),
       ),
