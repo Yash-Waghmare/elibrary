@@ -1,3 +1,4 @@
+import 'package:elibrary/pages/student_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,7 +17,13 @@ class Student extends StatefulWidget {
 class _StudentState extends State<Student> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController idController = TextEditingController();
+    TextEditingController idController = TextEditingController(),
+        nameController = TextEditingController(),
+        contactNumberController = TextEditingController(),
+        emailController = TextEditingController(),
+        adminPasswordController = TextEditingController(),
+        succesfulTransactionController = TextEditingController(),
+        unReturnedBooksController = TextEditingController();
     return Container(
       color: AppColors.colors.background,
       child: Padding(
@@ -30,7 +37,13 @@ class _StudentState extends State<Student> {
                   buttonText: 'Add Student',
                   buttonColor: AppColors.colors.green,
                   textColor: AppColors.colors.black,
-                  function: () {},
+                  function: () {
+                    StudentFunctions().AddStudent(
+                        context: context,
+                        nameController: nameController,
+                        contactNumberController: contactNumberController,
+                        emailController: emailController);
+                  },
                   height: 50,
                   width: 190,
                   fsize: 18,
@@ -40,7 +53,14 @@ class _StudentState extends State<Student> {
                   buttonText: 'Update Student',
                   buttonColor: AppColors.colors.yellow,
                   textColor: AppColors.colors.black,
-                  function: () {},
+                  function: () {
+                    StudentFunctions().UpdateStudent(
+                        context: context,
+                        idController: idController,
+                        nameController: nameController,
+                        contactNumberController: contactNumberController,
+                        emailController: emailController);
+                  },
                   height: 50,
                   width: 190,
                   fsize: 18,
@@ -50,15 +70,37 @@ class _StudentState extends State<Student> {
                   buttonText: 'Remove Student',
                   buttonColor: AppColors.colors.red,
                   textColor: AppColors.colors.black,
-                  function: () {},
+                  function: () {
+                    StudentFunctions().RemoveStudent(
+                      context: context,
+                      idController: idController,
+                      adminPasswordController: adminPasswordController,
+                    );
+                  },
                   height: 50,
                   width: 190,
                   fsize: 18,
                   fWeight: FontWeight.w600,
                 ),
                 CustomTextfield(
-                    idController: idController,
-                    hintText: 'Enter Transaction ID')
+                  controller: idController,
+                  hintText: 'Enter Transaction ID',
+                  onSubmit: (val) {
+                    idController.text = "2";
+                    nameController.text = "asd";
+                    emailController.text = "yash.waghmare20@pccoepune.org";
+                    succesfulTransactionController.text = "20";
+                    StudentFunctions().ShowStudent(
+                        context: context,
+                        idController: idController,
+                        nameController: nameController,
+                        contactNumberController: contactNumberController,
+                        emailController: emailController,
+                        succesfulTransactionController:
+                            succesfulTransactionController,
+                        unReturnedBooksController: unReturnedBooksController);
+                  },
+                )
               ],
             ),
             SizedBox(
@@ -121,24 +163,42 @@ class _StudentState extends State<Student> {
               studentName: "Yash Waghmare",
               contactNumber: "1234567890",
               emailId: "yash.waghmare20@pccoepune.org",
+              onTap: () {},
             ),
             StudentDetailsTile(
               studentId: "2",
               studentName: "Yash Waghmare",
               contactNumber: "1234567890",
               emailId: "yash.waghmare20@pccoepune.org",
+              onTap: () {
+                idController.text = "1";
+                nameController.text = "asd";
+                emailController.text = "Yash Gulabrao Waghmare20@pccoepune.org";
+                succesfulTransactionController.text = "20";
+                StudentFunctions().ShowStudent(
+                    context: context,
+                    idController: idController,
+                    nameController: nameController,
+                    contactNumberController: contactNumberController,
+                    emailController: emailController,
+                    succesfulTransactionController:
+                        succesfulTransactionController,
+                    unReturnedBooksController: unReturnedBooksController);
+              },
             ),
             StudentDetailsTile(
               studentId: "3",
               studentName: "Yash Waghmare",
               contactNumber: "1234567890",
               emailId: "yash.waghmare20@pccoepune.org",
+              onTap: () {},
             ),
             StudentDetailsTile(
               studentId: "4",
               studentName: "Yash Waghmare",
               contactNumber: "1234567890",
               emailId: "yash.waghmare20@pccoepune.org",
+              onTap: () {},
             ),
           ],
         ),

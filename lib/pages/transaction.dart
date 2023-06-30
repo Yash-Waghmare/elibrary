@@ -45,10 +45,10 @@ class _TransactionState extends State<Transaction> {
                         function: () {},
                         children: [
                           PopUpTextfield(
-                              addRecordController: studentIdController,
+                              controller: studentIdController,
                               hintText: 'Student ID'),
                           PopUpTextfield(
-                              addRecordController: bookIdController,
+                              controller: bookIdController,
                               hintText: 'Book ID'),
                         ],
                       );
@@ -80,8 +80,10 @@ class _TransactionState extends State<Transaction> {
                   fWeight: FontWeight.w600,
                 ),
                 CustomTextfield(
-                    idController: transactionController,
-                    hintText: 'Enter Transaction ID')
+                  controller: transactionController,
+                  hintText: 'Enter Transaction ID',
+                  onSubmit: (val){},
+                )
               ],
             ),
             SizedBox(

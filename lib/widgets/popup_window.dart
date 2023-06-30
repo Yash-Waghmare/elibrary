@@ -66,12 +66,12 @@ class PopUpFrame extends StatelessWidget {
                         const EdgeInsets.only(left: 30, right: 30, bottom: 20),
                     child: Column(children: children),
                   ),
-                  isButtonNeeded
-                      ? Row(
+                   Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            CustomButton(
+                            isButtonNeeded
+                                ?CustomButton(
                               buttonText: 'Cancel',
                               buttonColor: AppColors.colors.buttonBackground,
                               function: () {
@@ -82,7 +82,7 @@ class PopUpFrame extends StatelessWidget {
                               textColor: AppColors.colors.white,
                               fsize: 18,
                               fWeight: FontWeight.w400,
-                            ),
+                            ):SizedBox(),
                             CustomButton(
                               buttonText: buttonText,
                               buttonColor: AppColors.colors.buttonBackground,
@@ -95,7 +95,6 @@ class PopUpFrame extends StatelessWidget {
                             )
                           ],
                         )
-                      : SizedBox()
                 ],
               ),
             ),

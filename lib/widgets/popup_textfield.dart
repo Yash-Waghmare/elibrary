@@ -5,17 +5,20 @@ import 'package:google_fonts/google_fonts.dart';
 class PopUpTextfield extends StatelessWidget {
   const PopUpTextfield({
     super.key,
-    required this.addRecordController,
-    required this.hintText,
+    required this.controller,
+    required this.hintText, this.readOnly=false,
   });
 
-  final TextEditingController addRecordController;
+  final TextEditingController controller;
   final String hintText;
+  final bool readOnly;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: addRecordController,
+      controller: controller,
+      readOnly: readOnly,
+      enabled: !readOnly,
       decoration: InputDecoration(
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
@@ -32,9 +35,9 @@ class PopUpTextfield extends StatelessWidget {
           labelStyle: GoogleFonts.inter(
               fontSize: 18, color: Colors.white, fontWeight: FontWeight.w600),
           alignLabelWithHint: true),
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.start,
       style: GoogleFonts.inter(
-          fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600),
+          fontSize: 18, color: Colors.white, fontWeight: FontWeight.w600),
     );
   }
 }
