@@ -85,6 +85,7 @@ class TransactionTile extends StatelessWidget {
               textColor: AppColors.colors.black,
               fsize: 18,
               fWeight: FontWeight.w600,
+              needCursor: status?false:true,
             ),
           )
         ],

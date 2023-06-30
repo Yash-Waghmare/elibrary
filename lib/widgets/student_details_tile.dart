@@ -16,15 +16,15 @@ class StudentDetailsTile extends StatelessWidget {
       {required this.studentId,
       required this.studentName,
       required this.contactNumber,
-      required this.emailId});
+      required this.emailId,
+      required this.onTap});
 
   final studentId, studentName, contactNumber, emailId;
+  void Function() onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        //Write a navigator route to pup up the student details
-      },
+      onTap: onTap,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10),
         alignment: Alignment.center,

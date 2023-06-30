@@ -21,8 +21,9 @@ class CustomButton extends StatelessWidget {
       required this.function,
       required this.fsize,
       required this.height,
-        required this.fWeight,
-      required this.width})
+      required this.fWeight,
+      required this.width,
+      this.needCursor = true})
       : super(key: key);
 
   String buttonText;
@@ -31,6 +32,8 @@ class CustomButton extends StatelessWidget {
   double height, width;
   double fsize;
   FontWeight fWeight;
+  bool needCursor;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,17 +46,16 @@ class CustomButton extends StatelessWidget {
       ),
       child: ElevatedButton(
           onPressed: function,
-          style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.resolveWith((states) {
-                return buttonColor;
-              }),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(height / 2.5)))),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: buttonColor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(height / 2.5)),
+            enabledMouseCursor: needCursor?SystemMouseCursors.click:SystemMouseCursors.forbidden
+          ),
           child: Text(
             buttonText,
             style: GoogleFonts.inter(
-                fontSize: fsize, color: textColor, fontWeight:fWeight),
+                fontSize: fsize, color: textColor, fontWeight: fWeight),
           )),
     );
   }
