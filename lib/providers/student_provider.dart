@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 class StudentProvider with ChangeNotifier {
   List<Student> students = [];
-  StudentProvider({required context}){
+  StudentProvider({required context}) {
     fetchStudents(context);
   }
   void createStudent(Student student) {
@@ -13,17 +13,24 @@ class StudentProvider with ChangeNotifier {
   }
 
   void fetchStudents(context) async {
-    students =await StudentsService().fetchStudents(context);
+    students = await StudentsService().fetchStudents(context);
     notifyListeners();
   }
-  Student? getStudent(String id){
-    for(int i=0;i<students.length;i++){
-      if(students[i].id==id){
-        return students[i];
-      }
+
+  Student? getStudent(String id) {
+    int indexOfStudent;
+    try {
+      indexOfStudent =
+          students.indexOf(students.firstWhere((element) => element.id == id));
+    } catch (e) {
+      indexOfStudent = -1;
+    }
+    if (indexOfStudent != -1) {
+      return students[indexOfStudent];
     }
     return null;
   }
+
   void updateStudent(Student student) {}
   // Student getStudent(){
   //
