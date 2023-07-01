@@ -1,29 +1,40 @@
-import 'package:elibrary/pages/student_functions.dart';
+import 'package:elibrary/providers/student_provider.dart';
+import 'package:elibrary/function/student_functions.dart';
+import 'package:elibrary/services/student_services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:provider/provider.dart';
 import '../constant/colors.dart';
+import '../models/student.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
 import '../widgets/student_details_tile.dart';
 
-class Student extends StatefulWidget {
-  const Student({Key? key}) : super(key: key);
+class StudentScreen extends StatefulWidget {
+  const StudentScreen({Key? key}) : super(key: key);
 
   @override
-  State<Student> createState() => _StudentState();
+  State<StudentScreen> createState() => _StudentScreenState();
 }
 
-class _StudentState extends State<Student> {
+class _StudentScreenState extends State<StudentScreen> {
+
+  TextEditingController idController = TextEditingController(),
+      nameController = TextEditingController(),
+      contactNumberController = TextEditingController(),
+      emailController = TextEditingController(),
+      adminPasswordController = TextEditingController(),
+      succesfulTransactionController = TextEditingController(),
+      unReturnedBooksController = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController idController = TextEditingController(),
-        nameController = TextEditingController(),
-        contactNumberController = TextEditingController(),
-        emailController = TextEditingController(),
-        adminPasswordController = TextEditingController(),
-        succesfulTransactionController = TextEditingController(),
-        unReturnedBooksController = TextEditingController();
+    StudentProvider studentProvider = Provider.of<StudentProvider>(context);
     return Container(
       color: AppColors.colors.background,
       child: Padding(
@@ -84,21 +95,30 @@ class _StudentState extends State<Student> {
                 ),
                 CustomTextfield(
                   controller: idController,
-                  hintText: 'Enter Transaction ID',
+                  hintText: 'Enter Student ID',
                   onSubmit: (val) {
-                    idController.text = "2";
-                    nameController.text = "asd";
-                    emailController.text = "yash.waghmare20@pccoepune.org";
-                    succesfulTransactionController.text = "20";
-                    StudentFunctions().ShowStudent(
-                        context: context,
-                        idController: idController,
-                        nameController: nameController,
-                        contactNumberController: contactNumberController,
-                        emailController: emailController,
-                        succesfulTransactionController:
-                            succesfulTransactionController,
-                        unReturnedBooksController: unReturnedBooksController);
+                    Student? student = studentProvider.getStudent(val);
+                    if (student != null) {
+                      idController.text = student!.id!;
+                      nameController.text = student!.studentName!;
+                      emailController.text = student!.email!;
+                      contactNumberController.text = student!.contactNumber!;
+                      succesfulTransactionController.text =
+                          student!.transactionCount!;
+                      unReturnedBooksController.text =
+                          student!.unreturnedBooks!;
+                      StudentFunctions().ShowStudent(
+                          context: context,
+                          idController: idController,
+                          nameController: nameController,
+                          contactNumberController: contactNumberController,
+                          emailController: emailController,
+                          succesfulTransactionController:
+                              succesfulTransactionController,
+                          unReturnedBooksController: unReturnedBooksController);
+                    }else{
+                      idController.clear();
+                    }
                   },
                 )
               ],
@@ -158,52 +178,44 @@ class _StudentState extends State<Student> {
             SizedBox(
               height: 20,
             ),
-            StudentDetailsTile(
-              studentId: "1",
-              studentName: "Yash Waghmare",
-              contactNumber: "1234567890",
-              emailId: "yash.waghmare20@pccoepune.org",
-              onTap: () {},
-            ),
-            StudentDetailsTile(
-              studentId: "2",
-              studentName: "Yash Waghmare",
-              contactNumber: "1234567890",
-              emailId: "yash.waghmare20@pccoepune.org",
-              onTap: () {
-                idController.text = "1";
-                nameController.text = "asd";
-                emailController.text = "Yash Gulabrao Waghmare20@pccoepune.org";
-                succesfulTransactionController.text = "20";
-                StudentFunctions().ShowStudent(
-                    context: context,
-                    idController: idController,
-                    nameController: nameController,
-                    contactNumberController: contactNumberController,
-                    emailController: emailController,
-                    succesfulTransactionController:
-                        succesfulTransactionController,
-                    unReturnedBooksController: unReturnedBooksController);
-              },
-            ),
-            StudentDetailsTile(
-              studentId: "3",
-              studentName: "Yash Waghmare",
-              contactNumber: "1234567890",
-              emailId: "yash.waghmare20@pccoepune.org",
-              onTap: () {},
-            ),
-            StudentDetailsTile(
-              studentId: "4",
-              studentName: "Yash Waghmare",
-              contactNumber: "1234567890",
-              emailId: "yash.waghmare20@pccoepune.org",
-              onTap: () {},
-            ),
+            if(studentProvider.students.length!=0)
+              for (int i = 0; i < studentProvider.students.length; i++)
+                StudentDetailsTile(
+                  studentId: studentProvider.students[i].id,
+                  studentName: studentProvider.students[i].studentName,
+                  contactNumber: studentProvider.students[i].contactNumber,
+                  emailId: studentProvider.students[i].email,
+                  onTap: () {
+                    idController.text = studentProvider.students[i].id!;
+                    nameController.text =
+                        studentProvider.students[i].studentName!;
+                    contactNumberController.text =
+                        studentProvider.students[i].contactNumber!;
+                    emailController.text = studentProvider.students[i].email!;
+                    succesfulTransactionController.text =
+                        studentProvider.students[i].transactionCount!;
+                    unReturnedBooksController.text =
+                        studentProvider.students[i].unreturnedBooks!;
+                    StudentFunctions().ShowStudent(
+                        context: context,
+                        idController: idController,
+                        nameController: nameController,
+                        contactNumberController: contactNumberController,
+                        emailController: emailController,
+                        succesfulTransactionController:
+                            succesfulTransactionController,
+                        unReturnedBooksController: unReturnedBooksController);
+                  },
+                ),
+            studentProvider.students.length==0
+                ? Center(
+                    child: CircularProgressIndicator()
+                  )
+                : SizedBox(),
           ],
         ),
       ),
     );
-    ;
   }
+
 }
