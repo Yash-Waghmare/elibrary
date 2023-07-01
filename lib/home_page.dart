@@ -1,6 +1,8 @@
 import 'package:elibrary/pages/dashboard.dart';
+import 'package:elibrary/pages/fine_screen.dart';
 import 'package:elibrary/pages/student.dart';
 import 'package:elibrary/pages/transaction.dart';
+import 'package:elibrary/widgets/menu_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'constant/colors.dart';
@@ -14,7 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int index = 0;
-  List<Widget> screens = [DashBoard(), Student(), SizedBox(), Transaction()];
+  List<Widget> screens = [DashBoard(), Student(), SizedBox(), Transaction(),Fine()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +37,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 40,
                 ),
-                HomePageTile(
+                MenuTile(
                   iconPath: 'icons/home.png',
                   isSelected: index == 0 ? true : false,
                   menuName: 'Dashboard',
@@ -45,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                 ),
-                HomePageTile(
+                MenuTile(
                   iconPath: 'icons/read.png',
                   isSelected: index == 1 ? true : false,
                   menuName: 'Students',
@@ -55,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                 ),
-                HomePageTile(
+                MenuTile(
                   iconPath: 'icons/booksStack.png',
                   isSelected: index == 2 ? true : false,
                   menuName: 'Books',
@@ -65,13 +67,23 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                 ),
-                HomePageTile(
+                MenuTile(
                   iconPath: 'icons/transaction.png',
                   isSelected: index == 3 ? true : false,
                   menuName: 'Transaction',
                   function: () {
                     setState(() {
                       index = 3;
+                    });
+                  },
+                ),
+                MenuTile(
+                  iconPath: 'icons/booksStack.png',
+                  isSelected: index == 4 ? true : false,
+                  menuName: 'Calculate Fine',
+                  function: () {
+                    setState(() {
+                      index = 4;
                     });
                   },
                 ),
@@ -114,49 +126,3 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class HomePageTile extends StatelessWidget {
-  final bool isSelected;
-  final String menuName;
-  final String iconPath;
-  void Function() function;
-  HomePageTile(
-      {super.key,
-      required this.isSelected,
-      required this.menuName,
-      required this.iconPath,
-      required this.function});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(left: 106, top: 0, right: 106),
-      width: 200,
-      height: 46,
-      decoration: BoxDecoration(
-          color: isSelected
-              ? AppColors.colors.buttonBackground
-              : Colors.transparent,
-          borderRadius: BorderRadius.circular(10)),
-      child: Center(
-        child: ListTile(
-          minLeadingWidth: 0,
-          minVerticalPadding: 0,
-          onTap: function,
-          leading: Image(
-            image: AssetImage(iconPath),
-            width: 17,
-            height: 17,
-          ),
-          title: Center(
-            child: Text(
-              menuName,
-              style: GoogleFonts.inter(
-                  fontSize: 16,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
