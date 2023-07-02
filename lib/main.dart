@@ -1,4 +1,5 @@
 import 'package:elibrary/providers/student_provider.dart';
+import 'package:elibrary/providers/transaction_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => StudentProvider(context:context),
+          create: (context) => StudentProvider(context: context),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => TransactionProvider(context: context),
         )
       ],
       child: MaterialApp(

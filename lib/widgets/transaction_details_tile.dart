@@ -16,79 +16,81 @@ class TransactionTile extends StatelessWidget {
       {required this.transactionId,
       required this.studentName,
       required this.bookName,
-      required this.status});
+      required this.status,
+      required this.onTap,
+      required this.returnedFunc});
 
   final transactionId, studentName, bookName, status;
+  void Function() onTap, returnedFunc;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      alignment: Alignment.center,
-      width: MediaQuery.of(context).size.width * 0.625,
-      height: MediaQuery.of(context).size.width * 0.038,
-      decoration: BoxDecoration(
-          color: AppColors.colors.tileBackground,
-          borderRadius: BorderRadius.circular(20)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 2,
-            child: Text(
-              transactionId,
-              textAlign: TextAlign.center,
-              style: appTheme()
-                  .textTheme
-                  .headlineSmall
-                  ?.copyWith(color: AppColors.colors.white),
-              overflow: TextOverflow.ellipsis,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 10),
+        alignment: Alignment.center,
+        width: MediaQuery.of(context).size.width * 0.625,
+        height: MediaQuery.of(context).size.width * 0.038,
+        decoration: BoxDecoration(
+            color: AppColors.colors.tileBackground,
+            borderRadius: BorderRadius.circular(20)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 2,
+              child: Text(
+                transactionId,
+                textAlign: TextAlign.center,
+                style: appTheme()
+                    .textTheme
+                    .headlineSmall
+                    ?.copyWith(color: AppColors.colors.white),
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Text(
-              studentName,
-              textAlign: TextAlign.center,
-              style: appTheme()
-                  .textTheme
-                  .headlineSmall
-                  ?.copyWith(color: AppColors.colors.white),
-              // overflow: TextOverflow.ellipsis,
+            Expanded(
+              flex: 3,
+              child: Text(
+                studentName,
+                textAlign: TextAlign.center,
+                style: appTheme()
+                    .textTheme
+                    .headlineSmall
+                    ?.copyWith(color: AppColors.colors.white),
+                // overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Text(
-              bookName,
-              textAlign: TextAlign.center,
-              style: appTheme()
-                  .textTheme
-                  .headlineSmall
-                  ?.copyWith(color: AppColors.colors.white),
-              // overflow: TextOverflow.ellipsis,
+            Expanded(
+              flex: 3,
+              child: Text(
+                bookName,
+                textAlign: TextAlign.center,
+                style: appTheme()
+                    .textTheme
+                    .headlineSmall
+                    ?.copyWith(color: AppColors.colors.white),
+                // overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
-          Expanded(
-            flex: 2,
-            child: CustomButton(
-              height: MediaQuery.of(context).size.width * 0.025,
-              width: MediaQuery.of(context).size.width * 0.065,
-              buttonText: status ? "Returned" : "Return",
-              buttonColor:
-                  status ? AppColors.colors.green : AppColors.colors.red,
-              function: status
-                  ? () {}
-                  : () {
-                      // Add function to return the book
-                    },
-              textColor: AppColors.colors.black,
-              fsize: 18,
-              fWeight: FontWeight.w600,
-              needCursor: status?false:true,
-            ),
-          )
-        ],
+            Expanded(
+              flex: 2,
+              child: CustomButton(
+                height: MediaQuery.of(context).size.width * 0.025,
+                width: MediaQuery.of(context).size.width * 0.065,
+                buttonText: status ? "Returned" : "Return",
+                buttonColor:
+                    status ? AppColors.colors.green : AppColors.colors.red,
+                function: status ? () {} : returnedFunc,
+                textColor: AppColors.colors.black,
+                fsize: 18,
+                fWeight: FontWeight.w600,
+                needCursor: status ? false : true,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

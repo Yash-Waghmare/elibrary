@@ -6,7 +6,8 @@ class PopUpTextfield extends StatelessWidget {
   const PopUpTextfield({
     super.key,
     required this.controller,
-    required this.hintText, this.readOnly=false,
+    required this.hintText,
+    this.readOnly = false,
   });
 
   final TextEditingController controller;
@@ -16,7 +17,7 @@ class PopUpTextfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: controller,
+      controller: readOnly ? null : controller,
       readOnly: readOnly,
       enabled: !readOnly,
       decoration: InputDecoration(
