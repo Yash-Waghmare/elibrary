@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../constant/colors.dart';
+import '../constant/handler.dart';
 import '../models/student.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
@@ -24,7 +25,7 @@ class _StudentScreenState extends State<StudentScreen> {
       contactNumberController = TextEditingController(),
       emailController = TextEditingController(),
       adminPasswordController = TextEditingController(),
-      succesfulTransactionController = TextEditingController(),
+      successfulTransactionController = TextEditingController(),
       unReturnedBooksController = TextEditingController();
   @override
   void initState() {
@@ -103,7 +104,7 @@ class _StudentScreenState extends State<StudentScreen> {
                       nameController.text = student!.studentName!;
                       emailController.text = student!.email!;
                       contactNumberController.text = student!.contactNumber!;
-                      succesfulTransactionController.text =
+                      successfulTransactionController.text =
                           student!.transactionCount!;
                       unReturnedBooksController.text =
                           student!.unreturnedBooks!;
@@ -114,7 +115,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           contactNumberController: contactNumberController,
                           emailController: emailController,
                           succesfulTransactionController:
-                              succesfulTransactionController,
+                              successfulTransactionController,
                           unReturnedBooksController: unReturnedBooksController);
                     }else{
                       idController.clear();
@@ -192,7 +193,7 @@ class _StudentScreenState extends State<StudentScreen> {
                     contactNumberController.text =
                         studentProvider.students[i].contactNumber!;
                     emailController.text = studentProvider.students[i].email!;
-                    succesfulTransactionController.text =
+                    successfulTransactionController.text =
                         studentProvider.students[i].transactionCount!;
                     unReturnedBooksController.text =
                         studentProvider.students[i].unreturnedBooks!;
@@ -203,7 +204,7 @@ class _StudentScreenState extends State<StudentScreen> {
                         contactNumberController: contactNumberController,
                         emailController: emailController,
                         succesfulTransactionController:
-                            succesfulTransactionController,
+                            successfulTransactionController,
                         unReturnedBooksController: unReturnedBooksController);
                   },
                 ),
