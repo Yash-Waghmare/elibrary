@@ -1,7 +1,9 @@
 import 'package:elibrary/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../constant/handler.dart';
 import '../providers/student_provider.dart';
+import '../services/student_services.dart';
 import '../widgets/hero_dialogue_route.dart';
 import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
@@ -19,16 +21,16 @@ class StudentFunctions {
             width: MediaQuery.of(context).size.width * 0.25,
             title: 'Add Student',
             buttonText: 'Add',
-            function: () {
-              Student newStudent = Student(
-                  id: '1',
-                  studentName: nameController.text,
-                  email: emailController.text,
-                  contactNumber: contactNumberController.text,
-                  transactionCount: '0',
-                  unreturnedBooks: '0');
-              Provider.of<StudentProvider>(context, listen: false)
-                  .createStudent(newStudent);
+            function: () async {
+              bool result = await StudentsService().addStudent(
+                context: context,
+                studentName: nameController.text,
+                email: emailController.text,
+                contactNumber: contactNumberController.text,
+              );
+              if (result == false) {
+                showSnackBar(context, "Unable to add student", true);
+              }
               nameController.clear();
               emailController.clear();
               contactNumberController.clear();
@@ -74,7 +76,19 @@ class StudentFunctions {
             width: MediaQuery.of(context).size.width * 0.25,
             title: 'Update Student',
             buttonText: 'Update',
-            function: () {
+            function: () async {
+              bool result = await StudentsService().updateStudent(
+                  context: context,
+                  studentId: idController.text,
+                  studentName: nameController.text,
+                  email: emailController.text,
+                  contactNumber: contactNumberController.text);
+              if (result == false) {
+                showSnackBar(context, "Unable to update student", true);
+              }else{
+                showSnackBar(
+                    context,'Action Completed', false);
+              }
               idController.clear();
               nameController.clear();
               emailController.clear();
@@ -125,10 +139,18 @@ class StudentFunctions {
             width: MediaQuery.of(context).size.width * 0.25,
             title: 'Remove Student',
             buttonText: 'Remove',
-            function: () {
+            function: () async {
+              bool result = await StudentsService().removeStudent(
+                  context: context,
+                  studentId: idController.text,
+                  adminPassword: adminPasswordController.text);
               idController.clear();
               adminPasswordController.clear();
-              Navigator.pop(context);
+              if (result == true) {
+                showSnackBar(
+                    context,'Action Completed', false);
+                Navigator.pop(context);
+              }
             },
             children: [
               SizedBox(
