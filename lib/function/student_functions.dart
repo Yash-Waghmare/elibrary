@@ -1,11 +1,14 @@
+import 'package:elibrary/models/student.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/student_provider.dart';
 import '../widgets/hero_dialogue_route.dart';
 import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
 
 class StudentFunctions {
-  AddStudent({
-          required BuildContext context,
+  AddStudent(
+          {required BuildContext context,
           required TextEditingController nameController,
           required TextEditingController contactNumberController,
           required TextEditingController emailController}) =>
@@ -17,6 +20,15 @@ class StudentFunctions {
             title: 'Add Student',
             buttonText: 'Add',
             function: () {
+              Student newStudent = Student(
+                  id: '1',
+                  studentName: nameController.text,
+                  email: emailController.text,
+                  contactNumber: contactNumberController.text,
+                  transactionCount: '0',
+                  unreturnedBooks: '0');
+              Provider.of<StudentProvider>(context, listen: false)
+                  .createStudent(newStudent);
               nameController.clear();
               emailController.clear();
               contactNumberController.clear();
@@ -50,11 +62,11 @@ class StudentFunctions {
       };
 
   UpdateStudent(
-  {required BuildContext context,
-    required TextEditingController idController,
-    required TextEditingController nameController,
-    required TextEditingController contactNumberController,
-    required TextEditingController emailController}) =>
+          {required BuildContext context,
+          required TextEditingController idController,
+          required TextEditingController nameController,
+          required TextEditingController contactNumberController,
+          required TextEditingController emailController}) =>
       {
         Navigator.of(context).push(HeroDialogRoute(builder: (context) {
           return PopUpFrame(
@@ -103,9 +115,9 @@ class StudentFunctions {
         }))
       };
   RemoveStudent(
-      {required BuildContext context,
-        required TextEditingController idController,
-        required TextEditingController adminPasswordController}) =>
+          {required BuildContext context,
+          required TextEditingController idController,
+          required TextEditingController adminPasswordController}) =>
       {
         Navigator.of(context).push(HeroDialogRoute(builder: (context) {
           return PopUpFrame(
@@ -138,13 +150,13 @@ class StudentFunctions {
         }))
       };
   ShowStudent(
-      {required BuildContext context,
-        required TextEditingController idController,
-        required TextEditingController nameController,
-        required TextEditingController contactNumberController,
-        required TextEditingController emailController,
-        required TextEditingController succesfulTransactionController,
-        required TextEditingController unReturnedBooksController      }) =>
+          {required BuildContext context,
+          required TextEditingController idController,
+          required TextEditingController nameController,
+          required TextEditingController contactNumberController,
+          required TextEditingController emailController,
+          required TextEditingController succesfulTransactionController,
+          required TextEditingController unReturnedBooksController}) =>
       {
         Navigator.of(context).push(HeroDialogRoute(builder: (context) {
           return PopUpFrame(
