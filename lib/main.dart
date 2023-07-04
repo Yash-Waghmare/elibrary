@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           create: (context) => TransactionProvider(context: context),
         )
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         home: HomePage(),
       ),
     );

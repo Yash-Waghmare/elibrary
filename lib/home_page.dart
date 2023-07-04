@@ -1,6 +1,7 @@
 import 'package:elibrary/screens/dashboard.dart';
 import 'package:elibrary/screens/fine_screen.dart';
 import 'package:elibrary/screens/student_screen.dart';
+import 'package:elibrary/screens/book_screen.dart';
 import 'package:elibrary/screens/transaction.dart';
 import 'package:elibrary/widgets/menu_tile.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int index = 0;
-  List<Widget> screens = [DashBoard(), StudentScreen(), SizedBox(), Transaction(),Fine()];
+  List<Widget> screens = [
+    DashBoard(),
+    StudentScreen(),
+    BookScreen(),
+    Transaction(),
+    Fine()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                   width: 208,
                   height: 113,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 MenuTile(
@@ -125,4 +132,3 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 }
-
