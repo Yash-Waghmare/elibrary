@@ -16,7 +16,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int index = 0;
-  List<Widget> screens = [DashBoard(), StudentScreen(), SizedBox(), Transaction(),Fine()];
+  List<Widget> screens = [
+    DashBoard(),
+    StudentScreen(),
+    SizedBox(),
+    Transaction(),
+    Fine()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,4 +131,3 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 }
-
