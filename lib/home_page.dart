@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 MenuTile(
-                  iconPath: 'icons/booksStack.png',
+                  iconPath: 'icons/calculator.png',
                   isSelected: index == 4 ? true : false,
                   menuName: 'Calculate Fine',
                   function: () {
