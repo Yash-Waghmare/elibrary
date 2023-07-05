@@ -6,13 +6,13 @@ import '../models/transaction.dart';
 import '../services/transaction_services.dart';
 
 class TransactionProvider with ChangeNotifier {
-  List<Transaction> transactions = [];
-  List<Transaction> Pending = [];
-  List<Transaction> Completed = [];
+  List<TransactionModel> transactions = [];
+  List<TransactionModel> Pending = [];
+  List<TransactionModel> Completed = [];
   TransactionProvider({required context}) {
     fetchTransactions(context);
   }
-  void createTransaction(Transaction transaction) {
+  void createTransaction(TransactionModel transaction) {
     transactions.add(transaction);
     notifyListeners();
   }
@@ -27,5 +27,19 @@ class TransactionProvider with ChangeNotifier {
       }
     }
     notifyListeners();
+  }
+
+  bool? getTransaction(String transactionId) {
+    int indexOfStudent;
+    try {
+      indexOfStudent = transactions.indexOf(transactions
+          .firstWhere((element) => element.transactionId == transactionId));
+    } catch (e) {
+      indexOfStudent = -1;
+    }
+    if (indexOfStudent != -1) {
+      return true;
+    }
+    return false;
   }
 }

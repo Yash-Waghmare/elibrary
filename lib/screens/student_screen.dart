@@ -38,7 +38,6 @@ class _StudentScreenState extends State<StudentScreen> {
         return element.id == showList || showList.isEmpty;
       },
     ).toList();
-    ;
     return Container(
       color: AppColors.colors.background,
       child: Stack(
@@ -130,13 +129,18 @@ class _StudentScreenState extends State<StudentScreen> {
                       hintText: 'Enter Student ID',
                       onSubmit: (val) {
                         setState(() {
-                          bool? valid = studentProvider.getStudent(val);
-                          if (valid!) {
-                            showList = val;
+                          if (val.isNotEmpty) {
+                            bool? valid = studentProvider.getStudent(val);
+                            if (valid!) {
+                              showList = val;
+                            } else {
+                              showList = '';
+                              showSnackBar(
+                                  context, 'Student Id Not Found', true);
+                              idController.clear();
+                            }
                           } else {
-                            showList='';
-                            showSnackBar(context, 'Student Id Not Found', true);
-                            idController.clear();
+                            showList = '';
                           }
                         });
                       },
@@ -207,22 +211,22 @@ class _StudentScreenState extends State<StudentScreen> {
                             itemCount: filterStudent.length,
                             itemBuilder: ((context, i) {
                               return StudentDetailsTile(
-                                studentId: filterStudent[i]!.id,
-                                studentName: filterStudent[i]!.studentName,
-                                contactNumber: filterStudent[i]!.contactNumber,
-                                emailId: filterStudent[i]!.email,
+                                studentId: filterStudent[i].id,
+                                studentName: filterStudent[i].studentName,
+                                contactNumber: filterStudent[i].contactNumber,
+                                emailId: filterStudent[i].email,
                                 onTap: () {
                                   StudentFunctions().ShowStudent(
                                     context: context,
-                                    studentId: filterStudent[i]!.id!,
-                                    studentName: filterStudent[i]!.studentName!,
+                                    studentId: filterStudent[i].id!,
+                                    studentName: filterStudent[i].studentName!,
                                     contactNumber:
-                                        filterStudent[i]!.contactNumber!,
-                                    email: filterStudent[i]!.email!,
+                                        filterStudent[i].contactNumber!,
+                                    email: filterStudent[i].email!,
                                     succesfulTransaction:
-                                        filterStudent[i]!.transactionCount!,
+                                        filterStudent[i].transactionCount!,
                                     unReturnedBooks:
-                                        filterStudent[i]!.unreturnedBooks!,
+                                        filterStudent[i].unreturnedBooks!,
                                   );
                                 },
                               );
