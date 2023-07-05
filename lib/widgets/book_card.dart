@@ -36,7 +36,7 @@ class BookCard extends StatelessWidget {
     return Stack(children: [
       Container(
         height: 215,
-        width: 400,
+        width: 450,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: const Color(0xff313234),
@@ -50,7 +50,7 @@ class BookCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 child: Image(
                   fit: BoxFit.fill,
-                  width: 110,
+                  width: 100,
                   height: 165,
                   image: NetworkImage(bookImage),
                 ),
@@ -75,7 +75,7 @@ class BookCard extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -86,7 +86,7 @@ class BookCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 14,
+                            fontSize: 13,
                           ),
                         ),
                       ],
@@ -100,14 +100,14 @@ class BookCard extends StatelessWidget {
                           bookAuthor,
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                         Text(
                           bookCode,
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 15,
+                            fontSize: 12,
                           ),
                         )
                       ],

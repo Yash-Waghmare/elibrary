@@ -1,4 +1,5 @@
 import 'package:elibrary/constant/colors.dart';
+import 'package:elibrary/function/book_functions.dart';
 import 'package:elibrary/providers/book_provider.dart';
 import 'package:elibrary/widgets/custom_button.dart';
 import 'package:elibrary/widgets/custom_textfield.dart';
@@ -15,6 +16,7 @@ class BookScreen extends StatefulWidget {
 
 class _BookScreenState extends State<BookScreen> {
   TextEditingController codeController = TextEditingController();
+  TextEditingController adminPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,12 @@ class _BookScreenState extends State<BookScreen> {
                 buttonText: 'Remove Book',
                 buttonColor: AppColors.colors.red,
                 textColor: AppColors.colors.black,
-                function: () {},
+                function: () {
+                  BookFunctions().removeBook(
+                      context: context,
+                      bookCodeController: codeController,
+                      adminPasswordController: adminPasswordController);
+                },
                 fsize: 18,
                 height: 50,
                 fWeight: FontWeight.w600,
@@ -72,7 +79,7 @@ class _BookScreenState extends State<BookScreen> {
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
-                            childAspectRatio: 1.35,
+                            childAspectRatio: 1.2,
                           ),
                           itemCount: bookProvider.books.length,
                           itemBuilder: (context, index) {

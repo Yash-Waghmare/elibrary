@@ -19,4 +19,18 @@ class BookProvider with ChangeNotifier {
     books.add(book);
     notifyListeners();
   }
+
+  void deleteBook({required context, required String bookCode}) {
+    int indexOfBook;
+    try {
+      indexOfBook = books
+          .indexOf(books.firstWhere((element) => element.bookCode == bookCode));
+    } catch (e) {
+      indexOfBook = -1;
+    }
+    if (indexOfBook != -1) {
+      books.removeAt(indexOfBook);
+      notifyListeners();
+    }
+  }
 }
