@@ -18,7 +18,7 @@ class StudentProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Student? getStudent(String id) {
+  bool? getStudent(String id) {
     int indexOfStudent;
     try {
       indexOfStudent =
@@ -27,9 +27,9 @@ class StudentProvider with ChangeNotifier {
       indexOfStudent = -1;
     }
     if (indexOfStudent != -1) {
-      return students[indexOfStudent];
+      return true;
     }
-    return null;
+    return false;
   }
 
   void updateStudent({required context, required Student student}) {
