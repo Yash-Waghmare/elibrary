@@ -1,7 +1,7 @@
 import 'package:elibrary/screens/dashboard.dart';
 import 'package:elibrary/screens/fine_screen.dart';
 import 'package:elibrary/screens/student_screen.dart';
-import 'package:elibrary/screens/transaction.dart';
+import 'package:elibrary/screens/transaction_screen.dart';
 import 'package:elibrary/widgets/menu_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
