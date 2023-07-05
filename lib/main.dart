@@ -1,3 +1,4 @@
+import 'package:elibrary/providers/dashboard_provider.dart';
 import 'package:elibrary/providers/student_provider.dart';
 import 'package:elibrary/providers/transaction_provider.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => TransactionProvider(context: context),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => DashboardProvider(context: context),
         )
       ],
       child: MaterialApp(
