@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           create: (context) => DashboardProvider(context: context),
         )
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         home: HomePage(),
       ),
     );
