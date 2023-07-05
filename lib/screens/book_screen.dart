@@ -1,7 +1,9 @@
 import 'package:elibrary/constant/colors.dart';
+import 'package:elibrary/providers/book_provider.dart';
 import 'package:elibrary/widgets/custom_button.dart';
 import 'package:elibrary/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../widgets/book_card.dart';
 
 class BookScreen extends StatefulWidget {
@@ -16,6 +18,7 @@ class _BookScreenState extends State<BookScreen> {
 
   @override
   Widget build(BuildContext context) {
+    BookProvider bookProvider = Provider.of<BookProvider>(context);
     return Container(
       color: AppColors.colors.background,
       child: Padding(
@@ -62,22 +65,34 @@ class _BookScreenState extends State<BookScreen> {
           const SizedBox(
             height: 30,
           ),
-          Table(
-            children: [
-              TableRow(children: [
-                for (int i = 0; i < 3; i++)
-                  const BookCard(
-                    bookName: 'The Alchemist',
-                    authorName: 'Paulo Coelho',
-                    description:
-                        'The Alchemist is a novel by Brazilian author Paulo Coelho that was first published in 1988. Originally written in Portuguese, it became a widely translated international bestseller. An allegorical novel, The Alchemist follows a young Andalusian shepherd in his journey to the pyramids of Egypt, after having a recurring dream of finding a treasure there.',
-                    bookId: '123456789',
-                    imageUrl: 'https://rb.gy/ks25p',
-                    // bookQuantity: '10',
-                  ),
-              ])
-            ],
-          )
+          (bookProvider.isLoading == false)
+              ? (bookProvider.books.isNotEmpty)
+                  ? Expanded(
+                      child: GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            childAspectRatio: 1.35,
+                          ),
+                          itemCount: bookProvider.books.length,
+                          itemBuilder: (context, index) {
+                            return BookCard(
+                              bookName: bookProvider.books[index].bookName,
+                              bookAuthor: bookProvider.books[index].bookAuthor,
+                              description:
+                                  bookProvider.books[index].description,
+                              bookCode: bookProvider.books[index].bookCode,
+                              bookImage: bookProvider.books[index].bookImage,
+                              quantity: bookProvider.books[index].quantity,
+                            );
+                          }),
+                    )
+                  : const Center(
+                      child: Text('No Books Available'),
+                    )
+              : const Center(
+                  child: CircularProgressIndicator(),
+                )
         ]),
       ),
     );

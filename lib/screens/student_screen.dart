@@ -19,7 +19,6 @@ class StudentScreen extends StatefulWidget {
 }
 
 class _StudentScreenState extends State<StudentScreen> {
-
   TextEditingController idController = TextEditingController(),
       nameController = TextEditingController(),
       contactNumberController = TextEditingController(),
@@ -117,14 +116,14 @@ class _StudentScreenState extends State<StudentScreen> {
                           succesfulTransactionController:
                               successfulTransactionController,
                           unReturnedBooksController: unReturnedBooksController);
-                    }else{
+                    } else {
                       idController.clear();
                     }
                   },
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Row(
@@ -176,10 +175,10 @@ class _StudentScreenState extends State<StudentScreen> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            if(studentProvider.students.length!=0)
+            if (studentProvider.students.isNotEmpty)
               for (int i = 0; i < studentProvider.students.length; i++)
                 StudentDetailsTile(
                   studentId: studentProvider.students[i].id,
@@ -208,15 +207,12 @@ class _StudentScreenState extends State<StudentScreen> {
                         unReturnedBooksController: unReturnedBooksController);
                   },
                 ),
-            studentProvider.students.length==0
-                ? Center(
-                    child: CircularProgressIndicator()
-                  )
+            studentProvider.students.length == 0
+                ? Center(child: CircularProgressIndicator())
                 : SizedBox(),
           ],
         ),
       ),
     );
   }
-
 }

@@ -1,3 +1,4 @@
+import 'package:elibrary/constant/colors.dart';
 import 'package:flutter/material.dart';
 
 /*
@@ -16,104 +17,129 @@ class BookCard extends StatelessWidget {
   const BookCard({
     super.key,
     required this.bookName,
-    required this.authorName,
+    required this.bookAuthor,
     required this.description,
-    required this.bookId,
-    required this.imageUrl,
-    // required this.bookQuantity,
+    required this.bookCode,
+    required this.bookImage,
+    required this.quantity,
   });
 
-  final String bookName;
-  final String authorName;
-  final String description;
-  final String bookId;
-  final String imageUrl;
-  // final String bookQuantity;
+  final bookName;
+  final bookAuthor;
+  final description;
+  final bookCode;
+  final bookImage;
+  final quantity;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 215,
-      width: 450,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: const Color(0xff313234),
-      ),
-      margin: const EdgeInsets.all(10),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image(
-              fit: BoxFit.fill,
-              width: 110,
-              height: 165,
-              image: NetworkImage(imageUrl),
-            ),
-          ),
+    return Stack(children: [
+      Container(
+        height: 215,
+        width: 400,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: const Color(0xff313234),
         ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
+        margin: const EdgeInsets.all(10),
+        child: Stack(children: [
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image(
+                  fit: BoxFit.fill,
+                  width: 110,
+                  height: 165,
+                  image: NetworkImage(bookImage),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: Text(
-                        bookName,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            bookName,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                      ),
+                        Text(
+                          description,
+                          maxLines: 5,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
                     ),
-                    Text(
-                      description,
-                      maxLines: 5,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                      ),
-                    ),
+                    Expanded(
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          bookAuthor,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                        Text(
+                          bookCode,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),
+                        )
+                      ],
+                    ))
                   ],
                 ),
-                Expanded(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      authorName,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
-                    ),
-                    Text(
-                      bookId,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                      ),
-                    )
-                  ],
-                ))
-              ],
+              ),
             ),
-          ),
-        ),
-      ]),
-    );
+          ]),
+        ]),
+      ),
+      Positioned(
+        top: 0,
+        right: 0,
+        child: Container(
+            height: 30,
+            width: 30,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: const Color.fromARGB(255, 62, 64, 66),
+            ),
+            child: Center(
+              child: Text(
+                quantity,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )),
+      ),
+    ]);
   }
 }
