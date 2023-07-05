@@ -173,12 +173,12 @@ class StudentFunctions {
       };
   ShowStudent(
           {required BuildContext context,
-          required TextEditingController idController,
-          required TextEditingController nameController,
-          required TextEditingController contactNumberController,
-          required TextEditingController emailController,
-          required TextEditingController succesfulTransactionController,
-          required TextEditingController unReturnedBooksController}) =>
+          required String studentId,
+          required String studentName,
+          required String contactNumber,
+          required String email,
+          required String succesfulTransaction,
+          required String unReturnedBooks}) =>
       {
         Navigator.of(context).push(HeroDialogRoute(builder: (context) {
           return PopUpFrame(
@@ -188,12 +188,6 @@ class StudentFunctions {
             isButtonNeeded: false,
             buttonText: 'Cancel',
             function: () {
-              idController.clear();
-              nameController.clear();
-              contactNumberController.clear();
-              emailController.clear();
-              succesfulTransactionController.clear();
-              unReturnedBooksController.clear();
               Navigator.pop(context);
             },
             children: [
@@ -201,48 +195,48 @@ class StudentFunctions {
                 height: 10,
               ),
               PopUpTextfield(
-                controller: idController,
-                hintText: idController.text,
+                controller: TextEditingController(),
+                hintText: 'Student Id: $studentId',
                 readOnly: true,
               ),
               SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
-                controller: nameController,
-                hintText: nameController.text,
+                controller: TextEditingController(),
+                hintText: 'Student Name: $studentName',
                 readOnly: true,
               ),
               SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
-                controller: contactNumberController,
-                hintText: contactNumberController.text,
+                controller: TextEditingController(),
+                hintText: 'Phone No: $contactNumber',
                 readOnly: true,
               ),
               SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
-                controller: emailController,
-                hintText: emailController.text,
+                controller: TextEditingController(),
+                hintText: 'Email: $email',
                 readOnly: true,
               ),
               SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
-                controller: succesfulTransactionController,
+                controller: TextEditingController(),
                 readOnly: true,
-                hintText: succesfulTransactionController.text,
+                hintText: 'Succesful Transactions: $succesfulTransaction',
               ),
               SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
-                controller: unReturnedBooksController,
-                hintText: unReturnedBooksController.text,
+                controller: TextEditingController(),
+                hintText: 'Un-Returned Books: $unReturnedBooks',
                 readOnly: true,
               ),
             ],

@@ -25,11 +25,11 @@ class Transaction extends StatefulWidget {
 
 class _TransactionState extends State<Transaction> {
   DateTime date = DateTime.now();
-  bool isCompletedScreen = false;
-  bool isPendingScreen = false;
+  // bool isCompletedScreen = false;
+  // bool isPendingScreen = false;
   String showList = '';
-  String transactionId = '';
-  TextEditingController transactionController = TextEditingController();
+  // String transactionId = '';
+  TextEditingController transactionIdController = TextEditingController();
   TextEditingController studentIdController = TextEditingController();
   TextEditingController bookIdController = TextEditingController();
   @override
@@ -59,6 +59,7 @@ class _TransactionState extends State<Transaction> {
                   function: () {
                     setState(() {
                       showList = '';
+                      transactionIdController.clear();
                     });
                     Navigator.of(context)
                         .push(HeroDialogRoute(builder: (context) {
@@ -102,6 +103,7 @@ class _TransactionState extends State<Transaction> {
                   function: () {
                     setState(() {
                       showList = 'returned';
+                      transactionIdController.clear();
                     });
                   },
                   height: 50,
@@ -116,6 +118,7 @@ class _TransactionState extends State<Transaction> {
                   function: () {
                     setState(() {
                       showList = 'return';
+                      transactionIdController.clear();
                     });
                   },
                   height: 50,
@@ -124,12 +127,11 @@ class _TransactionState extends State<Transaction> {
                   fWeight: FontWeight.w600,
                 ),
                 CustomTextfield(
-                  controller: transactionController,
+                  controller: transactionIdController,
                   hintText: 'Enter Transaction ID',
                   onSubmit: (val) {
                     setState(() {
                       showList = val;
-                      print(showList);
                     });
                   },
                 )

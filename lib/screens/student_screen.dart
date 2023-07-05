@@ -1,12 +1,10 @@
+import 'package:elibrary/constant/handler.dart';
 import 'package:elibrary/providers/student_provider.dart';
 import 'package:elibrary/function/student_functions.dart';
-import 'package:elibrary/services/student_services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../constant/colors.dart';
-import '../constant/handler.dart';
-import '../models/student.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
 import '../widgets/student_details_tile.dart';
@@ -19,23 +17,28 @@ class StudentScreen extends StatefulWidget {
 }
 
 class _StudentScreenState extends State<StudentScreen> {
-
   TextEditingController idController = TextEditingController(),
       nameController = TextEditingController(),
       contactNumberController = TextEditingController(),
       emailController = TextEditingController(),
-      adminPasswordController = TextEditingController(),
-      successfulTransactionController = TextEditingController(),
-      unReturnedBooksController = TextEditingController();
+      adminPasswordController = TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
   }
 
+  String showList = '';
+
   @override
   Widget build(BuildContext context) {
     StudentProvider studentProvider = Provider.of<StudentProvider>(context);
+    final filterStudent = studentProvider.students.where(
+      (element) {
+        return element.id == showList || showList.isEmpty;
+      },
+    ).toList();
+    ;
     return Container(
       color: AppColors.colors.background,
       child: Padding(
@@ -50,6 +53,10 @@ class _StudentScreenState extends State<StudentScreen> {
                   buttonColor: AppColors.colors.green,
                   textColor: AppColors.colors.black,
                   function: () {
+                    setState(() {
+                      showList = '';
+                      idController.clear();
+                    });
                     StudentFunctions().AddStudent(
                         context: context,
                         nameController: nameController,
@@ -66,6 +73,10 @@ class _StudentScreenState extends State<StudentScreen> {
                   buttonColor: AppColors.colors.yellow,
                   textColor: AppColors.colors.black,
                   function: () {
+                    setState(() {
+                      showList = '';
+                      idController.clear();
+                    });
                     StudentFunctions().UpdateStudent(
                         context: context,
                         idController: idController,
@@ -83,6 +94,10 @@ class _StudentScreenState extends State<StudentScreen> {
                   buttonColor: AppColors.colors.red,
                   textColor: AppColors.colors.black,
                   function: () {
+                    setState(() {
+                      showList = '';
+                      idController.clear();
+                    });
                     StudentFunctions().RemoveStudent(
                       context: context,
                       idController: idController,
@@ -98,28 +113,15 @@ class _StudentScreenState extends State<StudentScreen> {
                   controller: idController,
                   hintText: 'Enter Student ID',
                   onSubmit: (val) {
-                    Student? student = studentProvider.getStudent(val);
-                    if (student != null) {
-                      idController.text = student!.id!;
-                      nameController.text = student!.studentName!;
-                      emailController.text = student!.email!;
-                      contactNumberController.text = student!.contactNumber!;
-                      successfulTransactionController.text =
-                          student!.transactionCount!;
-                      unReturnedBooksController.text =
-                          student!.unreturnedBooks!;
-                      StudentFunctions().ShowStudent(
-                          context: context,
-                          idController: idController,
-                          nameController: nameController,
-                          contactNumberController: contactNumberController,
-                          emailController: emailController,
-                          succesfulTransactionController:
-                              successfulTransactionController,
-                          unReturnedBooksController: unReturnedBooksController);
-                    }else{
-                      idController.clear();
-                    }
+                    setState(() {
+                      bool? valid = studentProvider.getStudent(val);
+                      if (valid!) {
+                        showList = val;
+                      } else {
+                        showSnackBar(context, 'Student Id Not Found', true);
+                        idController.clear();
+                      }
+                    });
                   },
                 )
               ],
@@ -179,44 +181,37 @@ class _StudentScreenState extends State<StudentScreen> {
             SizedBox(
               height: 20,
             ),
-            if(studentProvider.students.length!=0)
-              for (int i = 0; i < studentProvider.students.length; i++)
-                StudentDetailsTile(
-                  studentId: studentProvider.students[i].id,
-                  studentName: studentProvider.students[i].studentName,
-                  contactNumber: studentProvider.students[i].contactNumber,
-                  emailId: studentProvider.students[i].email,
-                  onTap: () {
-                    idController.text = studentProvider.students[i].id!;
-                    nameController.text =
-                        studentProvider.students[i].studentName!;
-                    contactNumberController.text =
-                        studentProvider.students[i].contactNumber!;
-                    emailController.text = studentProvider.students[i].email!;
-                    successfulTransactionController.text =
-                        studentProvider.students[i].transactionCount!;
-                    unReturnedBooksController.text =
-                        studentProvider.students[i].unreturnedBooks!;
-                    StudentFunctions().ShowStudent(
-                        context: context,
-                        idController: idController,
-                        nameController: nameController,
-                        contactNumberController: contactNumberController,
-                        emailController: emailController,
-                        succesfulTransactionController:
-                            successfulTransactionController,
-                        unReturnedBooksController: unReturnedBooksController);
-                  },
-                ),
-            studentProvider.students.length==0
-                ? Center(
-                    child: CircularProgressIndicator()
-                  )
-                : SizedBox(),
+            Expanded(
+                child: filterStudent.isEmpty
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : ListView.builder(
+                        itemCount: filterStudent.length,
+                        itemBuilder: ((context, i) {
+                          return StudentDetailsTile(
+                            studentId: filterStudent[i]!.id,
+                            studentName: filterStudent[i]!.studentName,
+                            contactNumber: filterStudent[i]!.contactNumber,
+                            emailId: filterStudent[i]!.email,
+                            onTap: () {
+                              StudentFunctions().ShowStudent(
+                                context: context,
+                                studentId: filterStudent[i]!.id!,
+                                studentName: filterStudent[i]!.studentName!,
+                                contactNumber: filterStudent[i]!.contactNumber!,
+                                email: filterStudent[i]!.email!,
+                                succesfulTransaction:
+                                    filterStudent[i]!.transactionCount!,
+                                unReturnedBooks:
+                                    filterStudent[i]!.unreturnedBooks!,
+                              );
+                            },
+                          );
+                        }))),
           ],
         ),
       ),
     );
   }
-
 }
