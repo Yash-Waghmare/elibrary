@@ -85,9 +85,8 @@ class StudentFunctions {
                   contactNumber: contactNumberController.text);
               if (result == false) {
                 showSnackBar(context, "Unable to update student", true);
-              }else{
-                showSnackBar(
-                    context,'Action Completed', false);
+              } else {
+                showSnackBar(context, 'Action Completed', false);
               }
               idController.clear();
               nameController.clear();
@@ -147,8 +146,7 @@ class StudentFunctions {
               idController.clear();
               adminPasswordController.clear();
               if (result == true) {
-                showSnackBar(
-                    context,'Action Completed', false);
+                showSnackBar(context, 'Action Completed', false);
                 Navigator.pop(context);
               }
             },

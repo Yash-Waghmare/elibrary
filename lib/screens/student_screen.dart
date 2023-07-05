@@ -134,6 +134,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           if (valid!) {
                             showList = val;
                           } else {
+                            showList='';
                             showSnackBar(context, 'Student Id Not Found', true);
                             idController.clear();
                           }
