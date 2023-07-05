@@ -10,8 +10,8 @@ import '../constant/url_constants.dart';
 import '../providers/transaction_provider.dart';
 
 class TransactionServices {
-  Future<List<Transaction>> fetchTransactions(context) async {
-    List<Transaction> transaction = [];
+  Future<List<TransactionModel>> fetchTransactions(context) async {
+    List<TransactionModel> transaction = [];
     try {
       http.Response res = await http
           .get(Uri.parse('$uri/transaction'), headers: <String, String>{
@@ -25,9 +25,9 @@ class TransactionServices {
           context: context,
           onSuccess: () {
             var decode = jsonDecode(res.body)['transactions'];
-            Transaction newTransaction;
+            TransactionModel newTransaction;
             decode.forEach((map) => {
-                  newTransaction = Transaction.fromJson(map),
+                  newTransaction = TransactionModel.fromJson(map),
                   transaction.add(newTransaction),
                 });
           });
@@ -90,7 +90,7 @@ class TransactionServices {
           context: context,
           onSuccess: () {
             var decode = jsonDecode(res.body)['transaction'];
-            Transaction transaction = Transaction.fromJson(decode);
+            TransactionModel transaction = TransactionModel.fromJson(decode);
             Provider.of<TransactionProvider>(context, listen: false)
                 .createTransaction(transaction);
           });

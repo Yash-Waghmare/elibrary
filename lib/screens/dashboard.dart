@@ -1,6 +1,11 @@
 import 'package:elibrary/constant/colors.dart';
+import 'package:elibrary/models/transaction.dart';
+import 'package:elibrary/providers/dashboard_provider.dart';
+import 'package:elibrary/screens/transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import '../providers/transaction_provider.dart';
 import '../widgets/dashboard_tile.dart';
 import '../widgets/history_tile.dart';
 
@@ -12,8 +17,24 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+  bool isReady = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future.delayed(Duration(seconds: 4), () {
+      setState(() {
+        isReady = true;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    DashboardProvider dashboardProvider =
+        Provider.of<DashboardProvider>(context);
+    final recentTransaction = dashboardProvider.m['transactions'];
+
     return Container(
       color: AppColors.colors.background,
       child: Padding(
@@ -33,15 +54,19 @@ class _DashBoardState extends State<DashBoard> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 DashBoardTile(
-                  number: '40',
+                  number:
+                      isReady ? '${dashboardProvider.m['studentCount']}' : '--',
                   title: 'Student Registered',
                 ),
                 DashBoardTile(
-                  number: '20',
+                  number:
+                      isReady ? '${dashboardProvider.m['bookCount']}' : '--',
                   title: 'Book Registered',
                 ),
                 DashBoardTile(
-                  number: '4000',
+                  number: isReady
+                      ? '${dashboardProvider.m['transactionCount']}'
+                      : '--',
                   title: 'Total Transactions',
                 ),
               ],
@@ -103,36 +128,22 @@ class _DashBoardState extends State<DashBoard> {
                   SizedBox(
                     height: 30,
                   ),
-                  HistoryTile(
-                    bDate: '26/06/2023',
-                    id: '5',
-                    name: 'Yash Gulabrao Waghmare',
-                    rDate: '',
-                  ),
-                  HistoryTile(
-                    bDate: '26/06/2023',
-                    id: '4',
-                    name: 'Lomesh Rajendra Wagh',
-                    rDate: '',
-                  ),
-                  HistoryTile(
-                    bDate: '26/06/2023',
-                    id: '3',
-                    name: 'Lomesh Rajendra Wagh',
-                    rDate: '',
-                  ),
-                  HistoryTile(
-                    bDate: '26/06/2023',
-                    id: '2',
-                    name: 'Sarvesh Bapusaheb Chavan',
-                    rDate: '28/06/2023',
-                  ),
-                  HistoryTile(
-                    bDate: '26/06/2023',
-                    id: '1',
-                    name: 'Dattatraya Abhijit Suryawanshi',
-                    rDate: '28/06/2023',
-                  ),
+                  isReady
+                      ? Expanded(
+                          child: ListView.builder(
+                              itemCount: dashboardProvider.transactions.length,
+                              itemBuilder: ((context, i) {
+                                return HistoryTile(
+                                    id: dashboardProvider
+                                        .transactions[i].transactionId!,
+                                    name: dashboardProvider
+                                        .transactions[i].studentName!,
+                                    bDate: dashboardProvider
+                                        .transactions[i].borrowedDate!,
+                                    rDate: dashboardProvider
+                                        .transactions[i].returnedDate!);
+                              })))
+                      : Center(child: CircularProgressIndicator()),
                 ],
               ),
             )

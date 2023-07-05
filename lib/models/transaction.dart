@@ -1,4 +1,4 @@
-class Transaction {
+class TransactionModel {
   String? transactionId;
   String? bookCode;
   String? bookName;
@@ -8,7 +8,7 @@ class Transaction {
   String? borrowedDate;
   String? returnedDate;
 
-  Transaction(
+  TransactionModel(
       {this.transactionId,
       this.bookCode,
       this.bookName,
@@ -18,8 +18,8 @@ class Transaction {
       this.borrowedDate,
       this.returnedDate});
 
-  factory Transaction.fromJson(Map<dynamic, dynamic> map) {
-    return Transaction(
+  factory TransactionModel.fromJson(Map<dynamic, dynamic> map) {
+    return TransactionModel(
         transactionId: map['transactionId'],
         bookCode: map['bookCode'],
         bookName: map['bookName'],
@@ -43,7 +43,7 @@ class Transaction {
     };
   }
 
-  Transaction copyWith({
+  TransactionModel copyWith({
     String? transactionId,
     String? bookCode,
     String? bookName,
@@ -53,7 +53,7 @@ class Transaction {
     String? borrowedDate,
     String? returnedDate,
   }) {
-    return Transaction(
+    return TransactionModel(
         transactionId: transactionId ?? this.transactionId,
         bookCode: bookCode ?? this.bookCode,
         bookName: bookName ?? this.bookName,
