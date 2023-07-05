@@ -38,6 +38,7 @@ class _StudentScreenState extends State<StudentScreen> {
         return element.id == showList || showList.isEmpty;
       },
     ).toList();
+    ;
     return Container(
       color: AppColors.colors.background,
       child: Stack(

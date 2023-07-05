@@ -18,7 +18,7 @@ class MenuTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 86, top: 0, right: 86),
-      width: 180,
+      width: 200,
       height: 46,
       decoration: BoxDecoration(
           color: isSelected

@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
         body: Row(
       children: [
         Container(
-          width: 350,
+          width: 410,
           color: AppColors.colors.background,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 39),
@@ -113,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  margin: EdgeInsets.symmetric(horizontal: 156, vertical: 10),
+                  margin: EdgeInsets.symmetric(horizontal: 186, vertical: 10),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Color(0xFF7F7C7C))),
