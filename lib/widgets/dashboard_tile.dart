@@ -5,12 +5,13 @@ import '../constant/colors.dart';
 import 'custom_button.dart';
 
 class DashBoardTile extends StatelessWidget {
-  const DashBoardTile({
-    super.key,
-    required this.title,
-    required this.number,
-  });
+  const DashBoardTile(
+      {super.key,
+      required this.title,
+      required this.number,
+      required this.onTap});
   final String title, number;
+  final void Function() onTap;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,11 +41,12 @@ class DashBoardTile extends StatelessWidget {
                 CustomButton(
                   buttonText: 'See More',
                   buttonColor: AppColors.colors.buttonBackground,
-                  function: () {},
+                  function: onTap,
                   height: 25,
                   width: 100,
                   fsize: 14,
-                  textColor: Colors.white, fWeight: FontWeight.w400,
+                  textColor: Colors.white,
+                  fWeight: FontWeight.w400,
                 ),
                 Text(
                   number,

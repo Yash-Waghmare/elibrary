@@ -1,11 +1,8 @@
 import 'package:elibrary/constant/colors.dart';
-import 'package:elibrary/models/transaction.dart';
 import 'package:elibrary/providers/dashboard_provider.dart';
-import 'package:elibrary/screens/transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import '../providers/transaction_provider.dart';
 import '../widgets/dashboard_tile.dart';
 import '../widgets/history_tile.dart';
 
@@ -20,9 +17,8 @@ class _DashBoardState extends State<DashBoard> {
   bool isReady = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Future.delayed(Duration(seconds: 4), () {
+    Future.delayed(const Duration(seconds: 4), () {
       setState(() {
         isReady = true;
       });
@@ -33,8 +29,6 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     DashboardProvider dashboardProvider =
         Provider.of<DashboardProvider>(context);
-    final recentTransaction = dashboardProvider.m['transactions'];
-
     return Container(
       color: AppColors.colors.background,
       child: Padding(
@@ -57,24 +51,27 @@ class _DashBoardState extends State<DashBoard> {
                   number:
                       isReady ? '${dashboardProvider.m['studentCount']}' : '--',
                   title: 'Student Registered',
+                  onTap: () {},
                 ),
                 DashBoardTile(
                   number:
                       isReady ? '${dashboardProvider.m['bookCount']}' : '--',
                   title: 'Book Registered',
+                  onTap: () {},
                 ),
                 DashBoardTile(
                   number: isReady
                       ? '${dashboardProvider.m['transactionCount']}'
                       : '--',
                   title: 'Total Transactions',
+                  onTap: () {},
                 ),
               ],
             ),
             Container(
               width: MediaQuery.of(context).size.width * 0.6,
               height: MediaQuery.of(context).size.height * 0.43,
-              margin: EdgeInsets.only(top: 60),
+              margin: const EdgeInsets.only(top: 60),
               decoration: BoxDecoration(
                   color: AppColors.colors.tileBackground,
                   borderRadius: BorderRadius.circular(20)),
@@ -125,7 +122,7 @@ class _DashBoardState extends State<DashBoard> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   isReady
@@ -143,7 +140,7 @@ class _DashBoardState extends State<DashBoard> {
                                     rDate: dashboardProvider
                                         .transactions[i].returnedDate!);
                               })))
-                      : Center(child: CircularProgressIndicator()),
+                      : const Center(child: CircularProgressIndicator()),
                 ],
               ),
             )

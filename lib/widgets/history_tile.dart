@@ -19,7 +19,7 @@ class HistoryTile extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(left: 70, right: 40),
+            margin: EdgeInsets.only(left: 75, right: 40),
             width: 50,
             child: Text(
               id,
@@ -68,5 +68,3 @@ class HistoryTile extends StatelessWidget {
     );
   }
 }
-
-
