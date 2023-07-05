@@ -10,15 +10,15 @@ class MenuTile extends StatelessWidget {
   void Function() function;
   MenuTile(
       {super.key,
-        required this.isSelected,
-        required this.menuName,
-        required this.iconPath,
-        required this.function});
+      required this.isSelected,
+      required this.menuName,
+      required this.iconPath,
+      required this.function});
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 106, top: 0, right: 106),
-      width: 200,
+      margin: const EdgeInsets.only(left: 86, top: 0, right: 86),
+      width: 180,
       height: 46,
       decoration: BoxDecoration(
           color: isSelected

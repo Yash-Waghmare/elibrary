@@ -145,7 +145,7 @@ class _StudentScreenState extends State<StudentScreen> {
                         });
                       },
                     )
-                  ],
+                  ],      
                 ),
                 SizedBox(
                   height: 30,

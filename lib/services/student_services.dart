@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:elibrary/providers/student_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -105,7 +106,7 @@ class StudentsService {
             var decode = jsonDecode(res.body)['student'];
             Student newStudent = Student.fromJson(decode);
             Provider.of<StudentProvider>(context, listen: false)
-                .updateStudent(context: context,student: newStudent);
+                .updateStudent(context: context, student: newStudent);
           });
       if (res.statusCode == 200) {
         return true;

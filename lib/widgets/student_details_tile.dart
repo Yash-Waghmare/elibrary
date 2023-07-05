@@ -26,7 +26,7 @@ class StudentDetailsTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
+        margin: const EdgeInsets.symmetric(vertical: 10),
         alignment: Alignment.center,
         width: MediaQuery.of(context).size.width * 0.625,
         height: MediaQuery.of(context).size.width * 0.038,

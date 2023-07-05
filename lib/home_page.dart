@@ -1,6 +1,8 @@
 import 'package:elibrary/screens/dashboard.dart';
 import 'package:elibrary/screens/fine_screen.dart';
 import 'package:elibrary/screens/student_screen.dart';
+import 'package:elibrary/screens/book_screen.dart';
+import 'package:elibrary/screens/transaction.dart';
 import 'package:elibrary/screens/transaction_screen.dart';
 import 'package:elibrary/widgets/menu_tile.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> screens = [
     DashBoard(),
     StudentScreen(),
-    SizedBox(),
+    BookScreen(),
     Transaction(),
     Fine()
   ];
@@ -29,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         body: Row(
       children: [
         Container(
-          width: 410,
+          width: 350,
           color: AppColors.colors.background,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 39),
@@ -40,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                   width: 208,
                   height: 113,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 MenuTile(
@@ -113,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  margin: EdgeInsets.symmetric(horizontal: 186, vertical: 10),
+                  margin: EdgeInsets.symmetric(horizontal: 156, vertical: 10),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Color(0xFF7F7C7C))),
