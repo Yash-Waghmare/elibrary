@@ -28,8 +28,8 @@ class StudentDetailsTile extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10),
         alignment: Alignment.center,
-        width: MediaQuery.of(context).size.width * 0.625,
-        height: MediaQuery.of(context).size.width * 0.038,
+        width: 980,
+        height: 60,
         decoration: BoxDecoration(
             color: AppColors.colors.tileBackground,
             borderRadius: BorderRadius.circular(20)),
