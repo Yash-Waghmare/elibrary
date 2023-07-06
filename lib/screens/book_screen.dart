@@ -39,88 +39,95 @@ class _BookScreenState extends State<BookScreen> {
               )),
         ),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 80,top: 20),
-              child: Row(
-        children: [
-          CustomButton(
-              buttonText: 'Add Book',
-              buttonColor: AppColors.colors.green,
-              textColor: AppColors.colors.black,
-              function: () {},
-              fsize: 18,
-              height: 50,
-              fWeight: FontWeight.w600,
-              width: 190,
-          ),
-          CustomButton(
-              buttonText: 'Update Book',
-              buttonColor: AppColors.colors.yellow,
-              textColor: AppColors.colors.black,
-              function: () {},
-              fsize: 18,
-              height: 50,
-              fWeight: FontWeight.w600,
-              width: 190,
-          ),
-          CustomButton(
-              buttonText: 'Remove Book',
-              buttonColor: AppColors.colors.red,
-              textColor: AppColors.colors.black,
-              function: () {
-                BookFunctions().removeBook(
-                    context: context,
-                    bookCodeController: codeController,
-                    adminPasswordController: adminPasswordController);
-              },
-              fsize: 18,
-              height: 50,
-              fWeight: FontWeight.w600,
-              width: 190,
-          ),
-          CustomTextfield(
-                controller: codeController,
-                hintText: 'Enter Book Code',
-                onSubmit: (val) {})
-        ],
-              ),
+          Padding(
+            padding: const EdgeInsets.only(left: 80, top: 20),
+            child: Row(
+              children: [
+                CustomButton(
+                  buttonText: 'Add Book',
+                  buttonColor: AppColors.colors.green,
+                  textColor: AppColors.colors.black,
+                  function: () {},
+                  fsize: 18,
+                  height: 50,
+                  fWeight: FontWeight.w600,
+                  width: 190,
+                ),
+                CustomButton(
+                  buttonText: 'Update Book',
+                  buttonColor: AppColors.colors.yellow,
+                  textColor: AppColors.colors.black,
+                  function: () {},
+                  fsize: 18,
+                  height: 50,
+                  fWeight: FontWeight.w600,
+                  width: 190,
+                ),
+                CustomButton(
+                  buttonText: 'Remove Book',
+                  buttonColor: AppColors.colors.red,
+                  textColor: AppColors.colors.black,
+                  function: () {
+                    BookFunctions().removeBook(
+                        context: context,
+                        bookCodeController: codeController,
+                        adminPasswordController: adminPasswordController);
+                  },
+                  fsize: 18,
+                  height: 50,
+                  fWeight: FontWeight.w600,
+                  width: 190,
+                ),
+                CustomTextfield(
+                    controller: codeController,
+                    hintText: 'Enter Book Code',
+                    onSubmit: (val) {})
+              ],
             ),
-            const SizedBox(
-        height: 30,
-            ),
-            (bookProvider.isLoading == false)
-          ? (bookProvider.books.isNotEmpty)
-              ? Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          childAspectRatio: 1.2,
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          (bookProvider.isLoading == false)
+              ? (bookProvider.books.isNotEmpty)
+                  ? Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              childAspectRatio: 1.2,
+                            ),
+                            itemCount: bookProvider.books.length,
+                            itemBuilder: (context, index) {
+                              return BookCard(
+                                bookName: bookProvider.books[index].bookName,
+                                bookAuthor:
+                                    bookProvider.books[index].bookAuthor,
+                                description:
+                                    bookProvider.books[index].description,
+                                bookCode: bookProvider.books[index].bookCode,
+                                bookImage: bookProvider.books[index].bookImage,
+                                quantity: bookProvider.books[index].quantity,
+                              );
+                            }),
+                      ),
+                    )
+                  : const Center(
+                      child: Text(
+                        'No Books Available',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
                         ),
-                        itemCount: bookProvider.books.length,
-                        itemBuilder: (context, index) {
-                          return BookCard(
-                            bookName: bookProvider.books[index].bookName,
-                            bookAuthor:
-                                bookProvider.books[index].bookAuthor,
-                            description:
-                                bookProvider.books[index].description,
-                            bookCode: bookProvider.books[index].bookCode,
-                            bookImage: bookProvider.books[index].bookImage,
-                            quantity: bookProvider.books[index].quantity,
-                          );
-                        }),
-                  ),
-                )
+                      ),
+                    )
               : const Center(
-                  child: Text('No Books Available'),
+                  child: CircularProgressIndicator(),
                 )
-          : const Center(
-              child: CircularProgressIndicator(),
-            )
-          ]),
+        ]),
       ]),
     );
   }
