@@ -14,14 +14,14 @@ import '../widgets/hero_dialogue_route.dart';
 import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
 
-class Transaction extends StatefulWidget {
-  const Transaction({Key? key}) : super(key: key);
+class TransactionScreen extends StatefulWidget {
+  const TransactionScreen({Key? key}) : super(key: key);
 
   @override
-  State<Transaction> createState() => _TransactionState();
+  State<TransactionScreen> createState() => _TransactionScreenState();
 }
 
-class _TransactionState extends State<Transaction> {
+class _TransactionScreenState extends State<TransactionScreen> {
   DateTime date = DateTime.now();
   // bool isCompletedScreen = false;
   // bool isPendingScreen = false;

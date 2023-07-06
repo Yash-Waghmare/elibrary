@@ -1,3 +1,4 @@
+import 'package:elibrary/providers/homepage_provider.dart';
 import 'package:elibrary/screens/dashboard.dart';
 import 'package:elibrary/screens/fine_screen.dart';
 import 'package:elibrary/screens/student_screen.dart';
@@ -6,6 +7,7 @@ import 'package:elibrary/screens/transaction_screen.dart';
 import 'package:elibrary/widgets/menu_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'constant/colors.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,16 +18,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int index = 0;
   List<Widget> screens = [
     DashBoard(),
     StudentScreen(),
     BookScreen(),
-    Transaction(),
+    TransactionScreen(),
     Fine()
   ];
+
   @override
   Widget build(BuildContext context) {
+    HomePageProvider homepageProvider =
+    Provider.of<HomePageProvider>(context);
     return Scaffold(
         body: Row(
       children: [
@@ -46,51 +50,49 @@ class _HomePageState extends State<HomePage> {
                 ),
                 MenuTile(
                   iconPath: 'icons/home.png',
-                  isSelected: index == 0 ? true : false,
+                  isSelected: homepageProvider.index == 0 ? true : false,
                   menuName: 'Dashboard',
                   function: () {
-                    setState(() {
-                      index = 0;
-                    });
+                    homepageProvider.setIndex(0);
                   },
                 ),
                 MenuTile(
                   iconPath: 'icons/read.png',
-                  isSelected: index == 1 ? true : false,
+                  isSelected: homepageProvider.index == 1 ? true : false,
                   menuName: 'Students',
                   function: () {
                     setState(() {
-                      index = 1;
+                      homepageProvider.setIndex(1);
                     });
                   },
                 ),
                 MenuTile(
                   iconPath: 'icons/booksStack.png',
-                  isSelected: index == 2 ? true : false,
+                  isSelected: homepageProvider.index == 2 ? true : false,
                   menuName: 'Books',
                   function: () {
                     setState(() {
-                      index = 2;
+                      homepageProvider.setIndex(2);
                     });
                   },
                 ),
                 MenuTile(
                   iconPath: 'icons/transaction.png',
-                  isSelected: index == 3 ? true : false,
+                  isSelected: homepageProvider.index == 3 ? true : false,
                   menuName: 'Transaction',
                   function: () {
                     setState(() {
-                      index = 3;
+                      homepageProvider.setIndex(3);
                     });
                   },
                 ),
                 MenuTile(
                   iconPath: 'icons/calculator.png',
-                  isSelected: index == 4 ? true : false,
+                  isSelected: homepageProvider.index == 4 ? true : false,
                   menuName: 'Calculate Fine',
                   function: () {
                     setState(() {
-                      index = 4;
+                      homepageProvider.setIndex(4);
                     });
                   },
                 ),
@@ -127,7 +129,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        Expanded(child: screens[index])
+        Expanded(child: screens[homepageProvider.index])
       ],
     ));
   }

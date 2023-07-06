@@ -45,7 +45,7 @@ class BookCard extends StatelessWidget {
         child: Stack(children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             Padding(
-              padding: const EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 20),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image(
@@ -58,7 +58,7 @@ class BookCard extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(18.0),
+                padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
