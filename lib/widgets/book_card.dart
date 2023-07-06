@@ -35,8 +35,8 @@ class BookCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: [
       Container(
-        height: 180,
-        width: 450,
+        height: 190,
+        width: 410,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: const Color(0xff313234),
@@ -45,13 +45,13 @@ class BookCard extends StatelessWidget {
         child: Stack(children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             Padding(
-              padding: const EdgeInsets.only(left: 20),
+              padding: const EdgeInsets.only(left: 30),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image(
                   fit: BoxFit.fill,
                   width: 100,
-                  height: 165,
+                  height: 140,
                   image: NetworkImage(bookImage),
                 ),
               ),
