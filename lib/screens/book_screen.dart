@@ -24,7 +24,7 @@ class _BookScreenState extends State<BookScreen> {
     return Container(
       color: AppColors.colors.background,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             children: [

@@ -35,7 +35,7 @@ class BookCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: [
       Container(
-        height: 215,
+        height: 180,
         width: 450,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),

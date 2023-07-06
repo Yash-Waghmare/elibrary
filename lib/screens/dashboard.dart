@@ -14,15 +14,19 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  bool isReady = false;
-  @override
-  void initState() {
-    super.initState();
+
+  void ready(){
     Future.delayed(const Duration(seconds: 4), () {
       setState(() {
         isReady = true;
       });
     });
+  }
+  bool isReady = false;
+  @override
+  void initState() {
+    super.initState();
+    ready();
   }
 
   @override
