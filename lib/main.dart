@@ -1,10 +1,10 @@
 import 'package:elibrary/providers/dashboard_provider.dart';
+import 'package:elibrary/providers/homepage_provider.dart';
 import 'package:elibrary/providers/student_provider.dart';
 import 'package:elibrary/providers/book_provider.dart';
 import 'package:elibrary/providers/transaction_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'home_page.dart';
 
 void main() {
@@ -19,6 +19,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+          create: (context) => HomePageProvider(index: 0),
+        ),
         ChangeNotifierProvider(
           create: (context) => StudentProvider(context: context),
         ),
