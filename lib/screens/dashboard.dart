@@ -3,6 +3,7 @@ import 'package:elibrary/providers/dashboard_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import '../providers/homepage_provider.dart';
 import '../widgets/dashboard_tile.dart';
 import '../widgets/history_tile.dart';
 
@@ -33,6 +34,8 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     DashboardProvider dashboardProvider =
         Provider.of<DashboardProvider>(context);
+    HomePageProvider homepageProvider =
+    Provider.of<HomePageProvider>(context);
     return Container(
       color: AppColors.colors.background,
       child: Padding(
@@ -55,20 +58,26 @@ class _DashBoardState extends State<DashBoard> {
                   number:
                       isReady ? '${dashboardProvider.m['studentCount']}' : '--',
                   title: 'Student Registered',
-                  onTap: () {},
+                  onTap: () {
+                    homepageProvider.setIndex(1);
+                  },
                 ),
                 DashBoardTile(
                   number:
                       isReady ? '${dashboardProvider.m['bookCount']}' : '--',
                   title: 'Book Registered',
-                  onTap: () {},
+                  onTap: () {
+                    homepageProvider.setIndex(2);
+                  },
                 ),
                 DashBoardTile(
                   number: isReady
                       ? '${dashboardProvider.m['transactionCount']}'
                       : '--',
                   title: 'Total Transactions',
-                  onTap: () {},
+                  onTap: () {
+                    homepageProvider.setIndex(3);
+                  },
                 ),
               ],
             ),
