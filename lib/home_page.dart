@@ -1,6 +1,7 @@
 import 'package:elibrary/providers/homepage_provider.dart';
 import 'package:elibrary/screens/dashboard.dart';
 import 'package:elibrary/screens/fine_screen.dart';
+import 'package:elibrary/screens/login_screen.dart';
 import 'package:elibrary/screens/student_screen.dart';
 import 'package:elibrary/screens/book_screen.dart';
 import 'package:elibrary/screens/transaction_screen.dart';
@@ -8,6 +9,7 @@ import 'package:elibrary/widgets/menu_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'constant/colors.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,8 +30,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    HomePageProvider homepageProvider =
-    Provider.of<HomePageProvider>(context);
+    HomePageProvider homepageProvider = Provider.of<HomePageProvider>(context);
     return Scaffold(
         body: Row(
       children: [
@@ -122,14 +123,24 @@ class _HomePageState extends State<HomePage> {
                       border: Border.all(color: Color(0xFF7F7C7C))),
                   child: IconButton(
                     icon: Image(image: AssetImage('icons/logout.png')),
-                    onPressed: () {},
+                    onPressed: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      prefs.clear();
+                      homepageProvider.remove();
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => LoginScreen()));
+                    },
                   ),
                 ),
               ],
             ),
           ),
         ),
-        Expanded(child: screens[homepageProvider.index])
+        Expanded(
+            child: Scaffold(
+          body: screens[homepageProvider.index],
+        ))
       ],
     ));
   }

@@ -72,7 +72,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           showList = '';
                           idController.clear();
                         });
-                        StudentFunctions().AddStudent(
+                        StudentFunctions().addStudent(
                             context: context,
                             nameController: nameController,
                             contactNumberController: contactNumberController,
@@ -92,7 +92,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           showList = '';
                           idController.clear();
                         });
-                        StudentFunctions().UpdateStudent(
+                        StudentFunctions().updateStudent(
                             context: context,
                             idController: idController,
                             nameController: nameController,
@@ -113,7 +113,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           showList = '';
                           idController.clear();
                         });
-                        StudentFunctions().RemoveStudent(
+                        StudentFunctions().removeStudent(
                           context: context,
                           idController: idController,
                           adminPasswordController: adminPasswordController,
@@ -216,7 +216,7 @@ class _StudentScreenState extends State<StudentScreen> {
                                 contactNumber: filterStudent[i].contactNumber,
                                 emailId: filterStudent[i].email,
                                 onTap: () {
-                                  StudentFunctions().ShowStudent(
+                                  StudentFunctions().showStudent(
                                     context: context,
                                     studentId: filterStudent[i].id!,
                                     studentName: filterStudent[i].studentName!,

@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'package:elibrary/providers/homepage_provider.dart';
+import 'package:elibrary/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 void httpErrorHandle({
   required http.Response response,
@@ -13,23 +16,36 @@ void httpErrorHandle({
       break;
     case 403:
       showSnackBar(
-          context, jsonDecode(response.body)['message']??'You are not authorized to perform this action', true);
+          context,
+          jsonDecode(response.body)['message'] ??
+              'You are not authorized to perform this action',
+          true);
       break;
     case 404:
       showSnackBar(
-          context, jsonDecode(response.body)['message']??'You are not authorized to perform this action', true);
+          context,
+          jsonDecode(response.body)['message'] ??
+              'You are not authorized to perform this action',
+          true);
       break;
     case 400:
       showSnackBar(context,
           jsonDecode(response.body)['message'] ?? "Something went wrong", true);
+      if (jsonDecode(response.body)['message'] ==
+          "Session Finished Please Login Again") {
+        Provider.of<HomePageProvider>(context,listen: false).setIndex(0);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_) => LoginScreen()));
+      }
       break;
     case 500:
       showSnackBar(context, 'Server error', true);
       break;
     default:
-      showSnackBar(context, jsonDecode(response.body)['message'] , true);
+      showSnackBar(context, jsonDecode(response.body)['message'], true);
   }
 }
+
 void showSnackBar(BuildContext context, String text, bool isError) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(

@@ -1,15 +1,12 @@
-import 'package:elibrary/models/student.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../constant/handler.dart';
-import '../providers/student_provider.dart';
 import '../services/student_services.dart';
 import '../widgets/hero_dialogue_route.dart';
 import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
 
 class StudentFunctions {
-  AddStudent(
+  addStudent(
           {required BuildContext context,
           required TextEditingController nameController,
           required TextEditingController contactNumberController,
@@ -28,9 +25,10 @@ class StudentFunctions {
                 email: emailController.text,
                 contactNumber: contactNumberController.text,
               );
-              if (result == false) {
-                showSnackBar(context, "Unable to add student", true);
-              }
+              result == false
+                  ? showSnackBar(context, "Unable to add student", true)
+                  : showSnackBar(context, "Student Added", false);
+
               nameController.clear();
               emailController.clear();
               contactNumberController.clear();
@@ -63,7 +61,7 @@ class StudentFunctions {
         }))
       };
 
-  UpdateStudent(
+  updateStudent(
           {required BuildContext context,
           required TextEditingController idController,
           required TextEditingController nameController,
@@ -83,11 +81,9 @@ class StudentFunctions {
                   studentName: nameController.text,
                   email: emailController.text,
                   contactNumber: contactNumberController.text);
-              if (result == false) {
-                showSnackBar(context, "Unable to update student", true);
-              } else {
-                showSnackBar(context, 'Action Completed', false);
-              }
+              result == false
+                  ? showSnackBar(context, "Unable to update student", true)
+                  : showSnackBar(context, 'Student Updated', false);
               idController.clear();
               nameController.clear();
               emailController.clear();
@@ -127,7 +123,7 @@ class StudentFunctions {
           );
         }))
       };
-  RemoveStudent(
+  removeStudent(
           {required BuildContext context,
           required TextEditingController idController,
           required TextEditingController adminPasswordController}) =>
@@ -146,9 +142,9 @@ class StudentFunctions {
               idController.clear();
               adminPasswordController.clear();
               if (result == true) {
-                showSnackBar(context, 'Action Completed', false);
-                Navigator.pop(context);
+                showSnackBar(context, 'Student Removed', false);
               }
+              Navigator.pop(context);
             },
             children: [
               SizedBox(
@@ -169,7 +165,7 @@ class StudentFunctions {
           );
         }))
       };
-  ShowStudent(
+  showStudent(
           {required BuildContext context,
           required String studentId,
           required String studentName,

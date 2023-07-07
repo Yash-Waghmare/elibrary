@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'dart:math';
 import 'package:elibrary/providers/student_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../constant/handler.dart';
 import '../constant/url_constants.dart';
 import '../models/student.dart';
@@ -12,14 +12,16 @@ import '../models/student.dart';
 class StudentsService {
   Future<List<Student>> fetchStudents(context) async {
     List<Student> students = [];
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString('token') ?? '',
+        adminEmail = prefs.getString('adminEmail') ?? '';
     try {
-      http.Response res =
-          await http.get(Uri.parse('$uri/student'), headers: <String, String>{
-        'api_key': "123456",
-        'token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhcnZlc2hAZ21haWwuY29tIiwiaWF0IjoxNjg2MzE2Mzc3LCJleHAiOjE2OTQ5NTYzNzd9.kwwdtXh03r8oXj8lPz1kP2fhtUgcmZZ_Hc6Nm52_9RY',
-        'authorization': 'bearer sarvesh@gmail.com'
-      });
+      http.Response res = await http.get(Uri.parse('$uri/student'),
+          headers: <String, String>{
+            'api_key': "123456",
+            'token': token,
+            'authorization': 'bearer $adminEmail'
+          });
       httpErrorHandle(
           response: res,
           context: context,
@@ -46,13 +48,15 @@ class StudentsService {
     required String email,
     required String contactNumber,
   }) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString('token') ?? '',
+        adminEmail = prefs.getString('adminEmail') ?? '';
     try {
       http.Response res =
           await http.post(Uri.parse('$uri/student'), headers: <String, String>{
         'api_key': "123456",
-        'token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhcnZlc2hAZ21haWwuY29tIiwiaWF0IjoxNjg2MzE2Mzc3LCJleHAiOjE2OTQ5NTYzNzd9.kwwdtXh03r8oXj8lPz1kP2fhtUgcmZZ_Hc6Nm52_9RY',
-        'authorization': 'bearer sarvesh@gmail.com',
+        'token': token,
+        'authorization': 'bearer $adminEmail',
       }, body: {
         "studentName": studentName,
         "email": email,
@@ -86,13 +90,15 @@ class StudentsService {
     required String email,
     required String contactNumber,
   }) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString('token') ?? '',
+        adminEmail = prefs.getString('adminEmail') ?? '';
     try {
       http.Response res =
           await http.put(Uri.parse('$uri/student'), headers: <String, String>{
         'api_key': "123456",
-        'token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhcnZlc2hAZ21haWwuY29tIiwiaWF0IjoxNjg2MzE2Mzc3LCJleHAiOjE2OTQ5NTYzNzd9.kwwdtXh03r8oXj8lPz1kP2fhtUgcmZZ_Hc6Nm52_9RY',
-        'authorization': 'bearer sarvesh@gmail.com',
+        'token': token,
+        'authorization': 'bearer $adminEmail',
       }, body: {
         "id": studentId,
         "studentName": studentName,
@@ -124,14 +130,16 @@ class StudentsService {
       {required BuildContext context,
       required String studentId,
       required String adminPassword}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString('token') ?? '',
+        adminEmail = prefs.getString('adminEmail') ?? '';
     try {
       http.Response res = await http.delete(
         Uri.parse('$uri/student?id=$studentId&password=$adminPassword'),
         headers: <String, String>{
           'api_key': "123456",
-          'token':
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhcnZlc2hAZ21haWwuY29tIiwiaWF0IjoxNjg2MzE2Mzc3LCJleHAiOjE2OTQ5NTYzNzd9.kwwdtXh03r8oXj8lPz1kP2fhtUgcmZZ_Hc6Nm52_9RY',
-          'authorization': 'bearer sarvesh@gmail.com',
+          'token': token,
+          'authorization': 'bearer $adminEmail',
         },
       );
       httpErrorHandle(
