@@ -13,6 +13,7 @@ import '../widgets/custom_textfield.dart';
 import '../widgets/hero_dialogue_route.dart';
 import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
+import '../widgets/skeleton_tile.dart';
 
 class TransactionScreen extends StatefulWidget {
   const TransactionScreen({Key? key}) : super(key: key);
@@ -222,8 +223,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                 ),
                 Expanded(
                     child: filterList.isEmpty
-                        ? Center(
-                            child: CircularProgressIndicator(),
+                        ? ListView.builder(
+                            itemCount: 7,
+                            itemBuilder: ((context, i) {
+                              return SkeletonTile();
+                            }),
                           )
                         : ListView.builder(
                             itemCount: filterList.length,
