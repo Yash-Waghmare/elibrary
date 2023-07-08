@@ -12,4 +12,9 @@ class HomePageProvider with ChangeNotifier {
     this.index = index;
     notifyListeners();
   }
+
+  void remove() {
+    index = 0;
+    notifyListeners();
+  }
 }
