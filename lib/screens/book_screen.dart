@@ -3,6 +3,7 @@ import 'package:elibrary/function/book_functions.dart';
 import 'package:elibrary/providers/book_provider.dart';
 import 'package:elibrary/widgets/custom_button.dart';
 import 'package:elibrary/widgets/custom_textfield.dart';
+import 'package:elibrary/widgets/skeleton_box.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/book_card.dart';
@@ -124,9 +125,20 @@ class _BookScreenState extends State<BookScreen> {
                         ),
                       ),
                     )
-              : const Center(
-                  child: CircularProgressIndicator(),
-                )
+              : Expanded(
+                  child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        childAspectRatio: 1.7,
+                      ),
+                      itemCount: 9,
+                      itemBuilder: (context, i) {
+                        return SkeletonBox();
+                      }),
+                ))
         ]),
       ]),
     );

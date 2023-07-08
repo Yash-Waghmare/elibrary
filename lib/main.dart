@@ -1,3 +1,4 @@
+import 'package:elibrary/constant/theme.dart';
 import 'package:elibrary/providers/dashboard_provider.dart';
 import 'package:elibrary/providers/homepage_provider.dart';
 import 'package:elibrary/providers/student_provider.dart';
@@ -71,8 +72,27 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return loading
-        ? Center(
-            child: CircularProgressIndicator(),
+        ? Scaffold(
+            backgroundColor: const Color(0XFF1f6cc7),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: Text('Welcome To Pccoe Library',style: appTheme().textTheme.headlineLarge,),
+                  ),
+                  Image(
+                    image: AssetImage('icons/library.gif'),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: Text('Loading ......',style: appTheme().textTheme.headlineLarge),
+                  )
+                ],
+              ),
+            ),
           )
         : validToken
             ? HomePage()

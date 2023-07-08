@@ -1,6 +1,7 @@
 import 'package:elibrary/constant/handler.dart';
 import 'package:elibrary/providers/student_provider.dart';
 import 'package:elibrary/function/student_functions.dart';
+import 'package:elibrary/widgets/skeleton_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -204,9 +205,12 @@ class _StudentScreenState extends State<StudentScreen> {
                 ),
                 Expanded(
                     child: filterStudent.isEmpty
-                        ? Center(
-                            child: CircularProgressIndicator(),
-                          )
+                        ? ListView.builder(
+                      itemCount: 7,
+                      itemBuilder: ((context,i){
+                        return SkeletonTile();
+                      }),
+                    )
                         : ListView.builder(
                             itemCount: filterStudent.length,
                             itemBuilder: ((context, i) {
