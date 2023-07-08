@@ -48,7 +48,7 @@ class PopUpFrame extends StatelessWidget {
           child: SingleChildScrollView(
             child: Container(
               width: width,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,

@@ -21,12 +21,12 @@ class PopUpTextfield extends StatelessWidget {
       readOnly: readOnly,
       enabled: !readOnly,
       decoration: InputDecoration(
-          enabledBorder: UnderlineInputBorder(
+          enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
               color: Colors.white,
             ),
           ),
-          focusedBorder: UnderlineInputBorder(
+          focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
               color: Colors.white,
             ),

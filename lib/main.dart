@@ -6,12 +6,17 @@ import 'package:elibrary/providers/book_provider.dart';
 import 'package:elibrary/providers/transaction_provider.dart';
 import 'package:elibrary/screens/login_screen.dart';
 import 'package:elibrary/services/auth_service.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'firebase_options.dart';
 import 'home_page.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(MultiProvider(
     providers: [
@@ -54,7 +59,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> checkAdmin() async {
     validToken = await AuthService().checkAdmin(context: context);
     Future.delayed(
-        Duration(seconds: 5),
+        const Duration(seconds: 5),
         () => {
               setState(() {
                 loading = false;
@@ -81,14 +86,18 @@ class _MyAppState extends State<MyApp> {
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Text('Welcome To Pccoe Library',style: appTheme().textTheme.headlineLarge,),
+                    child: Text(
+                      'Welcome To Pccoe Library',
+                      style: appTheme().textTheme.headlineLarge,
+                    ),
                   ),
                   Image(
                     image: AssetImage('icons/library.gif'),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Text('Loading ......',style: appTheme().textTheme.headlineLarge),
+                    child: Text('Loading ......',
+                        style: appTheme().textTheme.headlineLarge),
                   )
                 ],
               ),
