@@ -111,7 +111,7 @@ class _BookScreenState extends State<BookScreen> {
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
-                              childAspectRatio: 1.2,
+                              childAspectRatio: 1.7,
                             ),
                             itemCount: bookProvider.books.length,
                             itemBuilder: (context, index) {
