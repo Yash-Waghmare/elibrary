@@ -143,8 +143,7 @@ class _DashBoardState extends State<DashBoard> {
                         ? const Center(child: CircularProgressIndicator())
                         : Expanded(
                             child: ListView.builder(
-                                itemCount:
-                                    dashboardProvider.transactions.length,
+                                itemCount: 5,
                                 itemBuilder: ((context, i) {
                                   return HistoryTile(
                                       id: dashboardProvider

@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Center(
                   child: Text(
-                    'Organization Name',
+                    'PCCOE Library',
                     style: GoogleFonts.inter(
                         fontSize: 19,
                         color: Colors.white,

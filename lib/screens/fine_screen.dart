@@ -38,9 +38,9 @@ class _FineState extends State<Fine> {
               height: 50,
             ),
             Container(
-              width: MediaQuery.of(context).size.width * 0.27,
-              margin: EdgeInsets.only(left: 150),
-              padding: EdgeInsets.only(left: 50, top: 30),
+              width: 400,
+              margin: EdgeInsets.only(left: 150, right: 370),
+              padding: EdgeInsets.only(left: 40, top: 30),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: AppColors.colors.yellow),
@@ -51,7 +51,7 @@ class _FineState extends State<Fine> {
                   CustomButton(
                     buttonText: startDate != ''
                         ? startDate.toString()
-                        : 'Select Start Date',
+                        : 'Select Borrowed Date',
                     buttonColor: AppColors.colors.blue,
                     textColor: AppColors.colors.black,
                     function: () async {
@@ -82,8 +82,9 @@ class _FineState extends State<Fine> {
                     height: 15,
                   ),
                   CustomButton(
-                    buttonText:
-                        endDate != '' ? endDate.toString() : 'Select End Date',
+                    buttonText: endDate != ''
+                        ? endDate.toString()
+                        : 'Select Returned Date',
                     buttonColor: AppColors.colors.blue,
                     textColor: AppColors.colors.black,
                     needCursor: startDate == '' ? false : true,
@@ -190,7 +191,9 @@ class _FineState extends State<Fine> {
                             )
                           ],
                         ),
-                  SizedBox(height: 20,)
+                  SizedBox(
+                    height: 20,
+                  )
                 ],
               ),
             )
@@ -198,6 +201,5 @@ class _FineState extends State<Fine> {
         ),
       ),
     );
-    ;
   }
 }
