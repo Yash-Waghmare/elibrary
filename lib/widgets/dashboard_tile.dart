@@ -15,8 +15,8 @@ class DashBoardTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.18,
-      height: MediaQuery.of(context).size.height * 0.17,
+      width: 260,
+      height: 130,
       decoration: BoxDecoration(
         color: AppColors.colors.tileBackground,
         borderRadius: BorderRadius.circular(20),

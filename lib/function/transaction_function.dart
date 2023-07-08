@@ -15,7 +15,6 @@ class TransactionFunction {
       {
         Navigator.of(context).push(HeroDialogRoute(builder: (context) {
           return PopUpFrame(
-            height: MediaQuery.of(context).size.width * 0.34,
             width: MediaQuery.of(context).size.width * 0.30,
             title: 'Transaction Details',
             isButtonNeeded: false,

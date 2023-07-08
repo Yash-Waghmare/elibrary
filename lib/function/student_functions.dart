@@ -14,7 +14,6 @@ class StudentFunctions {
       {
         Navigator.of(context).push(HeroDialogRoute(builder: (context) {
           return PopUpFrame(
-            height: MediaQuery.of(context).size.width * 0.34,
             width: MediaQuery.of(context).size.width * 0.25,
             title: 'Add Student',
             buttonText: 'Add',
@@ -70,7 +69,6 @@ class StudentFunctions {
       {
         Navigator.of(context).push(HeroDialogRoute(builder: (context) {
           return PopUpFrame(
-            height: MediaQuery.of(context).size.width * 0.34,
             width: MediaQuery.of(context).size.width * 0.25,
             title: 'Update Student',
             buttonText: 'Update',
@@ -130,7 +128,6 @@ class StudentFunctions {
       {
         Navigator.of(context).push(HeroDialogRoute(builder: (context) {
           return PopUpFrame(
-            height: MediaQuery.of(context).size.width * 0.34,
             width: MediaQuery.of(context).size.width * 0.25,
             title: 'Remove Student',
             buttonText: 'Remove',
@@ -176,7 +173,6 @@ class StudentFunctions {
       {
         Navigator.of(context).push(HeroDialogRoute(builder: (context) {
           return PopUpFrame(
-            height: MediaQuery.of(context).size.width * 0.34,
             width: MediaQuery.of(context).size.width * 0.30,
             title: 'Student Details',
             isButtonNeeded: false,

@@ -1,5 +1,7 @@
 import 'package:elibrary/constant/colors.dart';
 import 'package:elibrary/providers/dashboard_provider.dart';
+import 'package:elibrary/widgets/skeleton_tile_dashboard.dart';
+import 'package:elibrary/widgets/skeleton_tile_history.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +33,8 @@ class _DashBoardState extends State<DashBoard> {
           child: IconButton(
               onPressed: () {
                 setState(() {
+                  dashboardProvider.transactions = [];
+                  dashboardProvider.m = {};
                   dashboardProvider.fetchTransactions(context);
                 });
               },
@@ -57,41 +61,41 @@ class _DashBoardState extends State<DashBoard> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // tiles representing registered student count
-                  DashBoardTile(
-                    number: dashboardProvider.transactions.isEmpty
-                        ? '--'
-                        : '${dashboardProvider.m['studentCount']}',
-                    title: 'Student Registered',
-                    onTap: () {
-                      homepageProvider.setIndex(1);
-                    },
-                  ),
+                  dashboardProvider.transactions.isEmpty
+                      ? SkeletonTileDashBoard()
+                      : DashBoardTile(
+                          number: '${dashboardProvider.m['studentCount']}',
+                          title: 'Student Registered',
+                          onTap: () {
+                            homepageProvider.setIndex(1);
+                          },
+                        ),
                   // tiles representing registered book count
-                  DashBoardTile(
-                    number: dashboardProvider.transactions.isEmpty
-                        ? '--'
-                        : '${dashboardProvider.m['bookCount']}',
-                    title: 'Book Registered',
-                    onTap: () {
-                      homepageProvider.setIndex(2);
-                    },
-                  ),
+                  dashboardProvider.transactions.isEmpty
+                      ? SkeletonTileDashBoard()
+                      : DashBoardTile(
+                          number: '${dashboardProvider.m['bookCount']}',
+                          title: 'Book Registered',
+                          onTap: () {
+                            homepageProvider.setIndex(2);
+                          },
+                        ),
                   // tiles representing suscessful transaction count
-                  DashBoardTile(
-                    number: dashboardProvider.transactions.isEmpty
-                        ? '--'
-                        : '${dashboardProvider.m['transactionCount']}',
-                    title: 'Total Transactions',
-                    onTap: () {
-                      homepageProvider.setIndex(3);
-                    },
-                  ),
+                  dashboardProvider.transactions.isEmpty
+                      ? SkeletonTileDashBoard()
+                      : DashBoardTile(
+                          number: '${dashboardProvider.m['transactionCount']}',
+                          title: 'Total Transactions',
+                          onTap: () {
+                            homepageProvider.setIndex(3);
+                          },
+                        ),
                 ],
               ),
               // Container shows recent five transactions
               Container(
-                width: MediaQuery.of(context).size.width * 0.6,
-                height: MediaQuery.of(context).size.height * 0.43,
+                width: 1000,
+                height: 325,
                 margin: const EdgeInsets.only(top: 60),
                 decoration: BoxDecoration(
                     color: AppColors.colors.tileBackground,
@@ -114,14 +118,14 @@ class _DashBoardState extends State<DashBoard> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          'Transaction ID   ',
+                          'Transaction ID',
                           style: GoogleFonts.inter(
                               fontSize: 16,
                               color: Colors.white,
                               fontWeight: FontWeight.w400),
                         ),
                         Text(
-                          '      Name      ',
+                          'Student Name',
                           style: GoogleFonts.inter(
                               fontSize: 16,
                               color: Colors.white,
@@ -147,7 +151,12 @@ class _DashBoardState extends State<DashBoard> {
                       height: 30,
                     ),
                     dashboardProvider.transactions.isEmpty
-                        ? const Center(child: CircularProgressIndicator())
+                        ? Expanded(
+                            child: ListView.builder(
+                                itemCount: 5,
+                                itemBuilder: ((context, i) {
+                                  return SkeletonTileHistory();
+                                })))
                         : Expanded(
                             child: ListView.builder(
                                 itemCount: 5,
