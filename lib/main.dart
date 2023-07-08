@@ -3,11 +3,17 @@ import 'package:elibrary/providers/homepage_provider.dart';
 import 'package:elibrary/providers/student_provider.dart';
 import 'package:elibrary/providers/book_provider.dart';
 import 'package:elibrary/providers/transaction_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'firebase_options.dart';
 import 'home_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -33,7 +39,7 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => DashboardProvider(context: context),
-        )
+        ),
       ],
       child: const MaterialApp(
         home: HomePage(),

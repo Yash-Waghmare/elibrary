@@ -109,25 +109,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            // PopUpFrame(
-            //     height: 785,
-            //     width: 500,
-            //     title: 'Login',
-            //     buttonText: 'Login',
-            //     function: () {},
-            //     children: [
-            //       PopUpTextfield(
-            //         controller: userNameController,
-            //         hintText: 'Username',
-            //       ),
-            //       const SizedBox(
-            //         height: 10,
-            //       ),
-            //       PopUpTextfield(
-            //         controller: passwordController,
-            //         hintText: 'Password',
-            //       ),
-            //     ])
           ],
         ),
       ),

@@ -17,6 +17,10 @@ class BookScreen extends StatefulWidget {
 class _BookScreenState extends State<BookScreen> {
   TextEditingController codeController = TextEditingController();
   TextEditingController adminPasswordController = TextEditingController();
+  TextEditingController bookAuthorController = TextEditingController();
+  TextEditingController bookNameController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController quantityController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +51,16 @@ class _BookScreenState extends State<BookScreen> {
                   buttonText: 'Add Book',
                   buttonColor: AppColors.colors.green,
                   textColor: AppColors.colors.black,
-                  function: () {},
+                  function: () {
+                    BookFunctions().addBook(
+                      context: context,
+                      bookAuthorController: bookAuthorController,
+                      bookCodeController: codeController,
+                      bookNameController: bookNameController,
+                      descriptionController: descriptionController,
+                      quantityController: quantityController,
+                    );
+                  },
                   fsize: 18,
                   height: 50,
                   fWeight: FontWeight.w600,
