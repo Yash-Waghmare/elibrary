@@ -23,18 +23,20 @@ class TransactionScreen extends StatefulWidget {
 }
 
 class _TransactionScreenState extends State<TransactionScreen> {
+  // date variable is use to add the date
   DateTime date = DateTime.now();
-  // bool isCompletedScreen = false;
-  // bool isPendingScreen = false;
+  // showList string is use to filter total list into the pending or completed list
   String showList = '';
-  String transactionId = 'present';
+  // controllers are used for textfield input
   TextEditingController transactionIdController = TextEditingController();
   TextEditingController studentIdController = TextEditingController();
   TextEditingController bookIdController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    // transaction provider call is used to update the transactions only
     TransactionProvider transactionProvider =
         Provider.of<TransactionProvider>(context);
+    // filterList variable is use to store the list
     final filterList = transactionProvider.transactions.where(
       (element) {
         return element.status == showList ||
@@ -48,10 +50,13 @@ class _TransactionScreenState extends State<TransactionScreen> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 28),
+            // Refresh icon is used to reload the transactions
             child: IconButton(
                 onPressed: () {
                   setState(() {
+                    // fetching transasctions by calling provider functions
                     transactionProvider.fetchTransactions(context);
+                    // Empty string gives total transactions
                     showList = '';
                     transactionIdController.clear();
                   });
@@ -69,6 +74,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
               children: [
                 Row(
                   children: [
+                    // Add record button is used to add the transactions
                     CustomButton(
                       buttonText: 'Add Record',
                       buttonColor: AppColors.colors.green,
@@ -98,6 +104,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                               Navigator.pop(context);
                             },
                             children: [
+                              // Custom Textfields
                               PopUpTextfield(
                                   controller: studentIdController,
                                   hintText: 'Student ID'),
@@ -113,6 +120,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                       fsize: 18,
                       fWeight: FontWeight.w600,
                     ),
+                    // Completed Button filter out the transaction list into completed list
                     CustomButton(
                       buttonText: 'Completed',
                       buttonColor: AppColors.colors.yellow,
@@ -128,6 +136,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                       fsize: 18,
                       fWeight: FontWeight.w600,
                     ),
+                    // Pending Button filter out the transation list into pending list
                     CustomButton(
                       buttonText: 'Pending',
                       buttonColor: AppColors.colors.red,
@@ -143,12 +152,14 @@ class _TransactionScreenState extends State<TransactionScreen> {
                       fsize: 18,
                       fWeight: FontWeight.w600,
                     ),
+                    // Textfield to search transactions
                     CustomTextfield(
                       controller: transactionIdController,
                       hintText: 'Enter Transaction ID',
                       onSubmit: (val) {
                         setState(() {
                           if (val.isNotEmpty) {
+                            //  valid variable is to check the transaction id exits or not
                             bool? valid =
                                 transactionProvider.getTransaction(val);
                             if (valid!) {
@@ -226,6 +237,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                         ? ListView.builder(
                             itemCount: 7,
                             itemBuilder: ((context, i) {
+                              // if list is empty then it will show empty slots
                               return SkeletonTile();
                             }),
                           )
@@ -258,13 +270,17 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                               filterList[i].transactionId!,
                                           returnedDate: confirmedDate);
                                   if (result == false) {
+                                    // alert message
                                     showSnackBar(context,
                                         "Unable to update transaction", true);
                                   } else {
                                     transactionProvider
                                         .fetchTransactions(context);
                                     showSnackBar(
-                                        context, 'Transcation Updated', false);
+                                        // alert message
+                                        context,
+                                        'Transcation Updated',
+                                        false);
                                     setState(() {});
                                   }
                                 },

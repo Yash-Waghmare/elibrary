@@ -7,60 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:elibrary/constant/colors.dart';
-import 'package:provider/provider.dart';
 import '../constant/theme.dart';
 import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
-// import 'package:google_fonts/google_fonts.dart';
-
-// class BookSlider extends StatefulWidget {
-//   const BookSlider({super.key});
-
-//   @override
-//   State<BookSlider> createState() => _BookSliderState();
-// }
-
-// class _BookSliderState extends State<BookSlider> {
-//   double _value = 20;
-//   @override
-//   Widget build(BuildContext context) {
-//     return SliderTheme(
-//       data: SliderTheme.of(context).copyWith(
-//         trackHeight: 7.0,
-//         trackShape: const RoundedRectSliderTrackShape(),
-//         activeTrackColor: const Color.fromARGB(247, 234, 164, 0),
-//         inactiveTrackColor: Colors.white,
-//         thumbShape: const RoundSliderThumbShape(
-//           enabledThumbRadius: 11.0,
-//           pressedElevation: 8.0,
-//         ),
-//         thumbColor: const Color(0xffC1C1C1),
-//         overlayShape: const RoundSliderOverlayShape(overlayRadius: 32.0),
-//         tickMarkShape: const RoundSliderTickMarkShape(),
-//         // activeTickMarkColor: Colors.pinkAccent,
-//         inactiveTickMarkColor: Colors.white,
-//         valueIndicatorShape: const PaddleSliderValueIndicatorShape(),
-//         valueIndicatorColor: AppColors.colors.faintText,
-//         valueIndicatorTextStyle: const TextStyle(
-//           color: Colors.white,
-//           fontSize: 18.0,
-//         ),
-//       ),
-//       child: Slider(
-//         min: 0.0,
-//         max: 100.0,
-//         value: _value,
-//         divisions: 10,
-//         label: '${_value.round()}',
-//         onChanged: (value) {
-//           setState(() {
-//             _value = value;
-//           });
-//         },
-//       ),
-//     );
-//   }
-// }
 
 class BookFunctions {
   String fileImage = '';

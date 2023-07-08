@@ -17,14 +17,17 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
+    // dashboard provider for managing the state of dash board widget
     DashboardProvider dashboardProvider =
         Provider.of<DashboardProvider>(context);
+    // homepage provider for using the variables on homepage
     HomePageProvider homepageProvider = Provider.of<HomePageProvider>(context);
     return Container(
       color: AppColors.colors.background,
       child: Stack(children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 35),
+          // refresh button is used to refresh the dashboard page
           child: IconButton(
               onPressed: () {
                 setState(() {
@@ -53,6 +56,7 @@ class _DashBoardState extends State<DashBoard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  // tiles representing registered student count
                   DashBoardTile(
                     number: dashboardProvider.transactions.isEmpty
                         ? '--'
@@ -62,6 +66,7 @@ class _DashBoardState extends State<DashBoard> {
                       homepageProvider.setIndex(1);
                     },
                   ),
+                  // tiles representing registered book count
                   DashBoardTile(
                     number: dashboardProvider.transactions.isEmpty
                         ? '--'
@@ -71,6 +76,7 @@ class _DashBoardState extends State<DashBoard> {
                       homepageProvider.setIndex(2);
                     },
                   ),
+                  // tiles representing suscessful transaction count
                   DashBoardTile(
                     number: dashboardProvider.transactions.isEmpty
                         ? '--'
@@ -82,6 +88,7 @@ class _DashBoardState extends State<DashBoard> {
                   ),
                 ],
               ),
+              // Container shows recent five transactions
               Container(
                 width: MediaQuery.of(context).size.width * 0.6,
                 height: MediaQuery.of(context).size.height * 0.43,
