@@ -51,7 +51,7 @@ class BookCard extends StatelessWidget {
                 child: Image(
                   fit: BoxFit.fill,
                   width: 100,
-                  height: 140,
+                  height: 155,
                   image: NetworkImage(bookImage),
                 ),
               ),
