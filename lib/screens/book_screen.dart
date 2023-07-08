@@ -34,6 +34,8 @@ class _BookScreenState extends State<BookScreen> {
           child: IconButton(
               onPressed: () {
                 setState(() {
+                  bookProvider.books = [];
+                  bookProvider.isLoading=true;
                   bookProvider.fetchBooks(context);
                 });
               },

@@ -54,6 +54,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
             child: IconButton(
                 onPressed: () {
                   setState(() {
+                    transactionProvider.transactions = [];
                     // fetching transasctions by calling provider functions
                     transactionProvider.fetchTransactions(context);
                     // Empty string gives total transactions
@@ -87,7 +88,6 @@ class _TransactionScreenState extends State<TransactionScreen> {
                         Navigator.of(context)
                             .push(HeroDialogRoute(builder: (context) {
                           return PopUpFrame(
-                            height: MediaQuery.of(context).size.width * 0.34,
                             width: MediaQuery.of(context).size.width * 0.25,
                             title: 'Add Record',
                             buttonText: 'Add',

@@ -58,7 +58,8 @@ class BookCard extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 15),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -120,21 +121,23 @@ class BookCard extends StatelessWidget {
         ]),
       ),
       Positioned(
-        top: 0,
         right: 0,
+        top: 0,
         child: Container(
-            height: 30,
-            width: 30,
+            alignment: Alignment.topRight,
+            margin: const EdgeInsets.all(10),
+            width: 50,
+            height: 35,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: const Color.fromARGB(255, 62, 64, 66),
+              color: AppColors.colors.buttonBackground,
             ),
             child: Center(
               child: Text(
                 quantity,
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 14,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),

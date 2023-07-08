@@ -48,6 +48,7 @@ class _StudentScreenState extends State<StudentScreen> {
             child: IconButton(
                 onPressed: () {
                   setState(() {
+                    studentProvider.students = [];
                     studentProvider.fetchStudents(context);
                   });
                 },
@@ -146,7 +147,7 @@ class _StudentScreenState extends State<StudentScreen> {
                         });
                       },
                     )
-                  ],      
+                  ],
                 ),
                 SizedBox(
                   height: 30,
@@ -206,11 +207,11 @@ class _StudentScreenState extends State<StudentScreen> {
                 Expanded(
                     child: filterStudent.isEmpty
                         ? ListView.builder(
-                      itemCount: 7,
-                      itemBuilder: ((context,i){
-                        return SkeletonTile();
-                      }),
-                    )
+                            itemCount: 7,
+                            itemBuilder: ((context, i) {
+                              return SkeletonTile();
+                            }),
+                          )
                         : ListView.builder(
                             itemCount: filterStudent.length,
                             itemBuilder: ((context, i) {

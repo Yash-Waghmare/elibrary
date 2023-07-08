@@ -35,14 +35,14 @@ class BookFunctions {
     Uint8List? img;
     Navigator.of(context).push(HeroDialogRoute(builder: (context) {
       return PopUpFrame(
-          height: 750,
           width: 950,
           title: 'Add Book',
+          w1: 550,
           buttonText: 'Add',
           function: () async {
             String url = await uploadFile(img!, bookCodeController.text);
             int quantity = int.parse(quantityController.text);
-            bool result = url == ' ' && quantity > 0
+            bool result = url == ' ' && quantity > 0 && quantity < 1000
                 ? false
                 : await BooksServices().addBook(
                     context: context,
@@ -67,9 +67,10 @@ class BookFunctions {
           },
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: const EdgeInsets.only(top: 20),
                   height: 400,
                   width: 250,
                   decoration: BoxDecoration(
@@ -98,8 +99,8 @@ class BookFunctions {
                         ),
                 ),
                 Container(
-                  // height: 835,
-                  padding: const EdgeInsets.only(left: 50, top: 50, bottom: 50),
+                  height: 400,
+                  padding: const EdgeInsets.only(left: 50),
                   width: 600,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,15 +146,9 @@ class BookFunctions {
                       PopUpTextfield(
                           controller: bookAuthorController,
                           hintText: 'Book Author'),
-                      const SizedBox(
-                        height: 20,
-                      ),
                       PopUpTextfield(
                           controller: bookCodeController,
                           hintText: 'Book Code'),
-                      const SizedBox(
-                        height: 30,
-                      ),
                       PopUpTextfield(
                           controller: quantityController, hintText: 'Quantity')
                     ],
@@ -171,8 +166,7 @@ class BookFunctions {
       required TextEditingController adminPasswordController}) {
     Navigator.of(context).push(HeroDialogRoute(builder: ((context) {
       return PopUpFrame(
-        height: MediaQuery.of(context).size.width * 0.34,
-        width: MediaQuery.of(context).size.width * 0.25,
+        width: 400,
         title: 'Remove Book',
         buttonText: 'Remove',
         function: () async {

@@ -40,6 +40,9 @@ class HistoryTile extends StatelessWidget {
                   fontWeight: FontWeight.w400),
             ),
           ),
+          SizedBox(
+            width: 30,
+          ),
           Container(
             width: 100,
             alignment: Alignment.center,
@@ -50,6 +53,9 @@ class HistoryTile extends StatelessWidget {
                   color: AppColors.colors.faintText,
                   fontWeight: FontWeight.w400),
             ),
+          ),
+          SizedBox(
+            width: 20,
           ),
           Container(
             alignment: Alignment.center,
