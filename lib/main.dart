@@ -69,7 +69,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     checkAdmin();
   }
@@ -85,17 +84,17 @@ class _MyAppState extends State<MyApp> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 20),
                     child: Text(
                       'Welcome To Pccoe Library',
                       style: appTheme().textTheme.headlineLarge,
                     ),
                   ),
-                  Image(
+                  const Image(
                     image: AssetImage('icons/library.gif'),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 20),
                     child: Text('Loading ......',
                         style: appTheme().textTheme.headlineLarge),
                   )
@@ -104,7 +103,7 @@ class _MyAppState extends State<MyApp> {
             ),
           )
         : validToken
-            ? HomePage()
-            : LoginScreen();
+            ? const HomePage()
+            : const LoginScreen();
   }
 }

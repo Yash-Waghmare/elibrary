@@ -1,8 +1,5 @@
-import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
-// import 'package:image_picker_web/image_picker_web.dart';
 
 Future<String> uploadFile(Uint8List file, String bookCode) async {
   String url = '';
@@ -25,6 +22,5 @@ Future<String> uploadFile(Uint8List file, String bookCode) async {
       print(e);
     }
   }
-  print(url);
   return url;
 }

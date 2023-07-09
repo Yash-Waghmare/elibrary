@@ -6,6 +6,7 @@ import 'package:elibrary/widgets/custom_textfield.dart';
 import 'package:elibrary/widgets/skeleton_box.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../constant/handler.dart';
 import '../widgets/book_card.dart';
 
 class BookScreen extends StatefulWidget {
@@ -24,8 +25,18 @@ class _BookScreenState extends State<BookScreen> {
   TextEditingController quantityController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  String showList = '';
+
+  @override
   Widget build(BuildContext context) {
     BookProvider bookProvider = Provider.of<BookProvider>(context);
+    final filterBook = bookProvider.books
+        .where((element) => element.bookCode == showList || showList.isEmpty)
+        .toList();
     return Container(
       color: AppColors.colors.background,
       child: Stack(children: [
@@ -34,8 +45,9 @@ class _BookScreenState extends State<BookScreen> {
           child: IconButton(
               onPressed: () {
                 setState(() {
+                  showList = '';
                   bookProvider.books = [];
-                  bookProvider.isLoading=true;
+                  bookProvider.isLoading = true;
                   bookProvider.fetchBooks(context);
                 });
               },
@@ -61,7 +73,6 @@ class _BookScreenState extends State<BookScreen> {
                       bookCodeController: codeController,
                       bookNameController: bookNameController,
                       descriptionController: descriptionController,
-                      quantityController: quantityController,
                     );
                   },
                   fsize: 18,
@@ -73,7 +84,10 @@ class _BookScreenState extends State<BookScreen> {
                   buttonText: 'Update Book',
                   buttonColor: AppColors.colors.yellow,
                   textColor: AppColors.colors.black,
-                  function: () {},
+                  function: () {
+                    BookFunctions().updateBook(
+                        context: context, bookCodeController: codeController);
+                  },
                   fsize: 18,
                   height: 50,
                   fWeight: FontWeight.w600,
@@ -97,7 +111,22 @@ class _BookScreenState extends State<BookScreen> {
                 CustomTextfield(
                     controller: codeController,
                     hintText: 'Enter Book Code',
-                    onSubmit: (val) {})
+                    onSubmit: (val) {
+                      setState(() {
+                        if (val.isNotEmpty) {
+                          bool? valid = bookProvider.getBook(val);
+                          if (valid!) {
+                            showList = val;
+                          } else {
+                            showList = '';
+                            showSnackBar(context, 'Book Not Found', true);
+                            codeController.clear();
+                          }
+                        } else {
+                          showList = '';
+                        }
+                      });
+                    })
               ],
             ),
           ),
@@ -105,7 +134,7 @@ class _BookScreenState extends State<BookScreen> {
             height: 30,
           ),
           (bookProvider.isLoading == false)
-              ? (bookProvider.books.isNotEmpty)
+              ? (filterBook.isNotEmpty)
                   ? Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -115,17 +144,15 @@ class _BookScreenState extends State<BookScreen> {
                               crossAxisCount: 3,
                               childAspectRatio: 1.7,
                             ),
-                            itemCount: bookProvider.books.length,
+                            itemCount: filterBook.length,
                             itemBuilder: (context, index) {
                               return BookCard(
-                                bookName: bookProvider.books[index].bookName,
-                                bookAuthor:
-                                    bookProvider.books[index].bookAuthor,
-                                description:
-                                    bookProvider.books[index].description,
-                                bookCode: bookProvider.books[index].bookCode,
-                                bookImage: bookProvider.books[index].bookImage,
-                                quantity: bookProvider.books[index].quantity,
+                                bookName: filterBook[index].bookName!,
+                                bookAuthor: filterBook[index].bookAuthor!,
+                                description: filterBook[index].description!,
+                                bookCode: filterBook[index].bookCode!,
+                                bookImage: filterBook[index].bookImage!,
+                                quantity: filterBook[index].quantity!,
                               );
                             }),
                       ),
