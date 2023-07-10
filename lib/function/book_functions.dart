@@ -3,6 +3,7 @@ import 'package:elibrary/services/book_image_service.dart';
 import 'package:elibrary/services/book_services.dart';
 import 'package:elibrary/widgets/hero_dialogue_route.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,14 +26,15 @@ class BookFunctions {
     return image;
   }
 
-  addBook(
-      {required context,
-      required TextEditingController bookNameController,
-      required TextEditingController bookAuthorController,
-      required TextEditingController bookCodeController,
-      required TextEditingController descriptionController,
-      required TextEditingController quantityController}) {
+  addBook({
+    required context,
+    required TextEditingController bookNameController,
+    required TextEditingController bookAuthorController,
+    required TextEditingController bookCodeController,
+    required TextEditingController descriptionController,
+  }) {
     Uint8List? img;
+    late int quantity = 10;
     Navigator.of(context).push(HeroDialogRoute(builder: (context) {
       return PopUpFrame(
           width: 950,
@@ -41,9 +43,9 @@ class BookFunctions {
           buttonText: 'Add',
           function: () async {
             String url = await uploadFile(img!, bookCodeController.text);
-            int quantity = int.parse(quantityController.text);
-            bool result = url == ' ' && quantity > 0 && quantity < 1000
+            bool result = url == ' '
                 ? false
+                // ignore: use_build_context_synchronously
                 : await BooksServices().addBook(
                     context: context,
                     bookCode: bookCodeController.text,
@@ -51,8 +53,7 @@ class BookFunctions {
                     bookAuthor: bookAuthorController.text,
                     bookImage: url,
                     description: descriptionController.text,
-                    quantity: quantityController.text);
-            print(quantity);
+                    quantity: quantity.toString());
             bookAuthorController.clear();
             bookNameController.clear();
             bookAuthorController.clear();
@@ -149,8 +150,54 @@ class BookFunctions {
                       PopUpTextfield(
                           controller: bookCodeController,
                           hintText: 'Book Code'),
-                      PopUpTextfield(
-                          controller: quantityController, hintText: 'Quantity')
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        'Quantity',
+                        textAlign: TextAlign.right,
+                        style: GoogleFonts.inter(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                if (quantity >= 1) {
+                                  quantity -= 1;
+                                }
+                                (context as Element).markNeedsBuild();
+                              },
+                              icon: Icon(
+                                Icons.remove,
+                                color: AppColors.colors.white,
+                                size: 20,
+                              )),
+                          Text(
+                            '$quantity',
+                            style: GoogleFonts.inter(
+                                fontSize: 24,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                quantity += 1;
+                                (context as Element).markNeedsBuild();
+                              },
+                              icon: Icon(
+                                Icons.add,
+                                color: AppColors.colors.white,
+                                size: 24,
+                              )),
+                        ],
+                      )
                     ],
                   ),
                 ),
@@ -158,6 +205,84 @@ class BookFunctions {
             )
           ]);
     }));
+  }
+
+  updateBook(
+      {required BuildContext context,
+      required TextEditingController bookCodeController}) {
+    late int quantity = 1;
+    Navigator.of(context).push(HeroDialogRoute(builder: ((context) {
+      return PopUpFrame(
+          width: 430,
+          title: 'Update Book',
+          buttonText: 'Update',
+          function: () async {
+            bool result = await BooksServices().updateBook(
+                context: context,
+                bookCode: bookCodeController.text,
+                quantity: quantity.toString());
+            bookCodeController.clear();
+
+            if (result == true) {
+              // ignore: use_build_context_synchronously
+              showSnackBar(context, 'Book Updated Successfully', false);
+              // ignore: use_build_context_synchronously
+              Navigator.pop(context);
+            }
+          },
+          children: [
+            PopUpTextfield(
+                controller: bookCodeController, hintText: 'Book Code'),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Quantity',
+              textAlign: TextAlign.right,
+              style: GoogleFonts.inter(
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      if (quantity >= 1) {
+                        quantity -= 1;
+                      }
+                      (context as Element).markNeedsBuild();
+                    },
+                    icon: Icon(
+                      Icons.remove,
+                      color: AppColors.colors.white,
+                      size: 20,
+                    )),
+                Text(
+                  '$quantity',
+                  style: GoogleFonts.inter(
+                      fontSize: 24,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500),
+                ),
+                IconButton(
+                    onPressed: () {
+                      quantity += 1;
+                      (context as Element).markNeedsBuild();
+                    },
+                    icon: Icon(
+                      Icons.add,
+                      color: AppColors.colors.white,
+                      size: 24,
+                    )),
+              ],
+            )
+          ]);
+    })));
   }
 
   removeBook(
@@ -178,7 +303,9 @@ class BookFunctions {
           bookCodeController.clear();
           adminPasswordController.clear();
           if (result == true) {
+            // ignore: use_build_context_synchronously
             showSnackBar(context, 'Book Removed Successfully', false);
+            // ignore: use_build_context_synchronously
             Navigator.pop(context);
           }
         },

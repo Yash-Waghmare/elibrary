@@ -20,6 +20,35 @@ class BookProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void updateBook({required Book book}) {
+    int indexOfBook;
+    try {
+      indexOfBook = books.indexOf(
+          books.firstWhere((element) => element.bookCode == book.bookCode));
+    } catch (e) {
+      indexOfBook = -1;
+    }
+    if (indexOfBook != -1) {
+      books.removeAt(indexOfBook);
+      books.add(book);
+      notifyListeners();
+    }
+  }
+
+  bool? getBook(String bookCode) {
+    int indexOfBook;
+    try {
+      indexOfBook = books
+          .indexOf(books.firstWhere((element) => element.bookCode == bookCode));
+    } catch (e) {
+      indexOfBook = -1;
+    }
+    if (indexOfBook != -1) {
+      return true;
+    }
+    return false;
+  }
+
   void deleteBook({required context, required String bookCode}) {
     int indexOfBook;
     try {

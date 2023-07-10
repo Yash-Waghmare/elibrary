@@ -10,7 +10,7 @@ BookCard(
   bookId: '123456789',
   imageUrl:
       'https://images-na.ssl-images-amazon.com/images/I/51ZU%2BCvkTyL._SX331_BO1,204,203,200_.jpg',
-  bookQuantity: '10',
+  quantity: '10',
   )
 */
 class BookCard extends StatelessWidget {
@@ -24,12 +24,12 @@ class BookCard extends StatelessWidget {
     required this.quantity,
   });
 
-  final bookName;
-  final bookAuthor;
-  final description;
-  final bookCode;
-  final bookImage;
-  final quantity;
+  final String bookName;
+  final String bookAuthor;
+  final String description;
+  final String bookCode;
+  final String bookImage;
+  final String quantity;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class BookCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image(
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                   width: 100,
                   height: 155,
                   image: NetworkImage(bookImage),

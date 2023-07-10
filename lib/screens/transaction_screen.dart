@@ -54,6 +54,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
             child: IconButton(
                 onPressed: () {
                   setState(() {
+                    showList = '';
                     transactionProvider.transactions = [];
                     // fetching transasctions by calling provider functions
                     transactionProvider.fetchTransactions(context);

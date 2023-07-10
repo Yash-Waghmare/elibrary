@@ -48,6 +48,7 @@ class _StudentScreenState extends State<StudentScreen> {
             child: IconButton(
                 onPressed: () {
                   setState(() {
+                    showList = '';
                     studentProvider.students = [];
                     studentProvider.fetchStudents(context);
                   });
