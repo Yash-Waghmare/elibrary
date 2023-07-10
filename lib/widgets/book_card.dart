@@ -10,7 +10,7 @@ BookCard(
   bookId: '123456789',
   imageUrl:
       'https://images-na.ssl-images-amazon.com/images/I/51ZU%2BCvkTyL._SX331_BO1,204,203,200_.jpg',
-  bookQuantity: '10',
+  quantity: '10',
   )
 */
 class BookCard extends StatelessWidget {
@@ -49,10 +49,10 @@ class BookCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image(
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                   width: 100,
                   height: 155,
-                  image: NetworkImage(bookImage!),
+                  image: NetworkImage(bookImage),
                 ),
               ),
             ),
@@ -71,7 +71,7 @@ class BookCard extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 10),
                           child: Text(
-                            bookName!,
+                            bookName,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
@@ -82,7 +82,7 @@ class BookCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          description!,
+                          description,
                           maxLines: 5,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
@@ -98,14 +98,14 @@ class BookCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          bookAuthor!,
+                          bookAuthor,
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 14,
                           ),
                         ),
                         Text(
-                          bookCode!,
+                          bookCode,
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 12,
@@ -134,7 +134,7 @@ class BookCard extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                quantity!,
+                quantity,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
