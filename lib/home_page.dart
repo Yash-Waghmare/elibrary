@@ -102,6 +102,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 CircleAvatar(
                   radius: 53,
+                  child: Image(
+                    image: AssetImage('icons/pccoeLogo.png'),
+                  ),
                 ),
                 SizedBox(
                   height: 10,
