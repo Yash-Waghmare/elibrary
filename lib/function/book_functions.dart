@@ -3,7 +3,6 @@ import 'package:elibrary/services/book_image_service.dart';
 import 'package:elibrary/services/book_services.dart';
 import 'package:elibrary/widgets/hero_dialogue_route.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -252,9 +251,8 @@ class BookFunctions {
               children: [
                 IconButton(
                     onPressed: () {
-                      if (quantity >= 1) {
-                        quantity -= 1;
-                      }
+                      quantity -= 1;
+
                       (context as Element).markNeedsBuild();
                     },
                     icon: Icon(
