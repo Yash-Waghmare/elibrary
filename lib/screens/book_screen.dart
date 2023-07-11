@@ -153,6 +153,17 @@ class _BookScreenState extends State<BookScreen> {
                                 bookCode: filterBook[index].bookCode!,
                                 bookImage: filterBook[index].bookImage!,
                                 quantity: filterBook[index].quantity!,
+                                onTap: () {
+                                  BookFunctions().ShowBook(
+                                      context: context,
+                                      bookName: filterBook[index].bookName!,
+                                      authorName: filterBook[index].bookAuthor!,
+                                      description:
+                                          filterBook[index].description!,
+                                      bookCode: filterBook[index].bookCode!,
+                                      quantity: filterBook[index].quantity!,
+                                      bookImage: filterBook[index].bookImage!);
+                                },
                               );
                             }),
                       ),

@@ -25,6 +25,112 @@ class BookFunctions {
     return image;
   }
 
+  ShowBook(
+          {required BuildContext context,
+          required String bookName,
+          required String authorName,
+          required String description,
+          required String bookCode,
+          required String quantity,
+          required String bookImage}) =>
+      {
+        Navigator.of(context).push(HeroDialogRoute(builder: (context) {
+          return PopUpFrame(
+            width: 950,
+            w1: 550,
+            title: 'Book Details',
+            isButtonNeeded: false,
+            buttonText: 'Cancel',
+            function: () {
+              Navigator.pop(context);
+            },
+            children: [
+              Row(
+                children: [
+                  Container(
+                      height: 400,
+                      width: 250,
+                      decoration: BoxDecoration(
+                          color: const Color(0xff595959),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.network(
+                          bookImage,
+                          fit: BoxFit.cover,
+                        ),
+                      )),
+                  Container(
+                    padding: const EdgeInsets.only(left: 50),
+                    width: 600,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        PopUpTextfield(
+                          controller: TextEditingController(),
+                          hintText: 'Book :   $bookName',
+                          readOnly: true,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        PopUpTextfield(
+                          controller: TextEditingController(),
+                          hintText: 'Author  :   $authorName',
+                          readOnly: true,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          width: 600,
+                          padding: EdgeInsets.only(top: 8, bottom: 10),
+                          decoration: BoxDecoration(
+                              border: Border(
+                            bottom: BorderSide(
+                              color: Color.fromARGB(255, 37, 37, 37),
+                              width: 1,
+                            ),
+                          )),
+                          child: Text(
+                            'Decscription :\n$description',
+                            style: GoogleFonts.inter(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        PopUpTextfield(
+                          controller: TextEditingController(),
+                          hintText: 'Book Code :   $bookCode',
+                          readOnly: true,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        PopUpTextfield(
+                          controller: TextEditingController(),
+                          hintText: 'Quantity :   $quantity',
+                          readOnly: true,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              )
+            ],
+          );
+        }))
+      };
+
   addBook({
     required context,
     required TextEditingController bookNameController,
