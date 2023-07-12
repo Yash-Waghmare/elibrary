@@ -21,6 +21,7 @@ class _FineState extends State<Fine> {
   Widget build(BuildContext context) {
     return Container(
       color: AppColors.colors.background,
+      width: double.infinity,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 110),
         child: Column(
