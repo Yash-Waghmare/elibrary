@@ -59,8 +59,9 @@ class _BookScreenState extends State<BookScreen> {
         ),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
-            padding: const EdgeInsets.only(left: 80, top: 20),
+            padding: const EdgeInsets.only(left: 80, top: 20, right: 35),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomButton(
                   buttonText: 'Add Book',

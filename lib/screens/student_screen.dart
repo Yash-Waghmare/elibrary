@@ -65,6 +65,7 @@ class _StudentScreenState extends State<StudentScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomButton(
                       buttonText: 'Add Student',

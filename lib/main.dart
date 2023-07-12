@@ -37,6 +37,7 @@ void main() async {
       )
     ],
     child: const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: MyApp(),
       ),
@@ -59,7 +60,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> checkAdmin() async {
     validToken = await AuthService().checkAdmin(context: context);
     Future.delayed(
-        const Duration(seconds: 5),
+        const Duration(seconds: 0),
         () => {
               setState(() {
                 loading = false;
