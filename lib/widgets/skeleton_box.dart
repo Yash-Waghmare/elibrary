@@ -2,6 +2,10 @@ import 'package:elibrary/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
+// This file contains the skeleton box widget
+// SkeletonBos is used to display the loading animation on the various screen
+// when the data is been fetched from the database
+
 class SkeletonBox extends StatelessWidget {
   const SkeletonBox({super.key});
 

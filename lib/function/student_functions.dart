@@ -5,6 +5,14 @@ import '../widgets/hero_dialogue_route.dart';
 import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
 
+// This class contains all the functions related to students
+// The functions are used in the student screen
+// The functions are:
+// 1. addStudent() - This function is used to add a student to the database.
+// 2. updateStudent() - This function is used to edit a student in the database.
+// 3. removeStudent() - This function is used to delete a student from the database.
+// 4. showStudent() - This function is used to show the details of a student.
+
 class StudentFunctions {
   addStudent(
           {required context,
@@ -61,7 +69,6 @@ class StudentFunctions {
           );
         }))
       };
-
   updateStudent(
           {required BuildContext context,
           required TextEditingController idController,

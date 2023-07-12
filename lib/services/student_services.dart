@@ -9,6 +9,13 @@ import '../constant/handler.dart';
 import '../constant/url_constants.dart';
 import '../models/student.dart';
 
+// This file contains the student services
+// This services containes:
+// 1. Fetch students: Fetches all the students from the database
+// 2. Add student: Adds a new student to the database
+// 3. Update student: Updates the student details
+// 4. Remove student: Deletes the student from the database
+
 class StudentsService {
   Future<List<Student>> fetchStudents(context) async {
     List<Student> students = [];

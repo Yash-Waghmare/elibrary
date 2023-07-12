@@ -4,6 +4,10 @@ import '../widgets/hero_dialogue_route.dart';
 import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
 
+// This class contains all the function related to transactions
+// The functions are used in the transaction screen
+// The function is:
+// 1. showTransaction() - This function is used to show the details of a transaction.
 class TransactionFunction {
   showTransaction(
           {required BuildContext context,

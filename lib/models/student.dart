@@ -1,3 +1,8 @@
+// This file conatins the Student model.
+// The Student model is used to store the details of a student.
+// The Student model is used in the student provider.
+// This Student model is used to convert the map to json and vice versa.
+
 class Student {
   String? id;
   String? studentName;

@@ -2,6 +2,10 @@ import 'package:elibrary/constant/colors.dart';
 import 'package:elibrary/constant/theme.dart';
 import 'package:flutter/material.dart';
 
+// This file contains the student details tile widget
+// StudentDetailsTile is used to display the student details in the student_screen.dart
+// The widget is being used as follow:
+
 // Widget Caller
 // StudentDetailsTile(
 // studentId: "1",

@@ -4,6 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import '../constant/colors.dart';
 
+// Fine is used to calculate the fine of a student
+// It contains the functionality of:
+// 1. Calculating the fine of a student
+// 2. Displaying the fine of a student
+
 class Fine extends StatefulWidget {
   const Fine({Key? key}) : super(key: key);
 

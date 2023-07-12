@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'colors.dart';
 
-//To use the styles just write  style: appTheme().textTheme.headline2, in Text
+// AppTheme is used to store all the styles used in the app in one place
+// This makes it easier to change the style scheme of the app
+// The styles are stored as functions
+// The styles are used as appTheme().styleName
+// To use the styles just write  style: appTheme().textTheme.headline2
+
 ThemeData appTheme() {
   return ThemeData(
     brightness: Brightness.light,

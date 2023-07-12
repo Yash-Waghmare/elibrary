@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../constant/colors.dart';
 
+// This file contains the history tile widget
+// This widget is used to display the history of the user transactions
 class HistoryTile extends StatelessWidget {
   const HistoryTile({
     super.key,

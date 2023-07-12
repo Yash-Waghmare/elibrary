@@ -8,6 +8,15 @@ import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 import 'package:elibrary/providers/book_provider.dart';
 
+// This file contains the book services
+// The services are:
+// 1. Fetch books: Fetches all the books from the database
+// 2. Add book: Adds a new book to the database
+// 3. Update book: Updates the book details (the quantity of the book is updated).
+// 4. Delete book: Deletes the book from the database
+
+// The book service is used by the book provider
+
 class BooksServices {
   Future<List<Book>> fetchBooks(context) async {
     List<Book> books = [];

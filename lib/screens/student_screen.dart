@@ -10,6 +10,15 @@ import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
 import '../widgets/student_details_tile.dart';
 
+// StudentScreen is used to display the list of students in the app
+// Student Screen contains the functionality of:
+// 1. Adding a student
+// 2. Updating a student
+// 3. Deleting a student
+// 4. Searching a student
+// 5. Refreshing the list of students
+// 6. Displaying the list of students
+
 class StudentScreen extends StatefulWidget {
   const StudentScreen({Key? key}) : super(key: key);
 

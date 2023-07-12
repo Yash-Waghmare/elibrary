@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
+// This file contains all the functions that are used to handle errors and show snackbar
+// The functions are used in the services and providers to handle errors and show snackbar
+// The functions are used as ErrorHandler.functionName
+
 void httpErrorHandle({
   required http.Response response,
   required BuildContext context,

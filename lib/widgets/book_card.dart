@@ -1,6 +1,11 @@
 import 'package:elibrary/constant/colors.dart';
 import 'package:flutter/material.dart';
 
+// This file contains the book card widget
+// This widget is used to display the book card
+// This widget is used in:
+// 1. Book Screen
+// This widget is used as a follow:
 /*
 BookCard(
   bookName: 'The Alchemist',

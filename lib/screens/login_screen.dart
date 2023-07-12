@@ -8,6 +8,12 @@ import 'package:elibrary/constant/colors.dart';
 
 import '../widgets/custom_button.dart';
 
+// LoginScreen is used to login into the app
+// Login Screen contains the functionality of:
+// 1. Logging in as an admin
+// As the system is for the admin only, the login screen is only for the admin.
+// The admin can login using the email and password provided to him/her by the developer.
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 

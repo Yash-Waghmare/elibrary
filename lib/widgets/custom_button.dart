@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// This file contains the custom button widget
+// This widget is used to create a custom button
+// This widget is used as follows:
+
 // Widget Caller
 // CustomButton(
 // height: MediaQuery.sizeOf(context).width*0.025,

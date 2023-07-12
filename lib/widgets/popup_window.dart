@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import '../constant/colors.dart';
 import '../constant/theme.dart';
 
+// This file contains the pop up window widget
+// This widget is used to create a pop up window
+// This widget is used as follows:
+
 // Widget Caller
 // Navigator.of(context)
 //     .push(HeroDialogRoute(builder: (context) {

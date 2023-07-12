@@ -2,6 +2,10 @@ import 'package:elibrary/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
+// This file contains the skeleton tile history widget
+// SkeletonTileHistory is used to display the loading animation on the screen
+// when the data is being fetched from the database.
+
 class SkeletonTileHistory extends StatelessWidget {
   const SkeletonTileHistory({super.key});
 

@@ -15,6 +15,15 @@ import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
 import '../widgets/skeleton_tile.dart';
 
+// TransactionScreen is used to display the list of transactions in the app
+// Transaction Screen contains the functionality of:
+// 1. Adding a record of transaction
+// 2. Showing completed transaction
+// 3. Showing pending transaction
+// 4. Refreshing the list of transactions
+// 5. Displaying the list of transactions
+// 6. Searching a transaction
+
 class TransactionScreen extends StatefulWidget {
   const TransactionScreen({Key? key}) : super(key: key);
 

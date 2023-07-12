@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../constant/colors.dart';
 
+// This file contains the custom textfield widget
+// This widget is used to create a custom textfield
 class CustomTextfield extends StatelessWidget {
-  const CustomTextfield({
-    super.key,
-    required this.controller,
-    required this.hintText,
-    required this.onSubmit
-  });
+  const CustomTextfield(
+      {super.key,
+      required this.controller,
+      required this.hintText,
+      required this.onSubmit});
 
   final TextEditingController controller;
   final String hintText;

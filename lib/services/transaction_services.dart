@@ -9,6 +9,12 @@ import '../constant/handler.dart';
 import '../constant/url_constants.dart';
 import '../providers/transaction_provider.dart';
 
+// This file contains the transaction services
+// This services containes:
+// 1. Fetch transactions: Fetches all the transactions from the database
+// 2. Update transaction: Updates the transaction details
+// 3. Add transaction: Adds a new transaction record to the database
+
 class TransactionServices {
   Future<List<TransactionModel>> fetchTransactions(context) async {
     List<TransactionModel> transaction = [];

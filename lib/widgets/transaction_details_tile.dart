@@ -3,6 +3,10 @@ import 'package:elibrary/constant/theme.dart';
 import 'package:elibrary/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
+// This file contains the transaction details tile widget
+// TransactionTile is used to display the transaction details on the transaction_screen.dart
+// The widget is used as follow:
+
 // Widget Caller
 // TransactionTile(
 // transactionId: "2",

@@ -9,6 +9,15 @@ import 'package:provider/provider.dart';
 import '../constant/handler.dart';
 import '../widgets/book_card.dart';
 
+// BookScreen is used to display the list of books in the app
+// Book Screen contains the functionality of:
+// 1. Adding a book
+// 2. Updating a book
+// 3. Deleting a book
+// 4. Searching a book
+// 5. Refreshing the list of books
+// 6. Displaying the list of books
+
 class BookScreen extends StatefulWidget {
   const BookScreen({super.key});
 

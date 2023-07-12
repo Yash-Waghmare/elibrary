@@ -12,6 +12,15 @@ import '../constant/theme.dart';
 import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
 
+// This file contains the functions related to books.
+// The functions are:
+// 1. pickImage() - This function is used to pick the image of the book.
+// 2. showBook() - This function is used to show the book details in a popup window.
+// 3. addBook() - This function is used to add a book to the database.
+// 4. updateBook() - This function is used to edit a book in the database.
+// 5. removeBook() - This function is used to delete a book from the database.
+// This functions are used in the Book Screen to add the functionality to the screen.
+
 class BookFunctions {
   String fileImage = '';
   late Uint8List image;

@@ -2,6 +2,10 @@ import 'package:elibrary/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
+// This file contains the skeleton tile dashboard widget
+// SkeletonTileDashBoard is used to display the loading animation on the
+// dashboard screen and various screen.
+
 class SkeletonTileDashBoard extends StatelessWidget {
   const SkeletonTileDashBoard({super.key});
 

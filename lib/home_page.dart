@@ -12,6 +12,10 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constant/colors.dart';
 
+// This is the main Home Page Screen which is being displayed after the user logs in
+// This screen contains the menu tiles and the screens which are being displayed on the right side of the screen
+// The screens first displays the dashboard screen from the menu items from side menu bar.
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 

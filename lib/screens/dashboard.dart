@@ -9,6 +9,13 @@ import '../providers/homepage_provider.dart';
 import '../widgets/dashboard_tile.dart';
 import '../widgets/history_tile.dart';
 
+// DashBoard is used the overall view of the library
+// It contains the functionality of:
+// 1. Displaying the total number of books in the library
+// 2. Displaying the total number of students registered in the library
+// 3. Displaying the total number of transactions in the library
+// 4. Displaying the recent five transactions in the library
+
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
 
