@@ -51,7 +51,6 @@ class BooksServices {
       return [];
     }
   }
-// TODO: Bug in book addition while adding book with same book code as previous one
 
   Future<bool> addBook(
       {required context,
