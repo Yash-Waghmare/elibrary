@@ -1,6 +1,11 @@
 import 'package:elibrary/constant/colors.dart';
 import 'package:flutter/material.dart';
 
+// This file contains the book card widget
+// This widget is used to display the book card
+// This widget is used in:
+// 1. Book Screen
+// This widget is used as a follow:
 /*
 BookCard(
   bookName: 'The Alchemist',
@@ -14,7 +19,7 @@ BookCard(
   )
 */
 class BookCard extends StatelessWidget {
-  BookCard(
+  const BookCard(
       {super.key,
       required this.bookName,
       required this.bookAuthor,
@@ -30,7 +35,7 @@ class BookCard extends StatelessWidget {
   final String bookCode;
   final String bookImage;
   final String quantity;
-  void Function() onTap;
+  final void Function() onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

@@ -1,6 +1,9 @@
-import 'package:elibrary/constant/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+// This file contains the custom button widget
+// This widget is used to create a custom button
+// This widget is used as follows:
 
 // Widget Caller
 // CustomButton(
@@ -13,7 +16,7 @@ import 'package:google_fonts/google_fonts.dart';
 // },
 // )
 class CustomButton extends StatelessWidget {
-  CustomButton(
+  const CustomButton(
       {Key? key,
       required this.buttonText,
       required this.buttonColor,
@@ -26,13 +29,13 @@ class CustomButton extends StatelessWidget {
       this.needCursor = true})
       : super(key: key);
 
-  String buttonText;
-  Color buttonColor, textColor;
-  void Function() function;
-  double height, width;
-  double fsize;
-  FontWeight fWeight;
-  bool needCursor;
+  final String buttonText;
+  final Color buttonColor, textColor;
+  final void Function() function;
+  final double height, width;
+  final double fsize;
+  final FontWeight fWeight;
+  final bool needCursor;
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +50,12 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
           onPressed: function,
           style: ElevatedButton.styleFrom(
-            backgroundColor: buttonColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(height / 2.5)),
-            enabledMouseCursor: needCursor?SystemMouseCursors.click:SystemMouseCursors.forbidden
-          ),
+              backgroundColor: buttonColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(height / 2.5)),
+              enabledMouseCursor: needCursor
+                  ? SystemMouseCursors.click
+                  : SystemMouseCursors.forbidden),
           child: Text(
             buttonText,
             style: GoogleFonts.inter(

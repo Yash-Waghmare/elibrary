@@ -2,6 +2,10 @@ import 'package:elibrary/services/dashboard_services.dart';
 import 'package:flutter/cupertino.dart';
 import '../models/transaction.dart';
 
+// DashboardProvider is used to store the data of the dashboard in the app
+// The function is:
+// 1. fetchTransactions() - This function is used to fetch the list of transactions from the database
+
 class DashboardProvider with ChangeNotifier {
   Map<String, dynamic> m = {};
   List<TransactionModel> transactions = [];

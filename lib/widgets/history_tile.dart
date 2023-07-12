@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../constant/colors.dart';
 
+// This file contains the history tile widget
+// This widget is used to display the history of the user transactions
 class HistoryTile extends StatelessWidget {
   const HistoryTile({
     super.key,
@@ -19,7 +20,7 @@ class HistoryTile extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(left: 75, right: 40),
+            margin: const EdgeInsets.only(left: 75, right: 40),
             width: 50,
             child: Text(
               id,
@@ -40,7 +41,7 @@ class HistoryTile extends StatelessWidget {
                   fontWeight: FontWeight.w400),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 30,
           ),
           Container(
@@ -54,12 +55,12 @@ class HistoryTile extends StatelessWidget {
                   fontWeight: FontWeight.w400),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           ),
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.only(left: 80),
+            margin: const EdgeInsets.only(left: 80),
             width: 100,
             child: Text(
               rDate.isNotEmpty ? rDate : '    -    ',

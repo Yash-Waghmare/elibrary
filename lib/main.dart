@@ -12,6 +12,14 @@ import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'home_page.dart';
 
+// This is the main file which is being run when the app is started
+// This file contains the main function which is being run when the app is started
+// The file initializes the firebase and the provider package
+// First the splash screen is being displayed while the app functionalites are being initialized
+// After the initialization the app checks if the user is logged in or not
+// If the user is logged in then the home page is being displayed
+// If the user is not logged in then the login screen is being displayed.
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

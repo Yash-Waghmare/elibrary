@@ -1,3 +1,8 @@
+// This file contains the Book model.
+// The Book model is used to store the details of a book.
+// The Book model is used in the book provider.
+// This Book model is used to convert the map to json and vice versa.
+
 class Book {
   String? bookCode;
   String? bookName;

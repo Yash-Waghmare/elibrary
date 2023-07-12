@@ -5,6 +5,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../constant/handler.dart';
 import '../constant/url_constants.dart';
 
+// This file contains the dashboard services
+// This service contians the fetch data function for the dashboard
+// This service fetches:
+// 1. Total number of books
+// 2. Total number of users
+// 3. Total number of transactions
+// 4. Recent transactions
 class DashboardServices {
   Future<Map<String, dynamic>> fetchData(context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

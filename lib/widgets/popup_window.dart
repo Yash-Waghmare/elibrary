@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import '../constant/colors.dart';
 import '../constant/theme.dart';
 
+// This file contains the pop up window widget
+// This widget is used to create a pop up window
+// This widget is used as follows:
+
 // Widget Caller
 // Navigator.of(context)
 //     .push(HeroDialogRoute(builder: (context) {
@@ -14,27 +18,28 @@ import '../constant/theme.dart';
 // function: () {
 // },
 // children: [
-// // TODO put the required textfields
+// Children
 // ],
 // );
 // }));
 
 class PopUpFrame extends StatelessWidget {
   /// {@macro add_todo_popup_card}
-  PopUpFrame(
-      {required this.width,
+  const PopUpFrame(
+      {super.key,
+      required this.width,
       required this.title,
       required this.buttonText,
       required this.function,
       required this.children,
       this.w1 = 0,
       this.isButtonNeeded = true});
-  double width, w1;
-  String title, buttonText;
-  bool isButtonNeeded;
-  void Function() function;
-  String heroAddTodo = 'pop-up-card';
-  List<Widget> children;
+  final double width, w1;
+  final String title, buttonText;
+  final bool isButtonNeeded;
+  final void Function() function;
+  final String heroAddTodo = 'pop-up-card';
+  final List<Widget> children;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -85,7 +90,7 @@ class PopUpFrame extends StatelessWidget {
                             fsize: 18,
                             fWeight: FontWeight.w400,
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                     CustomButton(
                       buttonText: buttonText,
                       buttonColor: AppColors.colors.buttonBackground,

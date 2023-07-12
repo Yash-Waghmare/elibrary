@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-//Use this textfield in popup
+// This file contains the popup textfield widget
+// This widget is used to create a popup textfield
+// This widget is customly created to use in hero dialog popups.
+
 class PopUpTextfield extends StatelessWidget {
   const PopUpTextfield({
     super.key,

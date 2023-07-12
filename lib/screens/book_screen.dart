@@ -9,6 +9,15 @@ import 'package:provider/provider.dart';
 import '../constant/handler.dart';
 import '../widgets/book_card.dart';
 
+// BookScreen is used to display the list of books in the app
+// Book Screen contains the functionality of:
+// 1. Adding a book
+// 2. Updating a book
+// 3. Deleting a book
+// 4. Searching a book
+// 5. Refreshing the list of books
+// 6. Displaying the list of books
+
 class BookScreen extends StatefulWidget {
   const BookScreen({super.key});
 
@@ -155,7 +164,7 @@ class _BookScreenState extends State<BookScreen> {
                                 bookImage: filterBook[index].bookImage!,
                                 quantity: filterBook[index].quantity!,
                                 onTap: () {
-                                  BookFunctions().ShowBook(
+                                  BookFunctions().showBook(
                                       context: context,
                                       bookName: filterBook[index].bookName!,
                                       authorName: filterBook[index].bookAuthor!,
@@ -181,7 +190,7 @@ class _BookScreenState extends State<BookScreen> {
                     )
               : Expanded(
                   child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -190,7 +199,7 @@ class _BookScreenState extends State<BookScreen> {
                       ),
                       itemCount: 9,
                       itemBuilder: (context, i) {
-                        return SkeletonBox();
+                        return const SkeletonBox();
                       }),
                 ))
         ]),

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../constant/colors.dart';
+
+// This file contains the menu tile widget
+// This widget is used to create a menu tile
+// MenuTile is used to display the menu items in the side menu bar.
+// This widget is used in home_page.dart
 
 class MenuTile extends StatelessWidget {
   final bool isSelected;
   final String menuName;
   final String iconPath;
-  void Function() function;
-  MenuTile(
+  final void Function() function;
+  const MenuTile(
       {super.key,
       required this.isSelected,
       required this.menuName,

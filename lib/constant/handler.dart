@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
+// This file contains all the functions that are used to handle errors and show snackbar
+// The functions are used in the services and providers to handle errors and show snackbar
+// The functions are used as ErrorHandler.functionName
+
 void httpErrorHandle({
   required http.Response response,
   required BuildContext context,
@@ -33,9 +37,9 @@ void httpErrorHandle({
           jsonDecode(response.body)['message'] ?? "Something went wrong", true);
       if (jsonDecode(response.body)['message'] ==
           "Session Finished Please Login Again") {
-        Provider.of<HomePageProvider>(context,listen: false).setIndex(0);
+        Provider.of<HomePageProvider>(context, listen: false).setIndex(0);
         Navigator.push(
-            context, MaterialPageRoute(builder: (_) => LoginScreen()));
+            context, MaterialPageRoute(builder: (_) => const LoginScreen()));
       }
       break;
     case 500:
@@ -52,7 +56,7 @@ void showSnackBar(BuildContext context, String text, bool isError) {
       behavior: SnackBarBehavior.floating,
       content: Text(
         text,
-        style: Theme.of(context).textTheme.headline4,
+        style: Theme.of(context).textTheme.headlineMedium,
       ),
       backgroundColor: isError ? Colors.red : Colors.green,
       elevation: 2,
