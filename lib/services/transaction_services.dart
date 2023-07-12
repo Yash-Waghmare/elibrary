@@ -65,7 +65,10 @@ class TransactionServices {
           'authorization': 'bearer $adminEmail',
         },
       );
-      httpErrorHandle(response: res, context: context, onSuccess: () {});
+      if (context.mounted) {
+        httpErrorHandle(response: res, context: context, onSuccess: () {});
+      }
+
       if (res.statusCode == 200) {
         return true;
       }
@@ -97,15 +100,18 @@ class TransactionServices {
             'token': token,
             'authorization': 'bearer $adminEmail',
           });
-      httpErrorHandle(
-          response: res,
-          context: context,
-          onSuccess: () {
-            var decode = jsonDecode(res.body)['transaction'];
-            TransactionModel transaction = TransactionModel.fromJson(decode);
-            Provider.of<TransactionProvider>(context, listen: false)
-                .createTransaction(transaction);
-          });
+      if (context.mounted) {
+        httpErrorHandle(
+            response: res,
+            context: context,
+            onSuccess: () {
+              var decode = jsonDecode(res.body)['transaction'];
+              TransactionModel transaction = TransactionModel.fromJson(decode);
+              Provider.of<TransactionProvider>(context, listen: false)
+                  .createTransaction(transaction);
+            });
+      }
+
       if (res.statusCode == 200) {
         return true;
       }

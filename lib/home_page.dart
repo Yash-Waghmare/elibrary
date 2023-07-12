@@ -21,11 +21,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Widget> screens = [
-    DashBoard(),
-    StudentScreen(),
-    BookScreen(),
-    TransactionScreen(),
-    Fine()
+    const DashBoard(),
+    const StudentScreen(),
+    const BookScreen(),
+    const TransactionScreen(),
+    const Fine()
   ];
 
   @override
@@ -97,16 +97,16 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 70,
                 ),
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 53,
                   child: Image(
                     image: AssetImage('icons/pccoeLogo.png'),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Center(
@@ -120,19 +120,24 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  margin: EdgeInsets.symmetric(horizontal: 156, vertical: 10),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 156, vertical: 10),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Color(0xFF7F7C7C))),
+                      border: Border.all(color: const Color(0xFF7F7C7C))),
                   child: IconButton(
-                    icon: Image(image: AssetImage('icons/logout.png')),
+                    icon: const Image(image: AssetImage('icons/logout.png')),
                     onPressed: () async {
                       SharedPreferences prefs =
                           await SharedPreferences.getInstance();
                       prefs.clear();
                       homepageProvider.remove();
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => LoginScreen()));
+                      if (context.mounted) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const LoginScreen()));
+                      }
                     },
                   ),
                 ),

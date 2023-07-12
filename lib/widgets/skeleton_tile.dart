@@ -1,9 +1,10 @@
 import 'package:elibrary/constant/colors.dart';
-import 'package:firebase/firebase.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SkeletonTile extends StatelessWidget {
+  const SkeletonTile({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
@@ -25,7 +26,7 @@ class SkeletonTile extends StatelessWidget {
             children: [
               Container(
                 width: 125,
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.colors.buttonBackground,
@@ -33,7 +34,7 @@ class SkeletonTile extends StatelessWidget {
               ),
               Container(
                 width: 225,
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.colors.buttonBackground,
@@ -41,7 +42,7 @@ class SkeletonTile extends StatelessWidget {
               ),
               Container(
                 width: 220,
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.colors.buttonBackground,
@@ -49,7 +50,7 @@ class SkeletonTile extends StatelessWidget {
               ),
               Container(
                 width: 300,
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.colors.buttonBackground,

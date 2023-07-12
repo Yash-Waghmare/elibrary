@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 class Student {
   String? id;
   String? studentName;
@@ -49,10 +47,10 @@ class Student {
     return Student(
       id: id ?? this.id,
       email: email ?? this.email,
-      studentName: userName ?? this.studentName,
+      studentName: userName ?? studentName,
       contactNumber: contactNumber ?? this.contactNumber,
       transactionCount: transactionCount ?? this.transactionCount,
-      unreturnedBooks: unReturnedBooks ?? this.unreturnedBooks,
+      unreturnedBooks: unReturnedBooks ?? unreturnedBooks,
     );
   }
 }

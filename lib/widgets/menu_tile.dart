@@ -7,8 +7,8 @@ class MenuTile extends StatelessWidget {
   final bool isSelected;
   final String menuName;
   final String iconPath;
-  void Function() function;
-  MenuTile(
+  final void Function() function;
+  const MenuTile(
       {super.key,
       required this.isSelected,
       required this.menuName,

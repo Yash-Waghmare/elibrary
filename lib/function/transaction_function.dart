@@ -5,7 +5,7 @@ import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
 
 class TransactionFunction {
-  ShowTransaction(
+  showTransaction(
           {required BuildContext context,
           required String transactionId,
           required String studentName,
@@ -23,7 +23,7 @@ class TransactionFunction {
               Navigator.pop(context);
             },
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -31,7 +31,7 @@ class TransactionFunction {
                 hintText: 'Transacation ID :   $transactionId',
                 readOnly: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -39,7 +39,7 @@ class TransactionFunction {
                 hintText: 'Student :   $studentName',
                 readOnly: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -47,7 +47,7 @@ class TransactionFunction {
                 hintText: 'Book :      $bookName',
                 readOnly: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -55,7 +55,7 @@ class TransactionFunction {
                 hintText: 'Borrowed Date :   $borrowedDate',
                 readOnly: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -63,7 +63,7 @@ class TransactionFunction {
                 hintText: 'Returned Date :   $returnedDate',
                 readOnly: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
             ],

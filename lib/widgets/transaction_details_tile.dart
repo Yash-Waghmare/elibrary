@@ -12,22 +12,23 @@ import 'package:flutter/material.dart';
 // status: false,
 // ),
 class TransactionTile extends StatelessWidget {
-  TransactionTile(
-      {required this.transactionId,
+  const TransactionTile(
+      {super.key,
+      required this.transactionId,
       required this.studentName,
       required this.bookName,
       required this.status,
       required this.onTap,
       required this.returnedFunc});
 
-  final transactionId, studentName, bookName, status;
-  void Function() onTap, returnedFunc;
+  final dynamic transactionId, studentName, bookName, status;
+  final void Function() onTap, returnedFunc;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
+        margin: const EdgeInsets.symmetric(vertical: 10),
         alignment: Alignment.center,
         width: MediaQuery.of(context).size.width * 0.625,
         height: MediaQuery.of(context).size.width * 0.038,

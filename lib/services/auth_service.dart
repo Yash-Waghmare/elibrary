@@ -21,6 +21,7 @@ class AuthService {
           'authorization': 'bearer $email',
         },
       );
+      // ignore: use_build_context_synchronously
       httpErrorHandle(
           response: res,
           context: context,
@@ -28,9 +29,9 @@ class AuthService {
             String decode = jsonDecode(res.body)['token'];
             prefs.clear();
             prefs.setString('token', decode).then((value) => {
-                  print(prefs.getString('token')),
+                  // print(prefs.getString('token')),
                   prefs.setString('adminEmail', email).then((value) => {
-                        print(prefs.getString('adminEmail')),
+                        // print(prefs.getString('adminEmail')),
                       })
                 });
           });
@@ -64,11 +65,12 @@ class AuthService {
           'token': token
         },
       );
+      // ignore: use_build_context_synchronously
       httpErrorHandle(
           response: res,
           context: context,
           onSuccess: () {
-            bool decode = jsonDecode(res.body)['validToken'];
+            // bool decode = jsonDecode(res.body)['validToken'];
           });
       if (res.statusCode == 200) {
         return true;

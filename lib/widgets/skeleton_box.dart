@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SkeletonBox extends StatelessWidget {
+  const SkeletonBox({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
@@ -26,7 +28,8 @@ class SkeletonBox extends StatelessWidget {
                   Container(
                     width: 80,
                     height: 150,
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: AppColors.colors.buttonBackground,
@@ -39,7 +42,8 @@ class SkeletonBox extends StatelessWidget {
                       Container(
                         width: 110,
                         height: 30,
-                        margin: EdgeInsets.only(left: 10, top: 10, bottom: 5),
+                        margin:
+                            const EdgeInsets.only(left: 10, top: 10, bottom: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: AppColors.colors.buttonBackground,
@@ -48,8 +52,8 @@ class SkeletonBox extends StatelessWidget {
                       Container(
                         width: 160,
                         height: 70,
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: AppColors.colors.buttonBackground,
@@ -58,8 +62,8 @@ class SkeletonBox extends StatelessWidget {
                       Container(
                         width: 160,
                         height: 15,
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: AppColors.colors.buttonBackground,
@@ -68,8 +72,8 @@ class SkeletonBox extends StatelessWidget {
                       Container(
                         width: 100,
                         height: 10,
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: AppColors.colors.buttonBackground,

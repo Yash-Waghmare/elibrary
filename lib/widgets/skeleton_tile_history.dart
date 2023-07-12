@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SkeletonTileHistory extends StatelessWidget {
+  const SkeletonTileHistory({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
         baseColor: AppColors.colors.tileBackground,
         highlightColor: Colors.grey[700]!,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
           child: Row(
             children: [
               Container(
-                margin: EdgeInsets.only(left: 75, right:100 ),
+                margin: const EdgeInsets.only(left: 75, right: 100),
                 width: 30,
                 height: 20,
                 decoration: BoxDecoration(
@@ -30,7 +32,7 @@ class SkeletonTileHistory extends StatelessWidget {
                   color: AppColors.colors.buttonBackground,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 60,
               ),
               Container(
@@ -42,12 +44,12 @@ class SkeletonTileHistory extends StatelessWidget {
                   color: AppColors.colors.buttonBackground,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Container(
                 alignment: Alignment.center,
-                margin: EdgeInsets.only(left: 80),
+                margin: const EdgeInsets.only(left: 80),
                 width: 100,
                 height: 20,
                 decoration: BoxDecoration(

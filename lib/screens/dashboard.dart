@@ -62,7 +62,7 @@ class _DashBoardState extends State<DashBoard> {
                 children: [
                   // tiles representing registered student count
                   dashboardProvider.transactions.isEmpty
-                      ? SkeletonTileDashBoard()
+                      ? const SkeletonTileDashBoard()
                       : DashBoardTile(
                           number: '${dashboardProvider.m['studentCount']}',
                           title: 'Student Registered',
@@ -72,7 +72,7 @@ class _DashBoardState extends State<DashBoard> {
                         ),
                   // tiles representing registered book count
                   dashboardProvider.transactions.isEmpty
-                      ? SkeletonTileDashBoard()
+                      ? const SkeletonTileDashBoard()
                       : DashBoardTile(
                           number: '${dashboardProvider.m['bookCount']}',
                           title: 'Book Registered',
@@ -82,7 +82,7 @@ class _DashBoardState extends State<DashBoard> {
                         ),
                   // tiles representing suscessful transaction count
                   dashboardProvider.transactions.isEmpty
-                      ? SkeletonTileDashBoard()
+                      ? const SkeletonTileDashBoard()
                       : DashBoardTile(
                           number: '${dashboardProvider.m['transactionCount']}',
                           title: 'Total Transactions',
@@ -155,7 +155,7 @@ class _DashBoardState extends State<DashBoard> {
                             child: ListView.builder(
                                 itemCount: 5,
                                 itemBuilder: ((context, i) {
-                                  return SkeletonTileHistory();
+                                  return const SkeletonTileHistory();
                                 })))
                         : Expanded(
                             child: ListView.builder(

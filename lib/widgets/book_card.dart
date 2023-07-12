@@ -14,7 +14,7 @@ BookCard(
   )
 */
 class BookCard extends StatelessWidget {
-  BookCard(
+  const BookCard(
       {super.key,
       required this.bookName,
       required this.bookAuthor,
@@ -30,7 +30,7 @@ class BookCard extends StatelessWidget {
   final String bookCode;
   final String bookImage;
   final String quantity;
-  void Function() onTap;
+  final void Function() onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

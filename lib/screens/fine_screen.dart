@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import '../constant/colors.dart';
-import '../constant/theme.dart';
 
 class Fine extends StatefulWidget {
   const Fine({Key? key}) : super(key: key);
@@ -34,13 +33,13 @@ class _FineState extends State<Fine> {
                       color: Colors.white,
                       fontWeight: FontWeight.w600)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Container(
               width: 400,
-              margin: EdgeInsets.only(left: 150, right: 370),
-              padding: EdgeInsets.only(left: 40, top: 30),
+              margin: const EdgeInsets.only(left: 150, right: 370),
+              padding: const EdgeInsets.only(left: 40, top: 30),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: AppColors.colors.yellow),
@@ -55,13 +54,12 @@ class _FineState extends State<Fine> {
                     buttonColor: AppColors.colors.blue,
                     textColor: AppColors.colors.black,
                     function: () async {
-                      //TODO change the datePicker no selection of past date and no selectionn of date 1 month later
                       DateTime? pickedDate = await showDatePicker(
                           context: context,
                           initialDate:
                               startDate == '' ? DateTime.now() : startDateD,
-                          firstDate:
-                              DateTime.now().subtract(Duration(days: 365)),
+                          firstDate: DateTime.now()
+                              .subtract(const Duration(days: 365)),
                           lastDate: DateTime.now());
                       if (pickedDate != null) {
                         setState(() {
@@ -78,7 +76,7 @@ class _FineState extends State<Fine> {
                     fWeight: FontWeight.w500,
                     width: 300,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   CustomButton(
@@ -91,14 +89,15 @@ class _FineState extends State<Fine> {
                     function: startDate == ''
                         ? () {}
                         : () async {
-                            //TODO change the datePicker no selection of past date and no selectionn of date 1 month later
                             DateTime? pickedDate = await showDatePicker(
                                 context: context,
                                 initialDate: endDate == ''
-                                    ? startDateD.add(Duration(days: 1))
+                                    ? startDateD.add(const Duration(days: 1))
                                     : endDateD,
-                                firstDate: startDateD.add(Duration(days: 1)),
-                                lastDate: startDateD.add(Duration(days: 365)));
+                                firstDate:
+                                    startDateD.add(const Duration(days: 1)),
+                                lastDate:
+                                    startDateD.add(const Duration(days: 365)));
                             if (pickedDate != null) {
                               setState(() {
                                 endDateD = pickedDate;
@@ -115,7 +114,7 @@ class _FineState extends State<Fine> {
                     fWeight: FontWeight.w500,
                     width: 300,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   CustomButton(
@@ -147,11 +146,11 @@ class _FineState extends State<Fine> {
                     fsize: 18,
                     fWeight: FontWeight.w600,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   fine == 0
-                      ? SizedBox()
+                      ? const SizedBox()
                       : Row(
                           children: [
                             Text(
@@ -170,9 +169,9 @@ class _FineState extends State<Fine> {
                             )
                           ],
                         ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   fine == 0
-                      ? SizedBox()
+                      ? const SizedBox()
                       : Row(
                           children: [
                             Text(
@@ -191,7 +190,7 @@ class _FineState extends State<Fine> {
                             )
                           ],
                         ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   )
                 ],

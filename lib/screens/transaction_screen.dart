@@ -102,7 +102,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                   borrowedDate: confirmedDate);
                               studentIdController.clear();
                               bookIdController.clear();
-                              Navigator.pop(context);
+                              if (context.mounted) Navigator.pop(context);
                             },
                             children: [
                               // Custom Textfields
@@ -178,7 +178,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
@@ -230,7 +230,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Expanded(
@@ -239,7 +239,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                             itemCount: 7,
                             itemBuilder: ((context, i) {
                               // if list is empty then it will show empty slots
-                              return SkeletonTile();
+                              return const SkeletonTile();
                             }),
                           )
                         : ListView.builder(
@@ -251,7 +251,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                 bookName: filterList[i].bookName,
                                 status: filterList[i].status == 'returned',
                                 onTap: () {
-                                  TransactionFunction().ShowTransaction(
+                                  TransactionFunction().showTransaction(
                                       context: context,
                                       transactionId:
                                           filterList[i].transactionId!,
@@ -270,19 +270,21 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                           transactionId:
                                               filterList[i].transactionId!,
                                           returnedDate: confirmedDate);
-                                  if (result == false) {
-                                    // alert message
-                                    showSnackBar(context,
-                                        "Unable to update transaction", true);
-                                  } else {
-                                    transactionProvider
-                                        .fetchTransactions(context);
-                                    showSnackBar(
-                                        // alert message
-                                        context,
-                                        'Transcation Updated',
-                                        false);
-                                    setState(() {});
+                                  if (context.mounted) {
+                                    if (result == false) {
+                                      // alert message
+                                      showSnackBar(context,
+                                          "Unable to update transaction", true);
+                                    } else {
+                                      transactionProvider
+                                          .fetchTransactions(context);
+                                      showSnackBar(
+                                          // alert message
+                                          context,
+                                          'Transcation Updated',
+                                          false);
+                                      setState(() {});
+                                    }
                                   }
                                 },
                               );

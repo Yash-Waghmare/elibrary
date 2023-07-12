@@ -25,7 +25,6 @@ class _StudentScreenState extends State<StudentScreen> {
       adminPasswordController = TextEditingController();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -150,7 +149,7 @@ class _StudentScreenState extends State<StudentScreen> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
@@ -202,7 +201,7 @@ class _StudentScreenState extends State<StudentScreen> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Expanded(
@@ -210,7 +209,7 @@ class _StudentScreenState extends State<StudentScreen> {
                         ? ListView.builder(
                             itemCount: 7,
                             itemBuilder: ((context, i) {
-                              return SkeletonTile();
+                              return const SkeletonTile();
                             }),
                           )
                         : ListView.builder(

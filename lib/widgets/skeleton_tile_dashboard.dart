@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SkeletonTileDashBoard extends StatelessWidget {
+  const SkeletonTileDashBoard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
@@ -24,7 +26,7 @@ class SkeletonTileDashBoard extends StatelessWidget {
                   child: Container(
                     width: 150,
                     height: 25,
-                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: AppColors.colors.buttonBackground,
@@ -37,7 +39,7 @@ class SkeletonTileDashBoard extends StatelessWidget {
                     Container(
                       width: 100,
                       height: 25,
-                      margin: EdgeInsets.only(left: 10,bottom: 5),
+                      margin: const EdgeInsets.only(left: 10, bottom: 5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.colors.buttonBackground,
@@ -46,7 +48,7 @@ class SkeletonTileDashBoard extends StatelessWidget {
                     Container(
                       width: 40,
                       height: 30,
-                      margin: EdgeInsets.only(left: 15,bottom: 5),
+                      margin: const EdgeInsets.only(left: 15, bottom: 5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.colors.buttonBackground,

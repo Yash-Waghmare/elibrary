@@ -154,7 +154,7 @@ class _BookScreenState extends State<BookScreen> {
                                 bookImage: filterBook[index].bookImage!,
                                 quantity: filterBook[index].quantity!,
                                 onTap: () {
-                                  BookFunctions().ShowBook(
+                                  BookFunctions().showBook(
                                       context: context,
                                       bookName: filterBook[index].bookName!,
                                       authorName: filterBook[index].bookAuthor!,
@@ -180,7 +180,7 @@ class _BookScreenState extends State<BookScreen> {
                     )
               : Expanded(
                   child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -189,7 +189,7 @@ class _BookScreenState extends State<BookScreen> {
                       ),
                       itemCount: 9,
                       itemBuilder: (context, i) {
-                        return SkeletonBox();
+                        return const SkeletonBox();
                       }),
                 ))
         ]),

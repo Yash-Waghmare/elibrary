@@ -7,7 +7,7 @@ import '../widgets/popup_window.dart';
 
 class StudentFunctions {
   addStudent(
-          {required BuildContext context,
+          {required context,
           required TextEditingController nameController,
           required TextEditingController contactNumberController,
           required TextEditingController emailController}) =>
@@ -24,31 +24,33 @@ class StudentFunctions {
                 email: emailController.text,
                 contactNumber: contactNumberController.text,
               );
-              result == false
-                  ? showSnackBar(context, "Unable to add student", true)
-                  : showSnackBar(context, "Student Added", false);
+              if (context.mounted) {
+                result == false
+                    ? showSnackBar(context, "Unable to add student", true)
+                    : showSnackBar(context, "Student Added", false);
 
-              nameController.clear();
-              emailController.clear();
-              contactNumberController.clear();
-              Navigator.pop(context);
+                nameController.clear();
+                emailController.clear();
+                contactNumberController.clear();
+                Navigator.of(context).pop();
+              }
             },
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
                 controller: nameController,
                 hintText: 'Name',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
                 controller: contactNumberController,
                 hintText: 'Contact Number',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -79,38 +81,40 @@ class StudentFunctions {
                   studentName: nameController.text,
                   email: emailController.text,
                   contactNumber: contactNumberController.text);
-              result == false
-                  ? showSnackBar(context, "Unable to update student", true)
-                  : showSnackBar(context, 'Student Updated', false);
-              idController.clear();
-              nameController.clear();
-              emailController.clear();
-              contactNumberController.clear();
-              Navigator.pop(context);
+              if (context.mounted) {
+                result == false
+                    ? showSnackBar(context, "Unable to update student", true)
+                    : showSnackBar(context, 'Student Updated', false);
+                idController.clear();
+                nameController.clear();
+                emailController.clear();
+                contactNumberController.clear();
+                Navigator.pop(context);
+              }
             },
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
                 controller: idController,
                 hintText: 'Id',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
                 controller: nameController,
                 hintText: 'Name',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
                 controller: contactNumberController,
                 hintText: 'Contact Number',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -138,20 +142,20 @@ class StudentFunctions {
                   adminPassword: adminPasswordController.text);
               idController.clear();
               adminPasswordController.clear();
-              if (result == true) {
+              if (result == true && context.mounted) {
                 showSnackBar(context, 'Student Removed', false);
               }
-              Navigator.pop(context);
+              if (context.mounted) Navigator.pop(context);
             },
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
                 controller: idController,
                 hintText: 'Id',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -181,7 +185,7 @@ class StudentFunctions {
               Navigator.pop(context);
             },
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -189,7 +193,7 @@ class StudentFunctions {
                 hintText: 'Student Id: $studentId',
                 readOnly: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -197,7 +201,7 @@ class StudentFunctions {
                 hintText: 'Student Name: $studentName',
                 readOnly: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -205,7 +209,7 @@ class StudentFunctions {
                 hintText: 'Phone No: $contactNumber',
                 readOnly: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -213,7 +217,7 @@ class StudentFunctions {
                 hintText: 'Email: $email',
                 readOnly: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -221,7 +225,7 @@ class StudentFunctions {
                 readOnly: true,
                 hintText: 'Succesful Transactions: $succesfulTransaction',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(

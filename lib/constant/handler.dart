@@ -33,9 +33,9 @@ void httpErrorHandle({
           jsonDecode(response.body)['message'] ?? "Something went wrong", true);
       if (jsonDecode(response.body)['message'] ==
           "Session Finished Please Login Again") {
-        Provider.of<HomePageProvider>(context,listen: false).setIndex(0);
+        Provider.of<HomePageProvider>(context, listen: false).setIndex(0);
         Navigator.push(
-            context, MaterialPageRoute(builder: (_) => LoginScreen()));
+            context, MaterialPageRoute(builder: (_) => const LoginScreen()));
       }
       break;
     case 500:
@@ -52,7 +52,7 @@ void showSnackBar(BuildContext context, String text, bool isError) {
       behavior: SnackBarBehavior.floating,
       content: Text(
         text,
-        style: Theme.of(context).textTheme.headline4,
+        style: Theme.of(context).textTheme.headlineMedium,
       ),
       backgroundColor: isError ? Colors.red : Colors.green,
       elevation: 2,

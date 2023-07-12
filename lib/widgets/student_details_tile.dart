@@ -1,6 +1,5 @@
 import 'package:elibrary/constant/colors.dart';
 import 'package:elibrary/constant/theme.dart';
-import 'package:elibrary/widgets/popup_window.dart';
 import 'package:flutter/material.dart';
 
 // Widget Caller
@@ -12,15 +11,16 @@ import 'package:flutter/material.dart';
 // ),
 
 class StudentDetailsTile extends StatelessWidget {
-  StudentDetailsTile(
-      {required this.studentId,
+  const StudentDetailsTile(
+      {super.key,
+      required this.studentId,
       required this.studentName,
       required this.contactNumber,
       required this.emailId,
       required this.onTap});
 
-  final studentId, studentName, contactNumber, emailId;
-  void Function() onTap;
+  final dynamic studentId, studentName, contactNumber, emailId;
+  final void Function() onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

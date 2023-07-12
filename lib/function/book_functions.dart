@@ -3,6 +3,7 @@ import 'package:elibrary/services/book_image_service.dart';
 import 'package:elibrary/services/book_services.dart';
 import 'package:elibrary/widgets/hero_dialogue_route.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,15 +18,17 @@ class BookFunctions {
   Future<Uint8List> pickImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
     try {
-      fileImage = result!.files.first.name!;
+      fileImage = result!.files.first.name;
       image = result.files.first.bytes!;
     } on PlatformException catch (e) {
-      print('Failed to pickimage : $e');
+      if (kDebugMode) {
+        print('Failed to pickimage : $e');
+      }
     }
     return image;
   }
 
-  ShowBook(
+  showBook(
           {required BuildContext context,
           required String bookName,
           required String authorName,
@@ -65,7 +68,7 @@ class BookFunctions {
                     width: 600,
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         PopUpTextfield(
@@ -73,7 +76,7 @@ class BookFunctions {
                           hintText: 'Book :   $bookName',
                           readOnly: true,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         PopUpTextfield(
@@ -81,13 +84,13 @@ class BookFunctions {
                           hintText: 'Author  :   $authorName',
                           readOnly: true,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Container(
                           width: 600,
-                          padding: EdgeInsets.only(top: 8, bottom: 10),
-                          decoration: BoxDecoration(
+                          padding: const EdgeInsets.only(top: 8, bottom: 10),
+                          decoration: const BoxDecoration(
                               border: Border(
                             bottom: BorderSide(
                               color: Color.fromARGB(255, 37, 37, 37),
@@ -102,7 +105,7 @@ class BookFunctions {
                                 fontWeight: FontWeight.w600),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         PopUpTextfield(
@@ -110,7 +113,7 @@ class BookFunctions {
                           hintText: 'Book Code :   $bookCode',
                           readOnly: true,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         PopUpTextfield(
@@ -118,7 +121,7 @@ class BookFunctions {
                           hintText: 'Quantity :   $quantity',
                           readOnly: true,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                       ],

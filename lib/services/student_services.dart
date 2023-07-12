@@ -62,15 +62,18 @@ class StudentsService {
         "email": email,
         "contactNumber": contactNumber
       });
-      httpErrorHandle(
-          response: res,
-          context: context,
-          onSuccess: () {
-            var decode = jsonDecode(res.body)['student'];
-            Student newStudent = Student.fromJson(decode);
-            Provider.of<StudentProvider>(context, listen: false)
-                .createStudent(student: newStudent);
-          });
+      if (context.mounted) {
+        httpErrorHandle(
+            response: res,
+            context: context,
+            onSuccess: () {
+              var decode = jsonDecode(res.body)['student'];
+              Student newStudent = Student.fromJson(decode);
+              Provider.of<StudentProvider>(context, listen: false)
+                  .createStudent(student: newStudent);
+            });
+      }
+
       if (res.statusCode == 200) {
         return true;
       }
@@ -105,15 +108,18 @@ class StudentsService {
         "email": email,
         "contactNumber": contactNumber
       });
-      httpErrorHandle(
-          response: res,
-          context: context,
-          onSuccess: () {
-            var decode = jsonDecode(res.body)['student'];
-            Student newStudent = Student.fromJson(decode);
-            Provider.of<StudentProvider>(context, listen: false)
-                .updateStudent(context: context, student: newStudent);
-          });
+      if (context.mounted) {
+        httpErrorHandle(
+            response: res,
+            context: context,
+            onSuccess: () {
+              var decode = jsonDecode(res.body)['student'];
+              Student newStudent = Student.fromJson(decode);
+              Provider.of<StudentProvider>(context, listen: false)
+                  .updateStudent(context: context, student: newStudent);
+            });
+      }
+
       if (res.statusCode == 200) {
         return true;
       }
@@ -142,13 +148,16 @@ class StudentsService {
           'authorization': 'bearer $adminEmail',
         },
       );
-      httpErrorHandle(
-          response: res,
-          context: context,
-          onSuccess: () {
-            Provider.of<StudentProvider>(context, listen: false)
-                .deleteStudent(context: context, id: studentId);
-          });
+      if (context.mounted) {
+        httpErrorHandle(
+            response: res,
+            context: context,
+            onSuccess: () {
+              Provider.of<StudentProvider>(context, listen: false)
+                  .deleteStudent(context: context, id: studentId);
+            });
+      }
+
       if (res.statusCode == 200) {
         return true;
       }
