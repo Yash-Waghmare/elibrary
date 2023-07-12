@@ -97,7 +97,6 @@ class StudentsService {
     required BuildContext context,
     required String studentId,
     required String studentName,
-    required String email,
     required String contactNumber,
   }) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -112,7 +111,6 @@ class StudentsService {
       }, body: {
         "id": studentId,
         "studentName": studentName,
-        "email": email,
         "contactNumber": contactNumber
       });
       if (context.mounted) {

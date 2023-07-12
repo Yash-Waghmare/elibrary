@@ -108,8 +108,7 @@ class _StudentScreenState extends State<StudentScreen> {
                             context: context,
                             idController: idController,
                             nameController: nameController,
-                            contactNumberController: contactNumberController,
-                            emailController: emailController);
+                            contactNumberController: contactNumberController);
                       },
                       height: 50,
                       width: 190,
