@@ -41,9 +41,9 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Column(
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 Image(
                   image: AssetImage('icons/libraryLogo.png'),
                   width: 400,
