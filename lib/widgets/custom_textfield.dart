@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../constant/colors.dart';
 
+// This file contains the custom textfield widget
+// This widget is used to create a custom textfield
 class CustomTextfield extends StatelessWidget {
-  const CustomTextfield({
-    super.key,
-    required this.controller,
-    required this.hintText,
-    required this.onSubmit
-  });
+  const CustomTextfield(
+      {super.key,
+      required this.controller,
+      required this.hintText,
+      required this.onSubmit});
 
   final TextEditingController controller;
   final String hintText;
@@ -25,24 +25,24 @@ class CustomTextfield extends StatelessWidget {
         cursorHeight: 27,
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 0),
+              borderSide: const BorderSide(width: 0),
               borderRadius: BorderRadius.circular(20.0),
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 0),
+              borderSide: const BorderSide(width: 0),
               borderRadius: BorderRadius.circular(20.0),
             ),
             filled: true,
             fillColor: AppColors.colors.blue,
-            contentPadding: EdgeInsets.only(left: 30),
-            suffixIcon: Image(
+            contentPadding: const EdgeInsets.only(left: 30),
+            suffixIcon: const Image(
               image: AssetImage(
                 'icons/search.png',
               ),
               width: 25,
               height: 25,
             ),
-            suffixIconConstraints: BoxConstraints(minWidth: 60),
+            suffixIconConstraints: const BoxConstraints(minWidth: 60),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             labelText: hintText,
             labelStyle: GoogleFonts.inter(

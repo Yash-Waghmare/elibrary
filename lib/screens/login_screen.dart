@@ -1,10 +1,5 @@
 import 'package:elibrary/constant/handler.dart';
 import 'package:elibrary/home_page.dart';
-import 'package:elibrary/providers/book_provider.dart';
-import 'package:elibrary/providers/dashboard_provider.dart';
-import 'package:elibrary/providers/homepage_provider.dart';
-import 'package:elibrary/providers/student_provider.dart';
-import 'package:elibrary/providers/transaction_provider.dart';
 import 'package:elibrary/services/auth_service.dart';
 import 'package:elibrary/widgets/popup_textfield.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +7,12 @@ import 'package:elibrary/constant/theme.dart';
 import 'package:elibrary/constant/colors.dart';
 
 import '../widgets/custom_button.dart';
+
+// LoginScreen is used to login into the app
+// Login Screen contains the functionality of:
+// 1. Logging in as an admin
+// As the system is for the admin only, the login screen is only for the admin.
+// The admin can login using the email and password provided to him/her by the developer.
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -40,9 +41,9 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Image(
                   image: AssetImage('icons/libraryLogo.png'),
                   width: 400,
@@ -109,10 +110,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (result) {
                             emailController.clear();
                             passwordController.clear();
-                            showSnackBar(
-                                context, 'Admin Logged In Succesfull', false);
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (_) => HomePage()));
+                            if (context.mounted) {
+                              showSnackBar(
+                                  context, 'Admin Logged In Succesfull', false);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => const HomePage()));
+                            }
                           }
                         },
                         height: 50,

@@ -9,6 +9,13 @@ import '../providers/homepage_provider.dart';
 import '../widgets/dashboard_tile.dart';
 import '../widgets/history_tile.dart';
 
+// DashBoard is used the overall view of the library
+// It contains the functionality of:
+// 1. Displaying the total number of books in the library
+// 2. Displaying the total number of students registered in the library
+// 3. Displaying the total number of transactions in the library
+// 4. Displaying the recent five transactions in the library
+
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
 
@@ -62,7 +69,7 @@ class _DashBoardState extends State<DashBoard> {
                 children: [
                   // tiles representing registered student count
                   dashboardProvider.transactions.isEmpty
-                      ? SkeletonTileDashBoard()
+                      ? const SkeletonTileDashBoard()
                       : DashBoardTile(
                           number: '${dashboardProvider.m['studentCount']}',
                           title: 'Student Registered',
@@ -72,7 +79,7 @@ class _DashBoardState extends State<DashBoard> {
                         ),
                   // tiles representing registered book count
                   dashboardProvider.transactions.isEmpty
-                      ? SkeletonTileDashBoard()
+                      ? const SkeletonTileDashBoard()
                       : DashBoardTile(
                           number: '${dashboardProvider.m['bookCount']}',
                           title: 'Book Registered',
@@ -82,7 +89,7 @@ class _DashBoardState extends State<DashBoard> {
                         ),
                   // tiles representing suscessful transaction count
                   dashboardProvider.transactions.isEmpty
-                      ? SkeletonTileDashBoard()
+                      ? const SkeletonTileDashBoard()
                       : DashBoardTile(
                           number: '${dashboardProvider.m['transactionCount']}',
                           title: 'Total Transactions',
@@ -155,7 +162,7 @@ class _DashBoardState extends State<DashBoard> {
                             child: ListView.builder(
                                 itemCount: 5,
                                 itemBuilder: ((context, i) {
-                                  return SkeletonTileHistory();
+                                  return const SkeletonTileHistory();
                                 })))
                         : Expanded(
                             child: ListView.builder(

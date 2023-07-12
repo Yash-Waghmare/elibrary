@@ -6,6 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../constant/handler.dart';
 import '../constant/url_constants.dart';
 
+// This file contains the authorization service for the admin login and check admin token
+
 class AuthService {
   Future<bool> loginAdmin({
     required BuildContext context,
@@ -21,19 +23,21 @@ class AuthService {
           'authorization': 'bearer $email',
         },
       );
-      httpErrorHandle(
-          response: res,
-          context: context,
-          onSuccess: () {
-            String decode = jsonDecode(res.body)['token'];
-            prefs.clear();
-            prefs.setString('token', decode).then((value) => {
-                  print(prefs.getString('token')),
-                  prefs.setString('adminEmail', email).then((value) => {
-                        print(prefs.getString('adminEmail')),
-                      })
-                });
-          });
+      if (context.mounted) {
+        httpErrorHandle(
+            response: res,
+            context: context,
+            onSuccess: () {
+              String decode = jsonDecode(res.body)['token'];
+              prefs.clear();
+              prefs.setString('token', decode).then((value) => {
+                    // print(prefs.getString('token')),
+                    prefs.setString('adminEmail', email).then((value) => {
+                          // print(prefs.getString('adminEmail')),
+                        })
+                  });
+            });
+      }
       if (res.statusCode == 200) {
         return true;
       }
@@ -64,12 +68,16 @@ class AuthService {
           'token': token
         },
       );
-      httpErrorHandle(
-          response: res,
-          context: context,
-          onSuccess: () {
-            bool decode = jsonDecode(res.body)['validToken'];
-          });
+
+      if (context.mounted) {
+        httpErrorHandle(
+            response: res,
+            context: context,
+            onSuccess: () {
+              // bool decode = jsonDecode(res.body)['validToken'];
+            });
+      }
+
       if (res.statusCode == 200) {
         return true;
       }

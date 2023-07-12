@@ -9,6 +9,12 @@ import '../constant/handler.dart';
 import '../constant/url_constants.dart';
 import '../providers/transaction_provider.dart';
 
+// This file contains the transaction services
+// This services containes:
+// 1. Fetch transactions: Fetches all the transactions from the database
+// 2. Update transaction: Updates the transaction details
+// 3. Add transaction: Adds a new transaction record to the database
+
 class TransactionServices {
   Future<List<TransactionModel>> fetchTransactions(context) async {
     List<TransactionModel> transaction = [];
@@ -65,7 +71,10 @@ class TransactionServices {
           'authorization': 'bearer $adminEmail',
         },
       );
-      httpErrorHandle(response: res, context: context, onSuccess: () {});
+      if (context.mounted) {
+        httpErrorHandle(response: res, context: context, onSuccess: () {});
+      }
+
       if (res.statusCode == 200) {
         return true;
       }
@@ -97,15 +106,18 @@ class TransactionServices {
             'token': token,
             'authorization': 'bearer $adminEmail',
           });
-      httpErrorHandle(
-          response: res,
-          context: context,
-          onSuccess: () {
-            var decode = jsonDecode(res.body)['transaction'];
-            TransactionModel transaction = TransactionModel.fromJson(decode);
-            Provider.of<TransactionProvider>(context, listen: false)
-                .createTransaction(transaction);
-          });
+      if (context.mounted) {
+        httpErrorHandle(
+            response: res,
+            context: context,
+            onSuccess: () {
+              var decode = jsonDecode(res.body)['transaction'];
+              TransactionModel transaction = TransactionModel.fromJson(decode);
+              Provider.of<TransactionProvider>(context, listen: false)
+                  .createTransaction(transaction);
+            });
+      }
+
       if (res.statusCode == 200) {
         return true;
       }

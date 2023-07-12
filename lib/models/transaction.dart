@@ -1,3 +1,8 @@
+// This file contains the Transaction model.
+// The Transaction model is used to store the details of a transaction.
+// The Transaction model is used in the transaction provider.
+// This Transaction model is used to convert the map to json and vice versa.
+
 class TransactionModel {
   String? transactionId;
   String? bookCode;

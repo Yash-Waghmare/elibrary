@@ -15,6 +15,15 @@ import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
 import '../widgets/skeleton_tile.dart';
 
+// TransactionScreen is used to display the list of transactions in the app
+// Transaction Screen contains the functionality of:
+// 1. Adding a record of transaction
+// 2. Showing completed transaction
+// 3. Showing pending transaction
+// 4. Refreshing the list of transactions
+// 5. Displaying the list of transactions
+// 6. Searching a transaction
+
 class TransactionScreen extends StatefulWidget {
   const TransactionScreen({Key? key}) : super(key: key);
 
@@ -102,7 +111,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                   borrowedDate: confirmedDate);
                               studentIdController.clear();
                               bookIdController.clear();
-                              Navigator.pop(context);
+                              if (context.mounted) Navigator.pop(context);
                             },
                             children: [
                               // Custom Textfields
@@ -178,7 +187,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
@@ -230,7 +239,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Expanded(
@@ -239,7 +248,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                             itemCount: 7,
                             itemBuilder: ((context, i) {
                               // if list is empty then it will show empty slots
-                              return SkeletonTile();
+                              return const SkeletonTile();
                             }),
                           )
                         : ListView.builder(
@@ -251,7 +260,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                 bookName: filterList[i].bookName,
                                 status: filterList[i].status == 'returned',
                                 onTap: () {
-                                  TransactionFunction().ShowTransaction(
+                                  TransactionFunction().showTransaction(
                                       context: context,
                                       transactionId:
                                           filterList[i].transactionId!,
@@ -270,19 +279,21 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                           transactionId:
                                               filterList[i].transactionId!,
                                           returnedDate: confirmedDate);
-                                  if (result == false) {
-                                    // alert message
-                                    showSnackBar(context,
-                                        "Unable to update transaction", true);
-                                  } else {
-                                    transactionProvider
-                                        .fetchTransactions(context);
-                                    showSnackBar(
-                                        // alert message
-                                        context,
-                                        'Transcation Updated',
-                                        false);
-                                    setState(() {});
+                                  if (context.mounted) {
+                                    if (result == false) {
+                                      // alert message
+                                      showSnackBar(context,
+                                          "Unable to update transaction", true);
+                                    } else {
+                                      transactionProvider
+                                          .fetchTransactions(context);
+                                      showSnackBar(
+                                          // alert message
+                                          context,
+                                          'Transcation Updated',
+                                          false);
+                                      setState(() {});
+                                    }
                                   }
                                 },
                               );

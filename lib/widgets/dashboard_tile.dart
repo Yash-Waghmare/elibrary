@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../constant/colors.dart';
 import 'custom_button.dart';
 
+// This file contains the dashboard tile widget
+// This widget is used to create a dashboard tile
+// This widget is used in dashboard_screen.dart
 class DashBoardTile extends StatelessWidget {
   const DashBoardTile(
       {super.key,

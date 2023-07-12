@@ -4,8 +4,12 @@ import '../widgets/hero_dialogue_route.dart';
 import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
 
+// This class contains all the function related to transactions
+// The functions are used in the transaction screen
+// The function is:
+// 1. showTransaction() - This function is used to show the details of a transaction.
 class TransactionFunction {
-  ShowTransaction(
+  showTransaction(
           {required BuildContext context,
           required String transactionId,
           required String studentName,
@@ -23,7 +27,7 @@ class TransactionFunction {
               Navigator.pop(context);
             },
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -31,7 +35,7 @@ class TransactionFunction {
                 hintText: 'Transacation ID :   $transactionId',
                 readOnly: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -39,7 +43,7 @@ class TransactionFunction {
                 hintText: 'Student :   $studentName',
                 readOnly: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -47,7 +51,7 @@ class TransactionFunction {
                 hintText: 'Book :      $bookName',
                 readOnly: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -55,7 +59,7 @@ class TransactionFunction {
                 hintText: 'Borrowed Date :   $borrowedDate',
                 readOnly: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               PopUpTextfield(
@@ -63,7 +67,7 @@ class TransactionFunction {
                 hintText: 'Returned Date :   $returnedDate',
                 readOnly: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
             ],

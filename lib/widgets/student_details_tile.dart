@@ -1,7 +1,10 @@
 import 'package:elibrary/constant/colors.dart';
 import 'package:elibrary/constant/theme.dart';
-import 'package:elibrary/widgets/popup_window.dart';
 import 'package:flutter/material.dart';
+
+// This file contains the student details tile widget
+// StudentDetailsTile is used to display the student details in the student_screen.dart
+// The widget is being used as follow:
 
 // Widget Caller
 // StudentDetailsTile(
@@ -12,15 +15,16 @@ import 'package:flutter/material.dart';
 // ),
 
 class StudentDetailsTile extends StatelessWidget {
-  StudentDetailsTile(
-      {required this.studentId,
+  const StudentDetailsTile(
+      {super.key,
+      required this.studentId,
       required this.studentName,
       required this.contactNumber,
       required this.emailId,
       required this.onTap});
 
-  final studentId, studentName, contactNumber, emailId;
-  void Function() onTap;
+  final dynamic studentId, studentName, contactNumber, emailId;
+  final void Function() onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

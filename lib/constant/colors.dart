@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+// Appcolors are used to store all the colors used in the app in one place
+// This makes it easier to change the color scheme of the app
+// The colors are stored as final variables
+// The colors are used as AppColors.colors.colorName
+
 @immutable
 class AppColors {
   static const colors = AppColors();
