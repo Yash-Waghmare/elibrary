@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> checkAdmin() async {
     validToken = await AuthService().checkAdmin(context: context);
     Future.delayed(
-        const Duration(seconds: 0),
+        const Duration(seconds: 3),
         () => {
               setState(() {
                 loading = false;

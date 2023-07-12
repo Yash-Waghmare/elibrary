@@ -27,6 +27,9 @@ class SkeletonTileHistory extends StatelessWidget {
                   color: AppColors.colors.buttonBackground,
                 ),
               ),
+              SizedBox(
+                width: 30,
+              ),
               Container(
                 alignment: Alignment.center,
                 width: 210,
@@ -49,7 +52,7 @@ class SkeletonTileHistory extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                width: 20,
+                width: 30,
               ),
               Container(
                 alignment: Alignment.center,

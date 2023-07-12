@@ -166,7 +166,7 @@ class _DashBoardState extends State<DashBoard> {
                                 })))
                         : Expanded(
                             child: ListView.builder(
-                                itemCount: 5,
+                                itemCount: dashboardProvider.transactions.length,
                                 itemBuilder: ((context, i) {
                                   return HistoryTile(
                                       id: dashboardProvider
