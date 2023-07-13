@@ -10,6 +10,7 @@ import '../services/transaction_services.dart';
 //                       transaction number from the list of transactions.
 class TransactionProvider with ChangeNotifier {
   List<TransactionModel> transactions = [];
+  bool isLoding=true;
   TransactionProvider({required context}) {
     fetchTransactions(context);
   }
@@ -20,6 +21,7 @@ class TransactionProvider with ChangeNotifier {
 
   void fetchTransactions(context) async {
     transactions = await TransactionServices().fetchTransactions(context);
+    isLoding=false;
     notifyListeners();
   }
 

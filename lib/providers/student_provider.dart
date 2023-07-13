@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 // 5. deleteStudent() - This function is used to remove a student from the list of students
 class StudentProvider with ChangeNotifier {
   List<Student> students = [];
+  bool isLoding = true;
   StudentProvider({required context}) {
     fetchStudents(context);
   }
@@ -21,6 +22,7 @@ class StudentProvider with ChangeNotifier {
 
   void fetchStudents(context) async {
     students = await StudentsService().fetchStudents(context);
+    isLoding=false;
     notifyListeners();
   }
 
