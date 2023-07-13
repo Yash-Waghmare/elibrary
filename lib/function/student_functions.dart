@@ -1,3 +1,4 @@
+import 'package:elibrary/function/validation_check_functions.dart';
 import 'package:flutter/material.dart';
 import '../constant/handler.dart';
 import '../services/student_services.dart';
@@ -26,21 +27,32 @@ class StudentFunctions {
             title: 'Add Student',
             buttonText: 'Add',
             function: () async {
-              bool result = await StudentsService().addStudent(
-                context: context,
-                studentName: nameController.text,
-                email: emailController.text,
-                contactNumber: contactNumberController.text,
-              );
-              if (context.mounted) {
-                result == false
-                    ? showSnackBar(context, "Unable to add student", true)
-                    : showSnackBar(context, "Student Added", false);
+              bool isValid =
+                  CheckValidation().checkEmail(val: emailController.text) &&
+                      CheckValidation()
+                          .checkNumber(val: contactNumberController.text);
+              if (isValid) {
+                bool result = await StudentsService().addStudent(
+                  context: context,
+                  studentName: nameController.text,
+                  email: emailController.text,
+                  contactNumber: contactNumberController.text,
+                );
+                if (context.mounted) {
+                  result == false
+                      ? showSnackBar(context, "Unable to add student", true)
+                      : showSnackBar(context, "Student Added", false);
 
+                  nameController.clear();
+                  emailController.clear();
+                  contactNumberController.clear();
+                  Navigator.of(context).pop();
+                }
+              } else {
                 nameController.clear();
                 emailController.clear();
                 contactNumberController.clear();
-                Navigator.of(context).pop();
+                showSnackBar(context, "Invalid Contact Details ", true);
               }
             },
             children: [
@@ -73,8 +85,7 @@ class StudentFunctions {
           {required BuildContext context,
           required TextEditingController idController,
           required TextEditingController nameController,
-          required TextEditingController contactNumberController,
-          required TextEditingController emailController}) =>
+          required TextEditingController contactNumberController}) =>
       {
         Navigator.of(context).push(HeroDialogRoute(builder: (context) {
           return PopUpFrame(
@@ -82,21 +93,28 @@ class StudentFunctions {
             title: 'Update Student',
             buttonText: 'Update',
             function: () async {
-              bool result = await StudentsService().updateStudent(
-                  context: context,
-                  studentId: idController.text,
-                  studentName: nameController.text,
-                  email: emailController.text,
-                  contactNumber: contactNumberController.text);
-              if (context.mounted) {
-                result == false
-                    ? showSnackBar(context, "Unable to update student", true)
-                    : showSnackBar(context, 'Student Updated', false);
+              bool isValid = CheckValidation()
+                  .checkNumber(val: contactNumberController.text);
+              if (isValid) {
+                bool result = await StudentsService().updateStudent(
+                    context: context,
+                    studentId: idController.text,
+                    studentName: nameController.text,
+                    contactNumber: contactNumberController.text);
+                if (context.mounted) {
+                  result == false
+                      ? showSnackBar(context, "Unable to update student", true)
+                      : showSnackBar(context, 'Student Updated', false);
+                  idController.clear();
+                  nameController.clear();
+                  contactNumberController.clear();
+                  Navigator.pop(context);
+                }
+              } else {
                 idController.clear();
                 nameController.clear();
-                emailController.clear();
                 contactNumberController.clear();
-                Navigator.pop(context);
+                showSnackBar(context, "Invalid Contact Number", true);
               }
             },
             children: [
@@ -123,10 +141,6 @@ class StudentFunctions {
               ),
               const SizedBox(
                 height: 10,
-              ),
-              PopUpTextfield(
-                controller: emailController,
-                hintText: 'Email',
               ),
             ],
           );
@@ -166,6 +180,7 @@ class StudentFunctions {
                 height: 10,
               ),
               PopUpTextfield(
+                isPassword: true,
                 controller: adminPasswordController,
                 hintText: 'Admin Password',
               ),
@@ -197,7 +212,7 @@ class StudentFunctions {
               ),
               PopUpTextfield(
                 controller: TextEditingController(),
-                hintText: 'Student Id: $studentId',
+                hintText: 'Id: $studentId',
                 readOnly: true,
               ),
               const SizedBox(
@@ -205,7 +220,7 @@ class StudentFunctions {
               ),
               PopUpTextfield(
                 controller: TextEditingController(),
-                hintText: 'Student Name: $studentName',
+                hintText: 'Name: $studentName',
                 readOnly: true,
               ),
               const SizedBox(

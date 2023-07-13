@@ -8,6 +8,7 @@ import '../models/transaction.dart';
 
 class DashboardProvider with ChangeNotifier {
   Map<String, dynamic> m = {};
+  bool isLoading = true;
   List<TransactionModel> transactions = [];
   DashboardProvider({required context}) {
     fetchTransactions(context);
@@ -21,6 +22,7 @@ class DashboardProvider with ChangeNotifier {
           TransactionModel.fromJson(recentTransaction[i]);
       transactions.add(transaction);
     }
+    isLoading = false;
     notifyListeners();
   }
 }

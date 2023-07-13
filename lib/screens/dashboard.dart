@@ -5,6 +5,7 @@ import 'package:elibrary/widgets/skeleton_tile_history.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import '../constant/theme.dart';
 import '../providers/homepage_provider.dart';
 import '../widgets/dashboard_tile.dart';
 import '../widgets/history_tile.dart';
@@ -32,6 +33,7 @@ class _DashBoardState extends State<DashBoard> {
     // homepage provider for using the variables on homepage
     HomePageProvider homepageProvider = Provider.of<HomePageProvider>(context);
     return Container(
+      padding: EdgeInsets.only(top: 30),
       color: AppColors.colors.background,
       child: Stack(children: [
         Padding(
@@ -40,6 +42,7 @@ class _DashBoardState extends State<DashBoard> {
           child: IconButton(
               onPressed: () {
                 setState(() {
+                  dashboardProvider.isLoading = true;
                   dashboardProvider.transactions = [];
                   dashboardProvider.m = {};
                   dashboardProvider.fetchTransactions(context);
@@ -64,11 +67,14 @@ class _DashBoardState extends State<DashBoard> {
                         color: Colors.white,
                         fontWeight: FontWeight.w600)),
               ),
+              SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // tiles representing registered student count
-                  dashboardProvider.transactions.isEmpty
+                  dashboardProvider.isLoading == true
                       ? const SkeletonTileDashBoard()
                       : DashBoardTile(
                           number: '${dashboardProvider.m['studentCount']}',
@@ -78,7 +84,7 @@ class _DashBoardState extends State<DashBoard> {
                           },
                         ),
                   // tiles representing registered book count
-                  dashboardProvider.transactions.isEmpty
+                  dashboardProvider.isLoading == true
                       ? const SkeletonTileDashBoard()
                       : DashBoardTile(
                           number: '${dashboardProvider.m['bookCount']}',
@@ -88,7 +94,7 @@ class _DashBoardState extends State<DashBoard> {
                           },
                         ),
                   // tiles representing suscessful transaction count
-                  dashboardProvider.transactions.isEmpty
+                  dashboardProvider.isLoading == true
                       ? const SkeletonTileDashBoard()
                       : DashBoardTile(
                           number: '${dashboardProvider.m['transactionCount']}',
@@ -102,7 +108,7 @@ class _DashBoardState extends State<DashBoard> {
               // Container shows recent five transactions
               Container(
                 width: 1000,
-                height: 325,
+                height: 410,
                 margin: const EdgeInsets.only(top: 60),
                 decoration: BoxDecoration(
                     color: AppColors.colors.tileBackground,
@@ -157,26 +163,38 @@ class _DashBoardState extends State<DashBoard> {
                     const SizedBox(
                       height: 30,
                     ),
-                    dashboardProvider.transactions.isEmpty
-                        ? Expanded(
-                            child: ListView.builder(
-                                itemCount: 5,
-                                itemBuilder: ((context, i) {
-                                  return const SkeletonTileHistory();
-                                })))
+                    dashboardProvider.isLoading == false
+                        ? dashboardProvider.transactions.isNotEmpty
+                            ? Expanded(
+                                child: Center(
+                                child: ListView.builder(
+                                    itemCount:
+                                        dashboardProvider.transactions.length,
+                                    itemBuilder: ((context, i) {
+                                      return HistoryTile(
+                                          id: dashboardProvider
+                                              .transactions[i].transactionId!,
+                                          name: dashboardProvider
+                                              .transactions[i].studentName!,
+                                          bDate: dashboardProvider
+                                              .transactions[i].borrowedDate!,
+                                          rDate: dashboardProvider
+                                              .transactions[i].returnedDate!);
+                                    })),
+                              ))
+                            : Center(
+                                child: Text('No Recent Transactions',
+                                    style: appTheme()
+                                        .textTheme
+                                        .headlineSmall!
+                                        .copyWith(
+                                          color: AppColors.colors.white,
+                                        )))
                         : Expanded(
                             child: ListView.builder(
-                                itemCount: 5,
+                                itemCount: 7,
                                 itemBuilder: ((context, i) {
-                                  return HistoryTile(
-                                      id: dashboardProvider
-                                          .transactions[i].transactionId!,
-                                      name: dashboardProvider
-                                          .transactions[i].studentName!,
-                                      bDate: dashboardProvider
-                                          .transactions[i].borrowedDate!,
-                                      rDate: dashboardProvider
-                                          .transactions[i].returnedDate!);
+                                  return const SkeletonTileHistory();
                                 }))),
                   ],
                 ),

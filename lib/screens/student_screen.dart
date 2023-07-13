@@ -1,11 +1,12 @@
 import 'package:elibrary/constant/handler.dart';
 import 'package:elibrary/providers/student_provider.dart';
 import 'package:elibrary/function/student_functions.dart';
-import 'package:elibrary/widgets/skeleton_tile.dart';
+import 'package:elibrary/widgets/skeleton_tile_student.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../constant/colors.dart';
+import '../constant/theme.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
 import '../widgets/student_details_tile.dart';
@@ -31,7 +32,9 @@ class _StudentScreenState extends State<StudentScreen> {
       nameController = TextEditingController(),
       contactNumberController = TextEditingController(),
       emailController = TextEditingController(),
-      adminPasswordController = TextEditingController();
+      adminPasswordController = TextEditingController(),
+      searchController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -56,7 +59,9 @@ class _StudentScreenState extends State<StudentScreen> {
             child: IconButton(
                 onPressed: () {
                   setState(() {
+                    searchController.clear();
                     showList = '';
+                    studentProvider.isLoding = true;
                     studentProvider.students = [];
                     studentProvider.fetchStudents(context);
                   });
@@ -81,6 +86,7 @@ class _StudentScreenState extends State<StudentScreen> {
                       textColor: AppColors.colors.black,
                       function: () {
                         setState(() {
+                          searchController.clear();
                           showList = '';
                           idController.clear();
                         });
@@ -101,6 +107,7 @@ class _StudentScreenState extends State<StudentScreen> {
                       textColor: AppColors.colors.black,
                       function: () {
                         setState(() {
+                          searchController.clear();
                           showList = '';
                           idController.clear();
                         });
@@ -108,8 +115,7 @@ class _StudentScreenState extends State<StudentScreen> {
                             context: context,
                             idController: idController,
                             nameController: nameController,
-                            contactNumberController: contactNumberController,
-                            emailController: emailController);
+                            contactNumberController: contactNumberController);
                       },
                       height: 50,
                       width: 190,
@@ -122,6 +128,7 @@ class _StudentScreenState extends State<StudentScreen> {
                       textColor: AppColors.colors.black,
                       function: () {
                         setState(() {
+                          searchController.clear();
                           showList = '';
                           idController.clear();
                         });
@@ -137,7 +144,7 @@ class _StudentScreenState extends State<StudentScreen> {
                       fWeight: FontWeight.w600,
                     ),
                     CustomTextfield(
-                      controller: idController,
+                      controller: searchController,
                       hintText: 'Enter Student ID',
                       onSubmit: (val) {
                         setState(() {
@@ -149,7 +156,7 @@ class _StudentScreenState extends State<StudentScreen> {
                               showList = '';
                               showSnackBar(
                                   context, 'Student Id Not Found', true);
-                              idController.clear();
+                              searchController.clear();
                             }
                           } else {
                             showList = '';
@@ -215,37 +222,48 @@ class _StudentScreenState extends State<StudentScreen> {
                   height: 20,
                 ),
                 Expanded(
-                    child: filterStudent.isEmpty
-                        ? ListView.builder(
-                            itemCount: 7,
+                    child: studentProvider.isLoding == false
+                        ? filterStudent.isNotEmpty
+                            ? ListView.builder(
+                                itemCount: filterStudent.length,
+                                itemBuilder: ((context, i) {
+                                  return StudentDetailsTile(
+                                    studentId: filterStudent[i].id,
+                                    studentName: filterStudent[i].studentName,
+                                    contactNumber:
+                                        filterStudent[i].contactNumber,
+                                    emailId: filterStudent[i].email,
+                                    onTap: () {
+                                      StudentFunctions().showStudent(
+                                        context: context,
+                                        studentId: filterStudent[i].id!,
+                                        studentName:
+                                            filterStudent[i].studentName!,
+                                        contactNumber:
+                                            filterStudent[i].contactNumber!,
+                                        email: filterStudent[i].email!,
+                                        succesfulTransaction:
+                                            filterStudent[i].transactionCount!,
+                                        unReturnedBooks:
+                                            filterStudent[i].unreturnedBooks!,
+                                      );
+                                    },
+                                  );
+                                }))
+                            : Center(
+                                child: Text('No Students Available',
+                                    style: appTheme()
+                                        .textTheme
+                                        .headlineMedium!
+                                        .copyWith(
+                                          color: AppColors.colors.white,
+                                        )))
+                        : ListView.builder(
+                            itemCount: 11,
                             itemBuilder: ((context, i) {
                               return const SkeletonTile();
                             }),
-                          )
-                        : ListView.builder(
-                            itemCount: filterStudent.length,
-                            itemBuilder: ((context, i) {
-                              return StudentDetailsTile(
-                                studentId: filterStudent[i].id,
-                                studentName: filterStudent[i].studentName,
-                                contactNumber: filterStudent[i].contactNumber,
-                                emailId: filterStudent[i].email,
-                                onTap: () {
-                                  StudentFunctions().showStudent(
-                                    context: context,
-                                    studentId: filterStudent[i].id!,
-                                    studentName: filterStudent[i].studentName!,
-                                    contactNumber:
-                                        filterStudent[i].contactNumber!,
-                                    email: filterStudent[i].email!,
-                                    succesfulTransaction:
-                                        filterStudent[i].transactionCount!,
-                                    unReturnedBooks:
-                                        filterStudent[i].unreturnedBooks!,
-                                  );
-                                },
-                              );
-                            }))),
+                          )),
               ],
             ),
           ),

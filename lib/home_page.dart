@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> {
       children: [
         Container(
           width: 350,
+          padding: const EdgeInsets.only(top: 50),
           color: AppColors.colors.background,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 39),

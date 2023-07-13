@@ -11,18 +11,20 @@ class PopUpTextfield extends StatelessWidget {
     required this.controller,
     required this.hintText,
     this.readOnly = false,
+    this.isPassword = false,
   });
 
   final TextEditingController controller;
   final String hintText;
   final bool readOnly;
-
+  final bool isPassword;
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: readOnly ? null : controller,
       readOnly: readOnly,
       enabled: !readOnly,
+      obscureText: isPassword,
       decoration: InputDecoration(
           enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(

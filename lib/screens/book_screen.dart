@@ -1,4 +1,5 @@
 import 'package:elibrary/constant/colors.dart';
+import 'package:elibrary/constant/theme.dart';
 import 'package:elibrary/function/book_functions.dart';
 import 'package:elibrary/providers/book_provider.dart';
 import 'package:elibrary/widgets/custom_button.dart';
@@ -32,6 +33,7 @@ class _BookScreenState extends State<BookScreen> {
   TextEditingController bookNameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
@@ -54,6 +56,7 @@ class _BookScreenState extends State<BookScreen> {
           child: IconButton(
               onPressed: () {
                 setState(() {
+                  searchController.clear();
                   showList = '';
                   bookProvider.books = [];
                   bookProvider.isLoading = true;
@@ -77,6 +80,12 @@ class _BookScreenState extends State<BookScreen> {
                   buttonColor: AppColors.colors.green,
                   textColor: AppColors.colors.black,
                   function: () {
+                    setState(() {
+                      searchController.clear();
+
+                      showList = '';
+                      codeController.clear();
+                    });
                     BookFunctions().addBook(
                       context: context,
                       bookAuthorController: bookAuthorController,
@@ -95,6 +104,12 @@ class _BookScreenState extends State<BookScreen> {
                   buttonColor: AppColors.colors.yellow,
                   textColor: AppColors.colors.black,
                   function: () {
+                    setState(() {
+                      searchController.clear();
+
+                      showList = '';
+                      codeController.clear();
+                    });
                     BookFunctions().updateBook(
                         context: context, bookCodeController: codeController);
                   },
@@ -108,6 +123,12 @@ class _BookScreenState extends State<BookScreen> {
                   buttonColor: AppColors.colors.red,
                   textColor: AppColors.colors.black,
                   function: () {
+                    setState(() {
+                      searchController.clear();
+
+                      showList = '';
+                      codeController.clear();
+                    });
                     BookFunctions().removeBook(
                         context: context,
                         bookCodeController: codeController,
@@ -119,7 +140,7 @@ class _BookScreenState extends State<BookScreen> {
                   width: 190,
                 ),
                 CustomTextfield(
-                    controller: codeController,
+                    controller: searchController,
                     hintText: 'Enter Book Code',
                     onSubmit: (val) {
                       setState(() {
@@ -130,7 +151,7 @@ class _BookScreenState extends State<BookScreen> {
                           } else {
                             showList = '';
                             showSnackBar(context, 'Book Not Found', true);
-                            codeController.clear();
+                            searchController.clear();
                           }
                         } else {
                           showList = '';
@@ -143,65 +164,61 @@ class _BookScreenState extends State<BookScreen> {
           const SizedBox(
             height: 30,
           ),
-          (bookProvider.isLoading == false)
-              ? (filterBook.isNotEmpty)
-                  ? Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: GridView.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              childAspectRatio: 1.7,
-                            ),
-                            itemCount: filterBook.length,
-                            itemBuilder: (context, index) {
-                              return BookCard(
-                                bookName: filterBook[index].bookName!,
-                                bookAuthor: filterBook[index].bookAuthor!,
-                                description: filterBook[index].description!,
-                                bookCode: filterBook[index].bookCode!,
-                                bookImage: filterBook[index].bookImage!,
-                                quantity: filterBook[index].quantity!,
-                                onTap: () {
-                                  BookFunctions().showBook(
-                                      context: context,
-                                      bookName: filterBook[index].bookName!,
-                                      authorName: filterBook[index].bookAuthor!,
-                                      description:
-                                          filterBook[index].description!,
-                                      bookCode: filterBook[index].bookCode!,
-                                      quantity: filterBook[index].quantity!,
-                                      bookImage: filterBook[index].bookImage!);
-                                },
-                              );
-                            }),
-                      ),
-                    )
-                  : const Center(
-                      child: Text(
-                        'No Books Available',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    )
-              : Expanded(
-                  child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        childAspectRatio: 1.7,
-                      ),
-                      itemCount: 9,
-                      itemBuilder: (context, i) {
-                        return const SkeletonBox();
-                      }),
-                ))
+          Expanded(
+              child: (bookProvider.isLoading == false)
+                  ? (filterBook.isNotEmpty)
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                childAspectRatio: 1.7,
+                              ),
+                              itemCount: filterBook.length,
+                              itemBuilder: (context, index) {
+                                return BookCard(
+                                  bookName: filterBook[index].bookName!,
+                                  bookAuthor: filterBook[index].bookAuthor!,
+                                  description: filterBook[index].description!,
+                                  bookCode: filterBook[index].bookCode!,
+                                  bookImage: filterBook[index].bookImage!,
+                                  quantity: filterBook[index].quantity!,
+                                  onTap: () {
+                                    BookFunctions().showBook(
+                                        context: context,
+                                        bookName: filterBook[index].bookName!,
+                                        authorName:
+                                            filterBook[index].bookAuthor!,
+                                        description:
+                                            filterBook[index].description!,
+                                        bookCode: filterBook[index].bookCode!,
+                                        quantity: filterBook[index].quantity!,
+                                        bookImage:
+                                            filterBook[index].bookImage!);
+                                  },
+                                );
+                              }),
+                        )
+                      : Center(
+                          child: Text('No Books Available',
+                              style:
+                                  appTheme().textTheme.headlineMedium!.copyWith(
+                                        color: AppColors.colors.white,
+                                      )))
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            childAspectRatio: 1.7,
+                          ),
+                          itemCount: 12,
+                          itemBuilder: (context, i) {
+                            return const SkeletonBox();
+                          }),
+                    ))
         ]),
       ]),
     );

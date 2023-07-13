@@ -1,6 +1,6 @@
 {
-    "name": "elibrary",
-    "short_name": "elibrary",
+    "name": "ELibrary Solution",
+    "short_name": "ELibrary Solution",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

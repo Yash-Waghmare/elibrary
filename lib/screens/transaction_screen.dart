@@ -1,5 +1,7 @@
+import 'package:elibrary/constant/theme.dart';
 import 'package:elibrary/function/transaction_function.dart';
 import 'package:elibrary/providers/transaction_provider.dart';
+import 'package:elibrary/widgets/skeleton_tile_transaction.dart';
 import 'package:elibrary/widgets/transaction_details_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,7 +15,7 @@ import '../widgets/custom_textfield.dart';
 import '../widgets/hero_dialogue_route.dart';
 import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
-import '../widgets/skeleton_tile.dart';
+import '../widgets/skeleton_tile_student.dart';
 
 // TransactionScreen is used to display the list of transactions in the app
 // Transaction Screen contains the functionality of:
@@ -40,6 +42,8 @@ class _TransactionScreenState extends State<TransactionScreen> {
   TextEditingController transactionIdController = TextEditingController();
   TextEditingController studentIdController = TextEditingController();
   TextEditingController bookIdController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     // transaction provider call is used to update the transactions only
@@ -64,6 +68,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                 onPressed: () {
                   setState(() {
                     showList = '';
+                    transactionProvider.isLoding = true;
                     transactionProvider.transactions = [];
                     // fetching transasctions by calling provider functions
                     transactionProvider.fetchTransactions(context);
@@ -165,7 +170,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     ),
                     // Textfield to search transactions
                     CustomTextfield(
-                      controller: transactionIdController,
+                      controller: searchController,
                       hintText: 'Enter Transaction ID',
                       onSubmit: (val) {
                         setState(() {
@@ -179,6 +184,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                               showList = '';
                               showSnackBar(
                                   context, 'Transaction Id Not Found', true);
+                              searchController.clear();
                             }
                           } else {
                             showList = '';
@@ -244,61 +250,74 @@ class _TransactionScreenState extends State<TransactionScreen> {
                   height: 20,
                 ),
                 Expanded(
-                    child: filterList.isEmpty
+                    child: (transactionProvider.isLoding == true)
                         ? ListView.builder(
-                            itemCount: 7,
+                            itemCount: 11,
                             itemBuilder: ((context, i) {
                               // if list is empty then it will show empty slots
-                              return const SkeletonTile();
+                              return const SkeletonTileTransaction();
                             }),
                           )
-                        : ListView.builder(
-                            itemCount: filterList.length,
-                            itemBuilder: ((context, i) {
-                              return TransactionTile(
-                                transactionId: filterList[i].transactionId,
-                                studentName: filterList[i].studentName,
-                                bookName: filterList[i].bookName,
-                                status: filterList[i].status == 'returned',
-                                onTap: () {
-                                  TransactionFunction().showTransaction(
-                                      context: context,
-                                      transactionId:
-                                          filterList[i].transactionId!,
-                                      studentName: filterList[i].studentName!,
-                                      bookName: filterList[i].bookName!,
-                                      borrowedDate: filterList[i].borrowedDate!,
-                                      returnedDate:
-                                          filterList[i].returnedDate!);
-                                },
-                                returnedFunc: () async {
-                                  String confirmedDate =
-                                      DateFormat('dd/MM/yyyy').format(date);
-                                  bool result = await TransactionServices()
-                                      .updateTransaction(
+                        : filterList.isEmpty
+                            ? Center(
+                                child: Text('No Transactions Available',
+                                    style: appTheme()
+                                        .textTheme
+                                        .headlineMedium!
+                                        .copyWith(
+                                          color: AppColors.colors.white,
+                                        )))
+                            : ListView.builder(
+                                itemCount: filterList.length,
+                                itemBuilder: ((context, i) {
+                                  return TransactionTile(
+                                    transactionId: filterList[i].transactionId,
+                                    studentName: filterList[i].studentName,
+                                    bookName: filterList[i].bookName,
+                                    status: filterList[i].status == 'returned',
+                                    onTap: () {
+                                      TransactionFunction().showTransaction(
                                           context: context,
                                           transactionId:
                                               filterList[i].transactionId!,
-                                          returnedDate: confirmedDate);
-                                  if (context.mounted) {
-                                    if (result == false) {
-                                      // alert message
-                                      showSnackBar(context,
-                                          "Unable to update transaction", true);
-                                    } else {
-                                      transactionProvider
-                                          .fetchTransactions(context);
-                                      showSnackBar(
+                                          studentName:
+                                              filterList[i].studentName!,
+                                          bookName: filterList[i].bookName!,
+                                          borrowedDate:
+                                              filterList[i].borrowedDate!,
+                                          returnedDate:
+                                              filterList[i].returnedDate!);
+                                    },
+                                    returnedFunc: () async {
+                                      String confirmedDate =
+                                          DateFormat('dd/MM/yyyy').format(date);
+                                      bool result = await TransactionServices()
+                                          .updateTransaction(
+                                              context: context,
+                                              transactionId:
+                                                  filterList[i].transactionId!,
+                                              returnedDate: confirmedDate);
+                                      if (context.mounted) {
+                                        if (result == false) {
                                           // alert message
-                                          context,
-                                          'Transcation Updated',
-                                          false);
-                                      setState(() {});
-                                    }
-                                  }
-                                },
-                              );
-                            }))),
+                                          showSnackBar(
+                                              context,
+                                              "Unable to update transaction",
+                                              true);
+                                        } else {
+                                          transactionProvider
+                                              .fetchTransactions(context);
+                                          showSnackBar(
+                                              // alert message
+                                              context,
+                                              'Transcation Updated',
+                                              false);
+                                          setState(() {});
+                                        }
+                                      }
+                                    },
+                                  );
+                                }))),
               ],
             ),
           ),
