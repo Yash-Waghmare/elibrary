@@ -15,23 +15,23 @@ class SkeletonBox extends StatelessWidget {
       baseColor: AppColors.colors.tileBackground,
       highlightColor: Colors.grey[700]!,
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        margin: const EdgeInsets.fromLTRB(10, 10, 10, 20),
         alignment: Alignment.center,
         width: 380,
-        height: 170,
+        height: 140,
         decoration: BoxDecoration(
             color: AppColors.colors.tileBackground.withOpacity(0.7),
             borderRadius: BorderRadius.circular(20)),
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.only(top: 10,left: 10,right: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    width: 80,
-                    height: 150,
+                    width: 100,
+                    height: 140,
                     margin:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
@@ -45,7 +45,7 @@ class SkeletonBox extends StatelessWidget {
                     children: [
                       Container(
                         width: 110,
-                        height: 30,
+                        height: 15,
                         margin:
                             const EdgeInsets.only(left: 10, top: 10, bottom: 5),
                         decoration: BoxDecoration(
@@ -54,10 +54,10 @@ class SkeletonBox extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        width: 160,
-                        height: 70,
+                        width: 200,
+                        height: 85,
                         margin: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
+                            horizontal: 10, vertical: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: AppColors.colors.buttonBackground,
@@ -66,18 +66,17 @@ class SkeletonBox extends StatelessWidget {
                       Container(
                         width: 160,
                         height: 15,
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
+                        margin: const EdgeInsets.fromLTRB(10, 5, 10, 2),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: AppColors.colors.buttonBackground,
                         ),
                       ),
                       Container(
-                        width: 100,
-                        height: 10,
+                        width: 80,
+                        height: 8,
                         margin: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
+                            horizontal: 10, vertical: 3),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: AppColors.colors.buttonBackground,
