@@ -45,6 +45,7 @@ void main() async {
       )
     ],
     child: const MaterialApp(
+      title: 'ELibrary Solution',
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: MyApp(),

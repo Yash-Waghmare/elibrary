@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 50,
                 ),
                 Text(
-                  'Viveka e-Library \nSolutions',
+                  'E-Library Solutions',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
