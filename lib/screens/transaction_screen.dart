@@ -34,17 +34,6 @@ class TransactionScreen extends StatefulWidget {
 }
 
 class _TransactionScreenState extends State<TransactionScreen> {
-  bool isLoading = true;
-  void loadingState() {
-    Future.delayed(
-        Duration(seconds: 2),
-        () => {
-              setState(() {
-                isLoading = false;
-              })
-            });
-  }
-
   // date variable is use to add the date
   DateTime date = DateTime.now();
   // showList string is use to filter total list into the pending or completed list
@@ -152,8 +141,6 @@ class _TransactionScreenState extends State<TransactionScreen> {
                       textColor: AppColors.colors.black,
                       function: () {
                         setState(() {
-                          isLoading = true;
-                          loadingState();
                           showList = 'returned';
                           transactionIdController.clear();
                         });
@@ -170,8 +157,6 @@ class _TransactionScreenState extends State<TransactionScreen> {
                       textColor: AppColors.colors.black,
                       function: () {
                         setState(() {
-                          isLoading = true;
-                          loadingState();
                           showList = 'return';
                           transactionIdController.clear();
                         });
@@ -262,8 +247,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                   height: 20,
                 ),
                 Expanded(
-                    child: (transactionProvider.isLoding == true ||
-                            isLoading == false)
+                    child: (transactionProvider.isLoding == true)
                         ? ListView.builder(
                             itemCount: 7,
                             itemBuilder: ((context, i) {
@@ -273,7 +257,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                           )
                         : filterList.isEmpty
                             ? Center(
-                                child: Text('Transactions Not Found',
+                                child: Text('No Transactions Available',
                                     style: appTheme()
                                         .textTheme
                                         .headlineMedium!
