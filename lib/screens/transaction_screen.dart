@@ -42,6 +42,8 @@ class _TransactionScreenState extends State<TransactionScreen> {
   TextEditingController transactionIdController = TextEditingController();
   TextEditingController studentIdController = TextEditingController();
   TextEditingController bookIdController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     // transaction provider call is used to update the transactions only
@@ -168,7 +170,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     ),
                     // Textfield to search transactions
                     CustomTextfield(
-                      controller: transactionIdController,
+                      controller: searchController,
                       hintText: 'Enter Transaction ID',
                       onSubmit: (val) {
                         setState(() {
@@ -182,6 +184,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                               showList = '';
                               showSnackBar(
                                   context, 'Transaction Id Not Found', true);
+                              searchController.clear();
                             }
                           } else {
                             showList = '';

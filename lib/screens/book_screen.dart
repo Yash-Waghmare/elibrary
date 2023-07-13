@@ -33,6 +33,7 @@ class _BookScreenState extends State<BookScreen> {
   TextEditingController bookNameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
@@ -55,6 +56,7 @@ class _BookScreenState extends State<BookScreen> {
           child: IconButton(
               onPressed: () {
                 setState(() {
+                  searchController.clear();
                   showList = '';
                   bookProvider.books = [];
                   bookProvider.isLoading = true;
@@ -78,6 +80,12 @@ class _BookScreenState extends State<BookScreen> {
                   buttonColor: AppColors.colors.green,
                   textColor: AppColors.colors.black,
                   function: () {
+                    setState(() {
+                      searchController.clear();
+
+                      showList = '';
+                      codeController.clear();
+                    });
                     BookFunctions().addBook(
                       context: context,
                       bookAuthorController: bookAuthorController,
@@ -96,6 +104,12 @@ class _BookScreenState extends State<BookScreen> {
                   buttonColor: AppColors.colors.yellow,
                   textColor: AppColors.colors.black,
                   function: () {
+                    setState(() {
+                      searchController.clear();
+
+                      showList = '';
+                      codeController.clear();
+                    });
                     BookFunctions().updateBook(
                         context: context, bookCodeController: codeController);
                   },
@@ -109,6 +123,12 @@ class _BookScreenState extends State<BookScreen> {
                   buttonColor: AppColors.colors.red,
                   textColor: AppColors.colors.black,
                   function: () {
+                    setState(() {
+                      searchController.clear();
+
+                      showList = '';
+                      codeController.clear();
+                    });
                     BookFunctions().removeBook(
                         context: context,
                         bookCodeController: codeController,
@@ -120,7 +140,7 @@ class _BookScreenState extends State<BookScreen> {
                   width: 190,
                 ),
                 CustomTextfield(
-                    controller: codeController,
+                    controller: searchController,
                     hintText: 'Enter Book Code',
                     onSubmit: (val) {
                       setState(() {
@@ -131,7 +151,7 @@ class _BookScreenState extends State<BookScreen> {
                           } else {
                             showList = '';
                             showSnackBar(context, 'Book Not Found', true);
-                            codeController.clear();
+                            searchController.clear();
                           }
                         } else {
                           showList = '';

@@ -32,7 +32,9 @@ class _StudentScreenState extends State<StudentScreen> {
       nameController = TextEditingController(),
       contactNumberController = TextEditingController(),
       emailController = TextEditingController(),
-      adminPasswordController = TextEditingController();
+      adminPasswordController = TextEditingController(),
+      searchController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -57,6 +59,7 @@ class _StudentScreenState extends State<StudentScreen> {
             child: IconButton(
                 onPressed: () {
                   setState(() {
+                    searchController.clear();
                     showList = '';
                     studentProvider.isLoding = true;
                     studentProvider.students = [];
@@ -83,6 +86,7 @@ class _StudentScreenState extends State<StudentScreen> {
                       textColor: AppColors.colors.black,
                       function: () {
                         setState(() {
+                          searchController.clear();
                           showList = '';
                           idController.clear();
                         });
@@ -103,6 +107,7 @@ class _StudentScreenState extends State<StudentScreen> {
                       textColor: AppColors.colors.black,
                       function: () {
                         setState(() {
+                          searchController.clear();
                           showList = '';
                           idController.clear();
                         });
@@ -123,6 +128,7 @@ class _StudentScreenState extends State<StudentScreen> {
                       textColor: AppColors.colors.black,
                       function: () {
                         setState(() {
+                          searchController.clear();
                           showList = '';
                           idController.clear();
                         });
@@ -138,7 +144,7 @@ class _StudentScreenState extends State<StudentScreen> {
                       fWeight: FontWeight.w600,
                     ),
                     CustomTextfield(
-                      controller: idController,
+                      controller: searchController,
                       hintText: 'Enter Student ID',
                       onSubmit: (val) {
                         setState(() {
@@ -150,7 +156,7 @@ class _StudentScreenState extends State<StudentScreen> {
                               showList = '';
                               showSnackBar(
                                   context, 'Student Id Not Found', true);
-                              idController.clear();
+                              searchController.clear();
                             }
                           } else {
                             showList = '';
