@@ -245,7 +245,7 @@ class _StudentScreenState extends State<StudentScreen> {
                                   );
                                 }))
                             : Center(
-                                child: Text('Students Not Found',
+                                child: Text('No Students Available',
                                     style: appTheme()
                                         .textTheme
                                         .headlineMedium!
