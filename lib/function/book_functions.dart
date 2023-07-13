@@ -437,6 +437,7 @@ class BookFunctions {
             height: 10,
           ),
           PopUpTextfield(
+            isPassword: true,
             controller: adminPasswordController,
             hintText: 'Admin Password',
           ),

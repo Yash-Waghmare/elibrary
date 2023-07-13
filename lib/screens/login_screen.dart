@@ -92,7 +92,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       PopUpTextfield(
                           controller: emailController, hintText: 'Email'),
                       PopUpTextfield(
-                          controller: passwordController, hintText: 'password')
+                          isPassword: true,
+                          controller: passwordController,
+                          hintText: 'password')
                     ]),
                   ),
                   Row(
