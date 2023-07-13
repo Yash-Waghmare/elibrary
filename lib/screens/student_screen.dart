@@ -1,11 +1,12 @@
 import 'package:elibrary/constant/handler.dart';
 import 'package:elibrary/providers/student_provider.dart';
 import 'package:elibrary/function/student_functions.dart';
-import 'package:elibrary/widgets/skeleton_tile.dart';
+import 'package:elibrary/widgets/skeleton_tile_student.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../constant/colors.dart';
+import '../constant/theme.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
 import '../widgets/student_details_tile.dart';
@@ -57,6 +58,7 @@ class _StudentScreenState extends State<StudentScreen> {
                 onPressed: () {
                   setState(() {
                     showList = '';
+                    studentProvider.isLoding = true;
                     studentProvider.students = [];
                     studentProvider.fetchStudents(context);
                   });
@@ -214,37 +216,48 @@ class _StudentScreenState extends State<StudentScreen> {
                   height: 20,
                 ),
                 Expanded(
-                    child: filterStudent.isEmpty
-                        ? ListView.builder(
+                    child: studentProvider.isLoding == false
+                        ? filterStudent.isNotEmpty
+                            ? ListView.builder(
+                                itemCount: filterStudent.length,
+                                itemBuilder: ((context, i) {
+                                  return StudentDetailsTile(
+                                    studentId: filterStudent[i].id,
+                                    studentName: filterStudent[i].studentName,
+                                    contactNumber:
+                                        filterStudent[i].contactNumber,
+                                    emailId: filterStudent[i].email,
+                                    onTap: () {
+                                      StudentFunctions().showStudent(
+                                        context: context,
+                                        studentId: filterStudent[i].id!,
+                                        studentName:
+                                            filterStudent[i].studentName!,
+                                        contactNumber:
+                                            filterStudent[i].contactNumber!,
+                                        email: filterStudent[i].email!,
+                                        succesfulTransaction:
+                                            filterStudent[i].transactionCount!,
+                                        unReturnedBooks:
+                                            filterStudent[i].unreturnedBooks!,
+                                      );
+                                    },
+                                  );
+                                }))
+                            : Center(
+                                child: Text('Students Not Found',
+                                    style: appTheme()
+                                        .textTheme
+                                        .headlineMedium!
+                                        .copyWith(
+                                          color: AppColors.colors.white,
+                                        )))
+                        : ListView.builder(
                             itemCount: 7,
                             itemBuilder: ((context, i) {
                               return const SkeletonTile();
                             }),
-                          )
-                        : ListView.builder(
-                            itemCount: filterStudent.length,
-                            itemBuilder: ((context, i) {
-                              return StudentDetailsTile(
-                                studentId: filterStudent[i].id,
-                                studentName: filterStudent[i].studentName,
-                                contactNumber: filterStudent[i].contactNumber,
-                                emailId: filterStudent[i].email,
-                                onTap: () {
-                                  StudentFunctions().showStudent(
-                                    context: context,
-                                    studentId: filterStudent[i].id!,
-                                    studentName: filterStudent[i].studentName!,
-                                    contactNumber:
-                                        filterStudent[i].contactNumber!,
-                                    email: filterStudent[i].email!,
-                                    succesfulTransaction:
-                                        filterStudent[i].transactionCount!,
-                                    unReturnedBooks:
-                                        filterStudent[i].unreturnedBooks!,
-                                  );
-                                },
-                              );
-                            }))),
+                          )),
               ],
             ),
           ),
