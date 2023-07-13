@@ -249,7 +249,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                 Expanded(
                     child: (transactionProvider.isLoding == true)
                         ? ListView.builder(
-                            itemCount: 7,
+                            itemCount: 11,
                             itemBuilder: ((context, i) {
                               // if list is empty then it will show empty slots
                               return const SkeletonTileTransaction();

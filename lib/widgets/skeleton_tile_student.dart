@@ -45,15 +45,18 @@ class SkeletonTile extends StatelessWidget {
                 ),
               ),
               Container(
-                width: 220,
+                width: 160,
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.colors.buttonBackground,
                 ),
               ),
+              const SizedBox(
+                width: 50,
+              ),
               Container(
-                width: 300,
+                width: 310,
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),

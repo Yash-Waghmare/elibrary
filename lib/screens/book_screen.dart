@@ -194,7 +194,7 @@ class _BookScreenState extends State<BookScreen> {
                             crossAxisCount: 3,
                             childAspectRatio: 1.7,
                           ),
-                          itemCount: 9,
+                          itemCount: 12,
                           itemBuilder: (context, i) {
                             return const SkeletonBox();
                           }),

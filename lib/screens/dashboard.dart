@@ -33,6 +33,7 @@ class _DashBoardState extends State<DashBoard> {
     // homepage provider for using the variables on homepage
     HomePageProvider homepageProvider = Provider.of<HomePageProvider>(context);
     return Container(
+      padding: EdgeInsets.only(top: 30),
       color: AppColors.colors.background,
       child: Stack(children: [
         Padding(
@@ -41,6 +42,7 @@ class _DashBoardState extends State<DashBoard> {
           child: IconButton(
               onPressed: () {
                 setState(() {
+                  dashboardProvider.isLoading = true;
                   dashboardProvider.transactions = [];
                   dashboardProvider.m = {};
                   dashboardProvider.fetchTransactions(context);
@@ -64,6 +66,9 @@ class _DashBoardState extends State<DashBoard> {
                         fontSize: 35,
                         color: Colors.white,
                         fontWeight: FontWeight.w600)),
+              ),
+              SizedBox(
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,7 +108,7 @@ class _DashBoardState extends State<DashBoard> {
               // Container shows recent five transactions
               Container(
                 width: 1000,
-                height: 335,
+                height: 410,
                 margin: const EdgeInsets.only(top: 60),
                 decoration: BoxDecoration(
                     color: AppColors.colors.tileBackground,
@@ -161,6 +166,7 @@ class _DashBoardState extends State<DashBoard> {
                     dashboardProvider.isLoading == false
                         ? dashboardProvider.transactions.isNotEmpty
                             ? Expanded(
+                                child: Center(
                                 child: ListView.builder(
                                     itemCount:
                                         dashboardProvider.transactions.length,
@@ -174,7 +180,8 @@ class _DashBoardState extends State<DashBoard> {
                                               .transactions[i].borrowedDate!,
                                           rDate: dashboardProvider
                                               .transactions[i].returnedDate!);
-                                    })))
+                                    })),
+                              ))
                             : Center(
                                 child: Text('No Recent Transactions',
                                     style: appTheme()
@@ -185,7 +192,7 @@ class _DashBoardState extends State<DashBoard> {
                                         )))
                         : Expanded(
                             child: ListView.builder(
-                                itemCount: 5,
+                                itemCount: 7,
                                 itemBuilder: ((context, i) {
                                   return const SkeletonTileHistory();
                                 }))),

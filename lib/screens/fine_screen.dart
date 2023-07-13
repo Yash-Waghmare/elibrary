@@ -27,7 +27,7 @@ class _FineState extends State<Fine> {
       color: AppColors.colors.background,
       width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 110),
+        padding: const EdgeInsets.symmetric(horizontal: 110, vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -40,7 +40,7 @@ class _FineState extends State<Fine> {
                       fontWeight: FontWeight.w600)),
             ),
             const SizedBox(
-              height: 50,
+              height: 100,
             ),
             Container(
               width: 400,

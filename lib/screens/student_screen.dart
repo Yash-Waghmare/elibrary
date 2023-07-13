@@ -253,7 +253,7 @@ class _StudentScreenState extends State<StudentScreen> {
                                           color: AppColors.colors.white,
                                         )))
                         : ListView.builder(
-                            itemCount: 7,
+                            itemCount: 11,
                             itemBuilder: ((context, i) {
                               return const SkeletonTile();
                             }),
