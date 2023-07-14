@@ -15,7 +15,6 @@ import '../widgets/custom_textfield.dart';
 import '../widgets/hero_dialogue_route.dart';
 import '../widgets/popup_textfield.dart';
 import '../widgets/popup_window.dart';
-import '../widgets/skeleton_tile_student.dart';
 
 // TransactionScreen is used to display the list of transactions in the app
 // Transaction Screen contains the functionality of:

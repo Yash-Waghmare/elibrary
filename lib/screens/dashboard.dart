@@ -33,7 +33,7 @@ class _DashBoardState extends State<DashBoard> {
     // homepage provider for using the variables on homepage
     HomePageProvider homepageProvider = Provider.of<HomePageProvider>(context);
     return Container(
-      padding: EdgeInsets.only(top: 30),
+      // padding: EdgeInsets.only(top: 20),
       color: AppColors.colors.background,
       child: Stack(children: [
         Padding(
@@ -67,7 +67,7 @@ class _DashBoardState extends State<DashBoard> {
                         color: Colors.white,
                         fontWeight: FontWeight.w600)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(

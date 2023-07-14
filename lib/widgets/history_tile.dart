@@ -30,7 +30,9 @@ class HistoryTile extends StatelessWidget {
                   fontWeight: FontWeight.w400),
             ),
           ),
-          SizedBox(width: 30,),
+          const SizedBox(
+            width: 30,
+          ),
           Container(
             alignment: Alignment.center,
             width: 275,

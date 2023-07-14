@@ -29,13 +29,13 @@ class SkeletonTileTransaction extends StatelessWidget {
             children: [
               Container(
                 width: 50,
-                margin: const EdgeInsets.only(left: 70,top: 5,bottom: 5),
+                margin: const EdgeInsets.only(left: 70, top: 5, bottom: 5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.colors.buttonBackground,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 90,
               ),
               Container(
@@ -46,7 +46,7 @@ class SkeletonTileTransaction extends StatelessWidget {
                   color: AppColors.colors.buttonBackground,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 70,
               ),
               Container(
@@ -57,7 +57,7 @@ class SkeletonTileTransaction extends StatelessWidget {
                   color: AppColors.colors.buttonBackground,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 40,
               ),
               Container(
