@@ -40,10 +40,10 @@ class _HomePageState extends State<HomePage> {
       children: [
         Container(
           width: 350,
-          padding: const EdgeInsets.only(top: 50),
+          padding: const EdgeInsets.only(top: 60),
           color: AppColors.colors.background,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 39),
+            padding: const EdgeInsets.symmetric(vertical: 29),
             child: ListView(
               children: [
                 const Image(
