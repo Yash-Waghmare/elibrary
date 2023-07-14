@@ -75,6 +75,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     // Empty string gives total transactions
                     showList = '';
                     transactionIdController.clear();
+                    searchController.clear();
                   });
                 },
                 icon: Icon(
